@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Yuchen - 随笔">
 <meta property="og:description" content="Hexo Blog 1.安装nodejs、安装git">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-13T11:09:10.723Z">
+<meta property="og:updated_time" content="2019-04-13T12:38:14.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo搭建github bolg">
 <meta name="twitter:description" content="Hexo Blog 1.安装nodejs、安装git">
@@ -186,7 +186,8 @@
 <ul>
 <li><p>2.安装hexo、配置hexo</p>
 <ul>
-<li>npm install hexo -g //安装hexo hexo -v查看安装版本<br>-　hexo init //进入bolg文件 初始化hexo文件 是从git down下来</li>
+<li>npm install hexo -g //安装hexo hexo -v查看安装版本</li>
+<li>hexo init //进入bolg文件 初始化hexo文件 是从git down下来</li>
 <li>hexo g //生成网页文件</li>
 <li>hexo s //启动服务器 网站可已运行了一般默认端口是4000 冲突的话 hexo server -p 端口</li>
 <li>npm install hexo-deployer-git –save  //关联git 配置过配置文件中的deploy节点之后 运行该命令 </li>
@@ -196,6 +197,15 @@
 <li><p>3.自定义格式..</p>
 <ul>
 <li>hexo new post “名称” //创建md文件 写bolg</li>
+</ul>
+</li>
+<li><p>4.个人域名绑定</p>
+<ul>
+<li>阿里云为例 （其实就是一个域名转发解析到另一个地址，你这个地址不用备案）<ul>
+<li>解析-&gt;记录类型选CNAME，主机记录如想设置顶级域名就是输入www，如果想让二级域名指向你的bolg，就输入一个二级域名 比如你的git id，解析路线选默认就好了，记录值输入你的blog地址(gitid.github.io)</li>
+<li>在你的项目source中创建一个文件CNAME,不要后缀名，内容输入你【主机记录】设置的全部名称，提交之后去你的git项目查看设置里GitHub Pages里的Custom domain应该变成了你的域名</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

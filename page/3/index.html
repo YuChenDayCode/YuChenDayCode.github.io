@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录">
+  <meta name="description" content="C# python js 等 随笔记录">
 <meta name="keywords" content="全栈">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yuchen - 随笔">
 <meta property="og:url" content="//yuchendaycode.github.io/page/3/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="记录">
+<meta property="og:description" content="C# python js 等 随笔记录">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yuchen - 随笔">
-<meta name="twitter:description" content="记录">
+<meta name="twitter:description" content="C# python js 等 随笔记录">
   
     <link rel="alternative" href="/atom.xml" title="Yuchen - 随笔" type="application/atom+xml">
   
@@ -53,7 +53,7 @@
 		  <h1 class="header-author"><a href="/">Yuchen</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">记录</p>
+		<p class="header-subtitle">Hello World!</p>
 		
 
 		<nav class="header-menu">
@@ -113,7 +113,7 @@
 			  <h1 class="header-author js-header-author">Yuchen</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记录<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Hello World!<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -160,6 +160,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SQL Server的几种分页方式和效率" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/23/SQL Server的几种分页方式和效率/">SQL Server的几种分页方式和效率</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/23/SQL Server的几种分页方式和效率/" class="archive-article-date">
+  	<time datetime="2018-11-23T05:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-23 13:36:00</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="SQL-Server的几种分页方式和效率"><a href="#SQL-Server的几种分页方式和效率" class="headerlink" title="SQL Server的几种分页方式和效率"></a>SQL Server的几种分页方式和效率</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--top not in方式</span></span><br><span class="line"><span class="keyword">select</span> top 条数 *  <span class="keyword">from</span> tablename</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Id</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> top 条数*页数  <span class="keyword">Id</span> <span class="keyword">from</span> tablename)</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="comment">--ROW_NUMBER() OVER()方式 </span></span><br><span class="line"> <span class="keyword">select</span> * <span class="keyword">from</span> ( </span><br><span class="line">　　　　<span class="keyword">select</span> *, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">Order</span> <span class="keyword">by</span> <span class="keyword">Id</span> ) <span class="keyword">AS</span> RowNumber <span class="keyword">from</span> tablename</span><br><span class="line">　　) <span class="keyword">as</span> b</span><br><span class="line">　　<span class="keyword">where</span> RowNumber <span class="keyword">BETWEEN</span> 当前页数<span class="number">-1</span>*条数 <span class="keyword">and</span> 页数*条数   </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">--offset fetch next方式</span></span><br><span class="line"><span class="comment">--SQL2012以上的版本才支持</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tablename</span><br><span class="line"> <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">Id</span> <span class="keyword">offset</span> 页数 <span class="keyword">row</span> <span class="keyword">fetch</span> <span class="keyword">next</span> 条数 <span class="keyword">row</span> <span class="keyword">only</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/11/23/SQL Server的几种分页方式和效率/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SQLServer</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/23/SQL Server的几种分页方式和效率/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-可输入下拉文本框，据输入，动态加载数据 jquery-editable-select" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -183,21 +259,9 @@
         <h1 id="可输入下拉文本框，据输入，动态加载数据-jquery-editable-select"><a href="#可输入下拉文本框，据输入，动态加载数据-jquery-editable-select" class="headerlink" title="可输入下拉文本框，据输入，动态加载数据 jquery-editable-select"></a>可输入下拉文本框，据输入，动态加载数据 jquery-editable-select</h1><p>用到一个<strong>jquery-editable-select</strong>的控件</p>
 <p>github地址: <a href="https://github.com/indrimuska/jquery-editable-select" target="_blank" rel="noopener">https://github.com/indrimuska/jquery-editable-select</a></p>
 <p>这个插件的原理是把多选框转化为input 并把项列为ul&gt;li的形式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=&quot;i_CustomerId_ES&quot; name=&quot;CustomerName&quot;&gt;&lt;/select&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://img-blog.csdn.net/20180608144149973?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NvbW1hbmRCYWJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<p><strong>绑定动态数据，根据输入筛选 并获取value和txt：</strong></p>
-<p>1.初始化editable-select控件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#i_CustomerId_ES&apos;).editableSelect().on(&apos;select.editable-select&apos;, function (e, dom) &#123;</span><br><span class="line">              //console.log(dom.val() + &apos;&apos; + dom.text());         </span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
-<p> 2.由于会解析成input 可以通过给input绑定keydown 或 input时间来监控输入的目的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#i_CustomerId_ES).on(&apos;input&apos;, function (e) &#123;</span><br><span class="line">             bindSc($(this).val()); //调用获取数据的方法</span><br><span class="line">         &#125;);</span><br></pre></td></tr></table></figure>
-<p>3.绑定数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var bindSc = function (value) &#123;</span><br><span class="line">          var search = value;</span><br><span class="line">          $.get(&apos;...&apos;, &#123; search: search &#125;, function (result) &#123;</span><br><span class="line">              $(&apos;#i_CustomerId_ES&apos;).editableSelect(&apos;clear&apos;);//清空现有数据</span><br><span class="line">              $.each(result, function (i, t) &#123;</span><br><span class="line">                  $(&apos;#i_CustomerId_ES&apos;).editableSelect(&apos;add&apos;, function () &#123;</span><br><span class="line">                      $(this).val(t.Id);</span><br><span class="line">                      $(this).text(t.Name);</span><br><span class="line">                  &#125;);//调用add方法 通过函数的方式绑定上val和txt</span><br><span class="line">              &#125;)</span><br><span class="line">          &#125;)</span><br></pre></td></tr></table></figure>
-<p>以上。</p>
-<p>重点方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.on(&apos;select.editable-select&apos;, function (e, dom) &#123;&#125;) //选择后触发</span><br><span class="line">.editableSelect(&apos;clear&apos;);//清空现有数据</span><br><span class="line">.editableSelect(&apos;add&apos;, function () &#123;</span><br><span class="line">                        $(this).val(t.Id);</span><br><span class="line">                        $(this).text(t.Name);</span><br><span class="line">                        //$(this).attr(&quot;remark&quot;,t.remark); //可以存储多个值 获取：$(&quot;#i_CustomerId_ES&quot;).find(&apos;option:selected&apos;).attr(&quot;remark&quot;)</span><br><span class="line">                                    //$(this).attr(&quot;remark1&quot;,t.remark1);</span><br><span class="line">                    &#125;);//add绑定添加上value txt</span><br></pre></td></tr></table></figure>
-<p>输入之后会出现数据框消失的情况，只需将源码中的</p>
-<p>hiddens = this.$list.find(‘li’).filter(function (i, li) { return $(li).text().toLowerCase().indexOf(search) &lt; 0; }).hide().removeClass(‘es-visible’).length;if (this.$list.find(‘li’).length == hiddens) this.show();注释掉就好</p>
-
+        
+          <a class="article-more-a" href="/2018/11/23/可输入下拉文本框，据输入，动态加载数据 jquery-editable-select/#more">更多 >></a>
+        
       
 
       
@@ -272,9 +336,9 @@
       
         <h1 id="C-去字符串首尾指定符号或字符-超简单方法"><a href="#C-去字符串首尾指定符号或字符-超简单方法" class="headerlink" title="C# 去字符串首尾指定符号或字符 超简单方法"></a>C# 去字符串首尾指定符号或字符 超简单方法</h1><p><strong>TrimStart()</strong>：匹配开头字符，有则移除</p>
 <p><strong>TrimEnd()</strong>：匹配结尾字符，有则移除</p>
-<p><img src="http://tnblog.net/arcimg/cz/eac23677f8bc45a4a4067e5c48734108.png" alt="img"></p>
-<p>再也不用repalce substring了！！！</p>
-
+        
+          <a class="article-more-a" href="/2018/11/23/去字符串首尾指定符号或字符 超简单方法/#more">更多 >></a>
+        
       
 
       
@@ -287,7 +351,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">C#、字符串</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
         		</li>
       		
 		</ul>
@@ -355,20 +423,9 @@
 <p>JobDetail：具体的可执行的调度程序，Job 是这个可执行程调度程序所要执行的内容</p>
 <p>Trigger：调度参数的配置，什么时候去调 执行间隔。 </p>
 <p>Scheduler：调度容器，一个调度容器中可以注册多个 JobDetail 和 Trigger。当 Trigger 与 JobDetail 组合，就可以被 Scheduler 容器调度了。 </p>
-<p>大体介绍：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line">static void Main(string[] args)</span><br><span class="line">        &#123;</span><br><span class="line">            Task&lt;IScheduler&gt; task_scheduler = StdSchedulerFactory.GetDefaultScheduler();</span><br><span class="line">            IScheduler scheduler = task_scheduler.Result;</span><br><span class="line"> </span><br><span class="line">            //ISchedulerFactory _SchedulerFactory = new StdSchedulerFactory();</span><br><span class="line">            //IScheduler scheduler = _SchedulerFactory.GetScheduler().Result;</span><br><span class="line"> </span><br><span class="line">            /*  </span><br><span class="line">             *   过程：</span><br><span class="line">             *      一.通过StdSchedulerFactory计划工厂对象创建调度计划Scheduler</span><br><span class="line">             *      二.创建Job对象，需要继承IJob 实现执行方法</span><br><span class="line">             *      三.触发对象，2种：间隔执行和定时执行</span><br><span class="line">             *          1.ITrigger:间隔执行</span><br><span class="line">             *          2.ICronTrigger:定时执行</span><br><span class="line">             *      四.将job对象和触发对象传入调度计划Scheduler 开始执行</span><br><span class="line">             *  </span><br><span class="line">             * </span><br><span class="line">             */</span><br><span class="line">            //job创建</span><br><span class="line">            IJobDetail job = JobBuilder.Create&lt;SayHello&gt;().WithIdentity(&quot;定时确认完成订单&quot;).Build();</span><br><span class="line"> </span><br><span class="line">            ////创建简单计时器</span><br><span class="line">            //ISimpleTrigger _SimpleTrigger = TriggerBuilder.Create()</span><br><span class="line">            //    .WithSimpleSchedule(t =&gt; t //声明定时</span><br><span class="line">            //    .WithIntervalInSeconds(2) //5秒一次</span><br><span class="line">            //    .RepeatForever()) //永远执行</span><br><span class="line">            //    .StartNow() //立即开始</span><br><span class="line">            //    .Build() //创建</span><br><span class="line">            //    as ISimpleTrigger;</span><br><span class="line">            ////关联job与计时器</span><br><span class="line">            //scheduler.ScheduleJob(job, _SimpleTrigger);</span><br><span class="line">            /*</span><br><span class="line">             * WithCronSchedule参数说明：</span><br><span class="line">             *  秒 分 时 某一天 月 周 年(可选参数,一般不用)</span><br><span class="line">             *  秒分的合法值为0-59，小时:0-23，日期(天):0-31[要注意不同的月份中的天数不同] 月:0-11[或JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC] 星期:1-7(1=星期日)或[SUN,MON,TUE,WED,THU,FRI,SAT]    (程序员数数法。。 万事0开始)（ 涉及到星期最好用英文）</span><br><span class="line">             *      通配符&#123;[, - * /]都可以使用、[L #]只能星期课额外使用、[L W]天数可额外使用&#125;</span><br><span class="line">             *          &apos;,&apos; 子条件</span><br><span class="line">             *          &apos;*&apos; 代表任意值的所有 </span><br><span class="line">             *          &apos;-&apos; 代表一个时段 </span><br><span class="line">             *          &apos;/&apos; 代表值的增量 </span><br><span class="line">             *                  比如:分钟域中放入&apos;0/15&apos; 表示【从0开始 每隔15分钟】 &apos;3/20&apos;表示【从第3分钟开始 每隔20分钟】 等同【3,23,43】</span><br><span class="line">             *          &apos;?&apos; 只能用在天数或者星期中 表示【没有指定值,满足所有】 </span><br><span class="line">             *          &apos;L&apos; 只能用在天数或者星期中 表示【这个时段的最后一天】 </span><br><span class="line">             *                  比如：月份中 1月的31号 2月的28或者29号 反正最后一天，或者 4L:该月的最后一个周四 6L:该月的最后一个周四。  </span><br><span class="line">             *                  注意！星期中表示【周六 SAT（手动加粗）】 </span><br><span class="line">             *          &apos;W&apos; 代表离给定日期最近的那个工作日</span><br><span class="line">             *                  比如：天数设置为15W 表示【离本月15号最近的一个工作日】？？</span><br><span class="line">             *          &apos;LW&apos;代表这个月最后一周的工作日 可以在日期使用 ？待测</span><br><span class="line">             *          &apos;#&apos; 代表本月的第几个工作日</span><br><span class="line">             *                  比如：星期中设置6#3 当月的第三个周五（6是周五！）</span><br><span class="line">             * </span><br><span class="line">             *  过失触发：</span><br><span class="line">             *    withMisfireHandlingInstructionDoNothing---&gt;misfireInstruction = 2</span><br><span class="line">             *     ——不触发立即执行</span><br><span class="line">             *     ——等待下次Cron触发频率到达时刻开始按照Cron频率依次执行</span><br><span class="line">             *</span><br><span class="line">             *    withMisfireHandlingInstructionFireAndProceed---&gt;misfireInstruction = 1</span><br><span class="line">             *     ——以当前时间为触发频率立刻触发一次执行</span><br><span class="line">             *     ——然后按照Cron频率依次执行</span><br><span class="line">             *</span><br><span class="line">             *     withMisfireHandlingInstructionIgnoreMisfires---&gt;misfireInstruction = -1</span><br><span class="line">             *     ——以错过的第一个频率时间立刻开始执行</span><br><span class="line">             *     ——重做错过的所有频率周期后</span><br><span class="line">             *     ——当下一次触发频率发生时间大于当前时间后，再按照正常的Cron频率依次执行</span><br><span class="line">             * </span><br><span class="line">             * </span><br><span class="line">             * </span><br><span class="line">             * 实例：</span><br><span class="line">             *      &quot;0 0/5 * * * ?&quot; 每5分钟</span><br><span class="line">             *      &quot;10 0/5 * * * ?&quot; 这分钟后 10 秒起, 每五分钟</span><br><span class="line">             *      &quot;0 30 10-13 ? * WED,FRI&quot; 每周三、周五的10点到13点的30分时 【每周三, 周五 10:30, 11:30, 12:30 和 13:30】</span><br><span class="line">             *      &quot;0 0/30 8-9 5,20 * ?&quot; 每个月的5号、20号的8点9点之间 每半小时触发一次 因为0开始 所以10点的时候不触发【8:00, 8:30, 9:00  9:30 】</span><br><span class="line">             *      &quot;0 0-5 14 * * ?&quot;  每天的14:00到14:05分每分钟一次</span><br><span class="line">             *      &quot;0 10,44 14 ? 3 WED&quot; 每年三月的周三14:10和14:44</span><br><span class="line">             *      &quot;0 15 10 ? * MON-FRI&quot; 每周三到周五的10::15</span><br><span class="line">             *      &quot;0 15 10 ? * 6#3&quot; 每个月第三个周五的10:15</span><br><span class="line">             * </span><br><span class="line">             *   生成表达式的网站：http://cron.qqe2.com/?tdsourcetag=s_pctim_aiomsg 小时模块的增量有bug注意下 但大体不影响使用</span><br><span class="line">            */</span><br><span class="line">            ICronTrigger _CronTrigger = TriggerBuilder.Create()</span><br><span class="line">                .WithIdentity(&quot;定时确认&quot;)</span><br><span class="line">                .WithCronSchedule(&quot;0/2 * * * * ?&quot;) //秒 分 时 某一天 月 周 年(可选参数)</span><br><span class="line">                .Build()</span><br><span class="line">                as ICronTrigger;</span><br><span class="line">            scheduler.ScheduleJob(job, _CronTrigger);</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">            scheduler.Start();</span><br><span class="line">            Console.ReadLine();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public class SayHello : IJob</span><br><span class="line">    &#123;</span><br><span class="line">        public async Task Execute(IJobExecutionContext context)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(&quot;Hello Wrold!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>实例：</p>
-<p><strong>1.创建job</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public class SayHello : IJob</span><br><span class="line">    &#123;</span><br><span class="line">        public static int ii = 0;</span><br><span class="line">        static string str = &quot;服务1=Cron 5秒一次。Hello World==SayHello  &quot;;</span><br><span class="line">        public async Task Execute(IJobExecutionContext context)</span><br><span class="line">        &#123;</span><br><span class="line">             </span><br><span class="line">            if (ii == 1)</span><br><span class="line">            &#123;</span><br><span class="line">                QuartzManage.ModifyJob(context.JobDetail, context.Trigger as ICronTrigger, &quot;0/2 * * * * ?&quot;);</span><br><span class="line">                ii = 0;</span><br><span class="line">                str += &quot;,周期已改变！！变成2秒一次 &quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            Common.WriteLog(str + context.Scheduler.GetHashCode());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    public class SayCZ : IJob</span><br><span class="line">    &#123;</span><br><span class="line">        public async Task Execute(IJobExecutionContext context)</span><br><span class="line">        &#123;</span><br><span class="line">            Common.WriteLog(&quot;服务2=Simple 3秒一次。Hello CZ==SayCZ  &quot; + context.Scheduler.GetHashCode());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>2.Quartz管理类</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">public class QuartzManage</span><br><span class="line">    &#123;</span><br><span class="line">        static Task&lt;IScheduler&gt; task_scheduler = StdSchedulerFactory.GetDefaultScheduler();</span><br><span class="line">        static IScheduler scheduler;</span><br><span class="line">        private static readonly object objlock = new object();</span><br><span class="line">        static QuartzManage()</span><br><span class="line">        &#123;</span><br><span class="line">            if (scheduler == null)</span><br><span class="line">            &#123;</span><br><span class="line">                lock (objlock)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (scheduler == null)</span><br><span class="line">                        scheduler = task_scheduler.Result;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// 以Simple开始一个工作</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;typeparam name=&quot;T&quot;&gt;&lt;/typeparam&gt;</span><br><span class="line">        /// &lt;param name=&quot;name&quot;&gt;&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;simpleInterval&quot;&gt;&lt;/param&gt;</span><br><span class="line">        public static void StartJobWithSimple&lt;T&gt;(string name, Action&lt;SimpleScheduleBuilder&gt; simpleInterval) where T : IJob</span><br><span class="line">        &#123;</span><br><span class="line">            IJobDetail job = JobBuilder.Create&lt;T&gt;().WithIdentity(name + &quot;_job&quot;, name + &quot;_group&quot;).Build();</span><br><span class="line">            ITrigger Simple = TriggerBuilder.Create().StartNow()</span><br><span class="line">                               .WithSimpleSchedule(simpleInterval)</span><br><span class="line">                               .Build() as ISimpleTrigger;</span><br><span class="line"> </span><br><span class="line">            scheduler.ScheduleJob(job, Simple);</span><br><span class="line">            scheduler.Start();</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// 以Cron开始一个工作</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;typeparam name=&quot;T&quot;&gt;&lt;/typeparam&gt;</span><br><span class="line">        /// &lt;param name=&quot;name&quot;&gt;&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;CronExpression&quot;&gt;&lt;/param&gt;</span><br><span class="line">        public static void StartJobWithCron&lt;T&gt;(string name, string CronExpression) where T : IJob</span><br><span class="line">        &#123;</span><br><span class="line"> </span><br><span class="line">            IJobDetail job = JobBuilder.Create&lt;T&gt;().WithIdentity(name + &quot;_job&quot;, name + &quot;_group&quot;).Build();</span><br><span class="line"> </span><br><span class="line">            ITrigger CronTrigger = TriggerBuilder.Create().StartNow().WithIdentity(name + &quot;_trigger&quot;, name + &quot;_group&quot;)</span><br><span class="line">                                    .WithCronSchedule(CronExpression, w =&gt; w.WithMisfireHandlingInstructionDoNothing())</span><br><span class="line">                                    .Build() as ICronTrigger;</span><br><span class="line"> </span><br><span class="line">            scheduler.ScheduleJob(job, CronTrigger);</span><br><span class="line">            scheduler.Start();</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Cron修改频率</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;job&quot;&gt;&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;trigger&quot;&gt;&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;CronExpression&quot;&gt;&lt;/param&gt;</span><br><span class="line">        public static void ModifyJob(IJobDetail job, ICronTrigger trigger, string CronExpression)</span><br><span class="line">        &#123;</span><br><span class="line">            ICronTrigger _ICronTrigger = trigger;</span><br><span class="line">            _ICronTrigger.CronExpressionString = CronExpression;</span><br><span class="line"> </span><br><span class="line">            scheduler.RescheduleJob(trigger.Key, _ICronTrigger);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Simple修改频率</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;job&quot;&gt;&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;trigger&quot;&gt;&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;SimpleTime&quot;&gt;&lt;/param&gt;</span><br><span class="line">        public static void ModifyJob(IJobDetail job, ISimpleTrigger trigger, TimeSpan SimpleTime)</span><br><span class="line">        &#123;</span><br><span class="line">            ISimpleTrigger _ISimpleTrigger = trigger;</span><br><span class="line">            _ISimpleTrigger.RepeatInterval = SimpleTime;</span><br><span class="line"> </span><br><span class="line">            scheduler.RescheduleJob(trigger.Key, _ISimpleTrigger);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><strong>3.执行调度，并改变周期</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public partial class Form1 : Form</span><br><span class="line">    &#123;</span><br><span class="line">        public Form1()</span><br><span class="line">        &#123;</span><br><span class="line">            InitializeComponent();</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Cron</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</span><br><span class="line">        private void button1_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            QuartzManage.StartJobWithCron&lt;SayHello&gt;(&quot;first&quot;, &quot;0/5 * * * * ?&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        /// &lt;summary&gt;</span><br><span class="line">        /// Simple运行</span><br><span class="line">        /// &lt;/summary&gt;</span><br><span class="line">        /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</span><br><span class="line">        /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</span><br><span class="line">        private void button2_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            QuartzManage.StartJobWithSimple&lt;SayCZ&gt;(&quot;second&quot;, x =&gt; x.WithIntervalInSeconds(3).RepeatForever()); //每三秒 一直执行</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        private void button3_Click(object sender, EventArgs e)</span><br><span class="line">        &#123;</span><br><span class="line">            SayHello.ii = 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>执行结果：</p>
-<p><img src="https://img-blog.csdn.net/20180913134400241?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NvbW1hbmRCYWJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<p>改变周期后 会有一个过时触发的问题 根据设置不同的模式 执行的效果不同 <strong>misfire</strong>的概念，第一个代码块中有详细注释说明</p>
-<p>代码实例: <a href="https://download.csdn.net/download/commandbaby/10664266" target="_blank" rel="noopener">https://download.csdn.net/download/commandbaby/10664266</a></p>
-
+        
+          <a class="article-more-a" href="/2018/11/22/Quartz.NET实例,动态改变周期调度。misfire、Cron/#more">更多 >></a>
+        
       
 
       
@@ -421,6 +478,87 @@
 
 
   
+    <article id="post-Windows服务发布、安装、卸载、监听脚本。服务调试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/22/Windows服务发布、安装、卸载、监听脚本。服务调试/">Windows服务发布、安装、卸载、监听脚本。服务调试</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/22/Windows服务发布、安装、卸载、监听脚本。服务调试/" class="archive-article-date">
+  	<time datetime="2018-11-22T07:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22 15:24:00</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一、脚本</strong></p>
+<p>  为方便不用每次都去写安装卸载的脚本</p>
+        
+          <a class="article-more-a" href="/2018/11/22/Windows服务发布、安装、卸载、监听脚本。服务调试/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">.NET</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Window服务</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/Windows服务发布、安装、卸载、监听脚本。服务调试/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-三行代码 人民币金额大写转换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -441,10 +579,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="三行代码-人民币金额大写转换"><a href="#三行代码-人民币金额大写转换" class="headerlink" title="三行代码 人民币金额大写转换"></a>三行代码 人民币金额大写转换</h1><blockquote>
-<p>2018/11/22 14:23</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static String ConvertToChinese(Decimal number)</span><br><span class="line">&#123;</span><br><span class="line">    var s = number.ToString(&quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&quot;);</span><br><span class="line">    var d = Regex.Replace(s, @&quot;((?&lt;=-|^)[^1-9]*)|((?&apos;z&apos;0)[0A-E]*((?=[1-9])|(?&apos;-z&apos;(?=[F-L\.]|$))))|((?&apos;b&apos;[F-L])(?&apos;z&apos;0)[0A-L]*((?=[1-9])|(?&apos;-z&apos;(?=[\.]|$))))&quot;, &quot;$&#123;b&#125;$&#123;z&#125;&quot;);</span><br><span class="line">    var r = Regex.Replace(d, &quot;.&quot;, m =&gt; &quot;负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰&quot;[m.Value[0] - &apos;-&apos;].ToString());</span><br><span class="line">    return r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="三行代码-人民币金额大写转换"><a href="#三行代码-人民币金额大写转换" class="headerlink" title="三行代码 人民币金额大写转换"></a>三行代码 人民币金额大写转换</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static String ConvertToChinese(Decimal number)</span><br><span class="line">&#123;</span><br><span class="line">    var s = number.ToString(&quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&quot;);</span><br><span class="line">    var d = Regex.Replace(s, @&quot;((?&lt;=-|^)[^1-9]*)|((?&apos;z&apos;0)[0A-E]*((?=[1-9])|(?&apos;-z&apos;(?=[F-L\.]|$))))|((?&apos;b&apos;[F-L])(?&apos;z&apos;0)[0A-L]*((?=[1-9])|(?&apos;-z&apos;(?=[\.]|$))))&quot;, &quot;$&#123;b&#125;$&#123;z&#125;&quot;);</span><br><span class="line">    var r = Regex.Replace(d, &quot;.&quot;, m =&gt; &quot;负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰&quot;[m.Value[0] - &apos;-&apos;].ToString());</span><br><span class="line">    return r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -518,8 +653,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="珍藏！！-JS-CSS不传之秘集合"><a href="#珍藏！！-JS-CSS不传之秘集合" class="headerlink" title="珍藏！！ JS CSS不传之秘集合"></a>珍藏！！ JS CSS不传之秘集合</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 其中<span class="number">5</span>指每隔<span class="number">5</span>秒刷新一次页面 --&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"5"</span>&gt; </span><br><span class="line">================================================================================</span><br><span class="line">animation:动画播放</span><br><span class="line">================================================================================</span><br><span class="line">图片模态：https:<span class="comment">//c.runoob.com/codedemo/157</span></span><br><span class="line">================================================================================</span><br><span class="line">p:before&#123; <span class="attr">content</span>:<span class="string">"Read this -"</span>;background-color:yellow;color:red;font-weight:bold;&#125; <span class="comment">//前后加固定的东西</span></span><br><span class="line">p:after&#123; <span class="attr">content</span>:<span class="string">"- After this"</span>;background-color:darkgray;color:red;font-weight:bold;&#125;</span><br><span class="line">================================================================================</span><br><span class="line">p.a&#123;text-transform:uppercase;&#125;全部变大写</span><br><span class="line">p.b&#123;text-transform:lowercase;&#125;全部变小写</span><br><span class="line">p.c&#123;text-transform:capitalize;&#125;首字母变大写</span><br><span class="line">================================================================================</span><br><span class="line">&lt;p&gt;X&lt;sup&gt;<span class="number">2</span>&lt;<span class="regexp">/sup&gt;+log&lt;sub&gt;e&lt;/</span>sub&gt;e&lt;<span class="regexp">/p&gt;&lt;br/</span>&gt;&lt;br/&gt;  X2+logee</span><br><span class="line">================================================================================</span><br><span class="line">fadeToggle():重载，可以传时间 之类的</span><br><span class="line">================================================================================</span><br><span class="line">Autocomplete:输入模糊匹配候选</span><br><span class="line">================================================================================</span><br><span class="line">.nowrap&#123;white-space:nowrap;&#125;<span class="comment">/* 强制不换行 */</span></span><br><span class="line">.breakword&#123;word-wrap: <span class="keyword">break</span>-word;&#125;<span class="comment">/* 允许单词内断句，首先会尝试挪到下一行，看看下一行的宽度够不够，不够的话就进行单词内的断句 */</span></span><br><span class="line">.breakAll&#123;word-<span class="keyword">break</span>:<span class="keyword">break</span>-all;&#125;      <span class="comment">/* 断句时，不会把长单词挪到下一行，而是直接进行单词内的断句 */</span>      </span><br><span class="line">.ellipsis&#123;text-overflow:ellipsis;overflow:hidden;&#125;<span class="comment">/* 超出部分显示省略号 */</span></span><br><span class="line">================================================================================</span><br><span class="line">div[id=<span class="string">'1'</span>] p：后代选择</span><br><span class="line">div[id=<span class="string">'2'</span>]&gt;p：子类选择</span><br><span class="line">div[id=<span class="string">'3'</span>]+p：相邻兄弟(后面第一个)</span><br><span class="line">div[id=<span class="string">'4'</span>]~p：同级选择（后面的）</span><br><span class="line">.parent() 父元素</span><br><span class="line">.children() 子元素</span><br><span class="line">.prev() 前一个同辈元素</span><br><span class="line">.next() 下一个同辈元素</span><br><span class="line">================================================================================</span><br><span class="line">^=：开头</span><br><span class="line">$=：结束</span><br><span class="line">*=：包含</span><br><span class="line">================================================================================</span><br><span class="line"><span class="comment">//评价星星</span></span><br><span class="line"> <span class="keyword">if</span>(rating &gt; <span class="number">5</span> || rating &lt; <span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'数字不在范围内'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'★★★★★☆☆☆☆☆'</span>.substring(<span class="number">5</span> - rating, <span class="number">10</span> - rating );</span><br><span class="line">================================================================================</span><br><span class="line"><span class="comment">//动态创建</span></span><br><span class="line"><span class="keyword">var</span> s = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">s.setAttribute(<span class="string">'src'</span>, <span class="string">'@require'</span>);</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(s)</span><br><span class="line">================================================================================</span><br><span class="line">autocomplete=<span class="string">"off"</span>  <span class="comment">//不保留历史输入文本框</span></span><br><span class="line">================================================================================</span><br><span class="line">navigator.userAgent.toLowerCase() 获得浏览器系统信息</span><br><span class="line">===============================================================================</span><br><span class="line"><span class="built_in">window</span>.history.go(<span class="number">-1</span>);<span class="comment">//返回上一页并刷新 但很多时候不会刷新</span></span><br><span class="line"><span class="built_in">window</span>.location.href = <span class="built_in">document</span>.referrer;<span class="comment">//返回上一页并刷新  document.referrer 获取上一个页面的地址</span></span><br></pre></td></tr></table></figure>
-
+        <h1 id="珍藏！！-JS-CSS不传之秘集合"><a href="#珍藏！！-JS-CSS不传之秘集合" class="headerlink" title="珍藏！！ JS CSS不传之秘集合"></a>珍藏！！ JS CSS不传之秘集合</h1>
+        
+          <a class="article-more-a" href="/2018/11/22/珍藏！！ JS CSS不传之秘集合/#more">更多 >></a>
+        
       
 
       
@@ -532,7 +669,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JS、CSS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
         		</li>
       		
 		</ul>
@@ -595,15 +736,9 @@
         <h1 id="ajax-get时请求异步缓存"><a href="#ajax-get时请求异步缓存" class="headerlink" title="ajax,get时请求异步缓存"></a>ajax,get时请求异步缓存</h1><p>ajax中的get为何有时执行，有时不执行?</p>
 <p>（九十岁老太为何起死回生，数百头母猪为何半夜惨叫；女生宿舍为何频频失窃，超市方便面为何惨遭黑手。在达一切的背后，是人性的扭曲、还是道德的沦丧。敬请… 咳咳）</p>
 <p>在IE中用ajax的get方式请求同一个地址获取数据时，经常碰到回调函数成功执行，前台又有数据的情况，但是无法请求到后台获得最新的数据。</p>
-<p>原因是<strong>ajax存在异步缓存</strong>的问题</p>
-<p>因为ajax本身自带有实时异步请求的功能，而IE缓存导致请求时不会请求后台，会直接读取缓存的数据。</p>
-<p>解决办法：</p>
-<p><strong>第一种：ajax get请求时比较简单 只需将cache设置为false就好</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">               type: <span class="string">'get'</span>,<span class="comment">//get请求时</span></span><br><span class="line">               url: <span class="string">'........'</span>,</span><br><span class="line">               cache: <span class="literal">false</span>,<span class="comment">//不缓存</span></span><br><span class="line">               data: &#123; &#125;,</span><br><span class="line">               success: <span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">                   <span class="comment">//</span></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;);</span><br></pre></td></tr></table></figure>
-<p><strong>第二种：$.get();时 设置一个参数为随机数tempPara: Math.random() 或者获取当前时间new Date().getTime()</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>('...........', &#123; tempPara: <span class="built_in">Math</span>.random() &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">         <span class="comment">//</span></span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
-<p><strong>因为请求同一个地址会直接读取缓存，所以可以在参数中加一个随机数数 让每次参数不一样就好</strong></p>
-
+        
+          <a class="article-more-a" href="/2018/11/22/ajax,get时请求异步缓存/#more">更多 >></a>
+        
       
 
       
@@ -823,6 +958,82 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JS|跨域|JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-JS - 跨域 -JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">游标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">12306</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SQLServer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Window服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -904,7 +1115,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">123</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">Just Do IT.</div>
   	  	
     	</section>
     

@@ -9,7 +9,7 @@
   <title>C# 数组拆分（泛型） | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="C# 数组拆分（泛型）主要用到了泛型。 泛型是c#2.0的一个新增加的特性，它为使用c#语言编写面向对象程序增加了极大的效力和灵活性。不会强行对值类型进行装箱和拆箱，或对引用类型进行向下强制类型转换，所以性能得到提高。通过知道使用泛型定义的变量的类型限制，编译器可以在一个高得多的程度上验证类型假设，所以泛型提高了程序的类型安全。它允许程序员将一个实际的数据类型的规约延迟至泛型的实例被创建时才确定。">
-<meta name="keywords" content="C#">
+<meta name="keywords" content="C#,泛型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C# 数组拆分（泛型）">
 <meta property="og:url" content="//yuchendaycode.github.io/2019/01/01/数组拆分（泛型）/index.html">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/6d684bcdc5b84528a5855f5edd886f4f.png">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/5432310f40004dda8e8bee3b77a8adfa.png">
-<meta property="og:updated_time" content="2019-04-12T10:12:21.000Z">
+<meta property="og:updated_time" content="2019-04-13T11:10:52.878Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C# 数组拆分（泛型）">
 <meta name="twitter:description" content="C# 数组拆分（泛型）主要用到了泛型。 泛型是c#2.0的一个新增加的特性，它为使用c#语言编写面向对象程序增加了极大的效力和灵活性。不会强行对值类型进行装箱和拆箱，或对引用类型进行向下强制类型转换，所以性能得到提高。通过知道使用泛型定义的变量的类型限制，编译器可以在一个高得多的程度上验证类型假设，所以泛型提高了程序的类型安全。它允许程序员将一个实际的数据类型的规约延迟至泛型的实例被创建时才确定。">
@@ -57,7 +57,7 @@
 		  <h1 class="header-author"><a href="/">Yuchen</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">记录</p>
+		<p class="header-subtitle">Hello World!</p>
 		
 
 		<nav class="header-menu">
@@ -117,7 +117,7 @@
 			  <h1 class="header-author js-header-author">Yuchen</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记录<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Hello World!<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -184,6 +184,7 @@
       
         <h1 id="C-数组拆分（泛型）"><a href="#C-数组拆分（泛型）" class="headerlink" title="C# 数组拆分（泛型）"></a>C# 数组拆分（泛型）</h1><p>主要用到了泛型。</p>
 <p>泛型是<a href="https://baike.baidu.com/item/c%23" target="_blank" rel="noopener">c#</a>2.0的一个新增加的特性，它为使用c#语言编写<a href="https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">面向对象程序</a>增加了极大的效力和灵活性。不会强行对值类型进行装箱和拆箱，或对引用类型进行向下<a href="https://baike.baidu.com/item/%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">强制类型转换</a>，所以性能得到提高。通过知道使用泛型定义的变量的类型限制，编译器可以在一个高得多的程度上验证类型假设，所以泛型提高了程序的类型安全。它允许程序员将一个实际的数据类型的规约延迟至泛型的实例被创建时才确定。泛型为开发者提供了一种高性能的编程方式，能够提高代码的重用性，并允许开发者编写非常优雅的解决方案。</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;List&lt;T&gt;&gt; SplitList&lt;T&gt;(List&lt;T&gt; list, int size)</span><br><span class="line">        &#123;</span><br><span class="line">            List&lt;List&lt;T&gt;&gt; result = new List&lt;List&lt;T&gt;&gt;();</span><br><span class="line">            for (int i = 0; i &lt; list.Count() / size; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                T[] clist = new T[size];</span><br><span class="line">                list.CopyTo(i * size, clist, 0, size);</span><br><span class="line">                result.Add(clist.ToList());</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            int r = list.Count() % size;</span><br><span class="line">            if (r != 0)</span><br><span class="line">            &#123;</span><br><span class="line">                T[] cclist = new T[r];</span><br><span class="line">                list.CopyTo(list.Count() - r, cclist, 0, r);</span><br><span class="line">                result.Add(cclist.ToList());</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            return result;</span><br></pre></td></tr></table></figure>
 <p>原始数组：</p>
 <p><img src="http://tnblog.net/arcimg/cz/6d684bcdc5b84528a5855f5edd886f4f.png" alt="img"></p>
@@ -203,6 +204,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">泛型</a>
         		</li>
       		
 		</ul>
@@ -479,6 +484,82 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JS|跨域|JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-JS - 跨域 -JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">游标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">12306</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SQLServer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Window服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -560,7 +641,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">123</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">Just Do IT.</div>
   	  	
     	</section>
     

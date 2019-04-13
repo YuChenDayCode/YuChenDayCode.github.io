@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>C# AES加密解密 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="C# AES加密解密12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）">
-<meta name="keywords" content="C#、加密">
+  <meta name="description" content="C# AES加密解密">
+<meta name="keywords" content="C#,加密">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C# AES加密解密">
 <meta property="og:url" content="//yuchendaycode.github.io/2019/02/28/AES加密解密/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="C# AES加密解密12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）">
+<meta property="og:description" content="C# AES加密解密">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-12T10:12:21.000Z">
+<meta property="og:updated_time" content="2019-04-13T11:08:53.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C# AES加密解密">
-<meta name="twitter:description" content="C# AES加密解密12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）">
+<meta name="twitter:description" content="C# AES加密解密">
   
     <link rel="alternative" href="/atom.xml" title="Yuchen - 随笔" type="application/atom+xml">
   
@@ -54,7 +54,7 @@
 		  <h1 class="header-author"><a href="/">Yuchen</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">记录</p>
+		<p class="header-subtitle">Hello World!</p>
 		
 
 		<nav class="header-menu">
@@ -114,7 +114,7 @@
 			  <h1 class="header-author js-header-author">Yuchen</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记录<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Hello World!<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -179,7 +179,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-AES加密解密"><a href="#C-AES加密解密" class="headerlink" title="C# AES加密解密"></a>C# AES加密解密</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">      ///  AES 加密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待加密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesEncrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateEncryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Convert.ToBase64String(resultArray, 0, resultArray.Length);</span><br><span class="line">      &#125;</span><br><span class="line">      /// &lt;summary&gt;</span><br><span class="line">      ///  AES 解密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待解密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesDecrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          // 判断Key是否为16位</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Convert.FromBase64String(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateDecryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Encoding.UTF8.GetString(resultArray);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="C-AES加密解密"><a href="#C-AES加密解密" class="headerlink" title="C# AES加密解密"></a>C# AES加密解密</h1><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">      ///  AES 加密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待加密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesEncrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateEncryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Convert.ToBase64String(resultArray, 0, resultArray.Length);</span><br><span class="line">      &#125;</span><br><span class="line">      /// &lt;summary&gt;</span><br><span class="line">      ///  AES 解密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待解密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesDecrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          // 判断Key是否为16位</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Convert.FromBase64String(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateDecryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Encoding.UTF8.GetString(resultArray);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>问题：<ul>
 <li>1.DES和AES加密：指定键的大小对于此算法无效 </li>
@@ -209,7 +210,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C#、加密</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">加密</a>
         		</li>
       		
 		</ul>
@@ -279,11 +284,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/05/C#网络流读取(图片）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/05/Java与.NET二进制编码转换，补码/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          C#网络流读取(图片）
+          C#与Java二进制编码转换，补码
         
       </div>
     </a>
@@ -486,6 +491,82 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JS|跨域|JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-JS - 跨域 -JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">游标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">12306</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SQLServer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Window服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -567,7 +648,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">123</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">Just Do IT.</div>
   	  	
     	</section>
     

@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录">
+  <meta name="description" content="C# python js 等 随笔记录">
 <meta name="keywords" content="全栈">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yuchen - 随笔">
 <meta property="og:url" content="//yuchendaycode.github.io/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="记录">
+<meta property="og:description" content="C# python js 等 随笔记录">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yuchen - 随笔">
-<meta name="twitter:description" content="记录">
+<meta name="twitter:description" content="C# python js 等 随笔记录">
   
     <link rel="alternative" href="/atom.xml" title="Yuchen - 随笔" type="application/atom+xml">
   
@@ -53,7 +53,7 @@
 		  <h1 class="header-author"><a href="/">Yuchen</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">记录</p>
+		<p class="header-subtitle">Hello World!</p>
 		
 
 		<nav class="header-menu">
@@ -113,7 +113,7 @@
 			  <h1 class="header-author js-header-author">Yuchen</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记录<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Hello World!<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -183,15 +183,9 @@
         <h1 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h1><p>跨域是指浏览器无法执行其他网站的脚本。（域名不同、子域名不同、端口不同、协议不同都属于跨域）</p>
 <p>可通过前台后台两种方式解决跨域。前台：Jsonp（请求目标需可控）,后台HttpClient。</p>
 <p>一、JSONP<br>  jsonp：为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递  一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随    意定制自己的函数来自动处理返回数据了。</p>
-<p> json、jsonp详解  </p>
-<p>实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//请求目标的后台方法</span><br><span class="line">public string WcfTest(string str)</span><br><span class="line">        &#123;</span><br><span class="line">            if (!string.IsNullOrEmpty(str))</span><br><span class="line">                return &quot;successCallback(1)&quot;;</span><br><span class="line">            else</span><br><span class="line">                return &quot;successCallback(0)&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"> //发出请求的的ajax</span><br><span class="line"> $.ajax(&#123;</span><br><span class="line">            url: &apos;http://localhost:14063/home/JsonpTest&apos;,</span><br><span class="line">            type: &quot;get&quot;,</span><br><span class="line">            data: &#123;str:&quot;1&quot;&#125;,</span><br><span class="line">            dataType: &apos;jsonp&apos;,</span><br><span class="line">            jsonpCallback: &quot;successCallback&quot;,//根据返回的方法来定义，否则会出现返回成功不进入success的方法,只会进error方法</span><br><span class="line">            success: function (data) &#123;</span><br><span class="line">                console.log(&apos;success&apos;);</span><br><span class="line">                console.log(data);</span><br><span class="line">            &#125;,</span><br><span class="line">            error: function (err) &#123;</span><br><span class="line">                console.log(&apos;err&apos;);</span><br><span class="line">                console.log(err);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<p>注意：</p>
-<p>1.jsonp方式发出的请求都会变成get请求。</p>
-<p>2.设置jsonpCallback否则会出现无法进入success方法的情况，jsonpCallback课根据返回json方法的来自定义。</p>
-<p>二、后台发出请求的方式，使用HttpClient</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> public async Task&lt;string&gt; Hps()</span><br><span class="line">     &#123;</span><br><span class="line">         string url = &quot;http://localhost:14063/home/JsonpTest&quot;;</span><br><span class="line">         HttpClientHandler handler = new HttpClientHandler() &#123; AutomaticDecompression = DecompressionMethods.None &#125;;</span><br><span class="line">using (HttpClient httpclient = new HttpClient(handler))</span><br><span class="line">     &#123;</span><br><span class="line">         httpclient.BaseAddress = new Uri(url);</span><br><span class="line">         FormUrlEncodedContent content = new FormUrlEncodedContent(new Dictionary&lt;string, string&gt;()</span><br><span class="line">                            &#123;</span><br><span class="line">                               &#123;&quot;username&quot;,&quot;1111&quot;&#125;,</span><br><span class="line">                               &#123;&quot;pwd&quot;,&quot;1234&quot;&#125;,</span><br><span class="line">                            &#125;); //参数</span><br><span class="line"> </span><br><span class="line">         Task&lt;HttpResponseMessage&gt; response = httpclient.PostAsync(url, content);</span><br><span class="line">         string responseString = await response.Result.Content.ReadAsStringAsync();</span><br><span class="line">         return responseString;</span><br><span class="line"> </span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2019/04/13/跨域问题/#more">更多 >></a>
+        
       
 
       
@@ -204,7 +198,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JS、跨域</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">跨域</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JSONP</a>
         		</li>
       		
 		</ul>
@@ -215,85 +217,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/04/13/跨域问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Redis基础安装操作-windows版" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Redis基础安装操作-windows版"><a href="#Redis基础安装操作-windows版" class="headerlink" title="Redis基础安装操作-windows版"></a>Redis基础安装操作-windows版</h1><blockquote>
-<p>2018/12/7 16:27</p>
-</blockquote>
-<p><strong>一、下载</strong></p>
-<p>​      redis官方没有提供windows版本，需要从微软的git<a href="https://github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">下载releases</a>版</p>
-<p><strong>二、安装，启动</strong></p>
-<p>​    1.解压出来 启动服务</p>
-<p>​    <img src="http://tnblog.net/arcimg/cz/252c568939894083ad744c7c8ce5526b.png" alt="img"></p>
-<p>​    可能会双击会闪一下就没了或者<strong>启动成功也没办法加载指定的配置文件比如配置了密码也不会生效</strong>，最好执行命令</p>
-<p>​    redis-server redis.windows.conf  可以加个参数 –maxheap  200m 设置redis 可以最大内存</p>
-<p>​    <img src="http://tnblog.net/arcimg/cz/7ac6802a285d4e24b49889f10bf23f50.png" alt="img"></p>
-<p>​    这样启动 每次都会带一个命令窗口 关闭之后服务也停止了， 可以把redis服务化来解决</p>
-<p>2.redis服务化</p>
-<p>​    命令：<strong>redis-server.exe –service-install redis.windows.conf</strong> </p>
-<p>​    <img src="http://tnblog.net/arcimg/cz/cca6c1e24ba64c398cea0a93ef99eacf.png" alt="img"></p>
-<p>​    redis-server –service-uninstall 卸载服务</p>
-<p><strong>三、指定服务名的安装卸载</strong></p>
-<p>​     指定服务名安装：redis-server –service-install redis.windows.conf –service-name redis6389</p>
-<p>​     指定服务名卸载：redis-server –service-uninstall –service-name redis6389</p>
-<p>​     <strong>装完记得启动</strong></p>
-<p><strong>四、.密码设置 修改</strong></p>
-<p>​    可以在客户端通过命令设置密码config set requirepass 123456来设置密码</p>
-<p>​    <img src="http://tnblog.net/arcimg/cz/fc3d7fdf26a84b018a4042eeef0bb625.png" alt="img"></p>
-<p>​    但是重启服务之后密码就会失效，所以需要在配置文件中redis.windows.conf设置密码（配置文件对应启动时 接入的配置文件）</p>
-<p>​    <img src="http://tnblog.net/arcimg/cz/39bb28d6289e45b6aa8cf31205b0f7be.png" alt="img"></p>
-<p><strong>五、基本值设置 生命周期 命令</strong></p>
-<p>​    <strong><img src="http://tnblog.net/arcimg/cz/3fb3f52c6b5745799784fce1eb1839ea.png" alt="img"></strong></p>
-<p>​    连接客户端：redis-cli -p 6379 -a 密码     </p>
-<p>​    远程连接的话 需要加上-h 参数：redis-cli -h 127.0.0.1 -p 6379 -a 密码</p>
-<p>​    get test 获取键为test的值</p>
-<p>​    set test 111 ex 60 设置键为test 值为111 60秒后过期</p>
-<p>​    ttl test 查看剩余存在时间</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/13/Redis基础安装操作-windows版/">展开全文 >></a>
         </p>
       
 
@@ -343,16 +266,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <h1 id="Hello-World-！！！"><a href="#Hello-World-！！！" class="headerlink" title="Hello World ！！！"></a>Hello World ！！！</h1>
       
 
       
@@ -415,24 +329,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="Hexo-Blog"><a href="#Hexo-Blog" class="headerlink" title="Hexo Blog"></a>Hexo Blog</h1><ul>
-<li><p>1.安装nodejs、安装git</p>
-</li>
-<li><p>2.安装hexo、配置hexo</p>
-<ul>
-<li>npm install hexo -g //安装hexo hexo -v查看安装版本<br>-　hexo init //进入bolg文件 初始化hexo文件 是从git down下来</li>
-<li>hexo g //生成网页文件</li>
-<li>hexo s //启动服务器 网站可已运行了一般默认端口是4000 冲突的话 hexo server -p 端口</li>
-<li>npm install hexo-deployer-git –save  //关联git 配置过配置文件中的deploy节点之后 运行该命令 </li>
-<li>hexo d -g //生成 部署</li>
+<li>1.安装nodejs、安装git</li>
 </ul>
-</li>
-<li><p>3.自定义格式..</p>
-<ul>
-<li>hexo new post “名称” //创建md文件 写bolg</li>
-</ul>
-</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2019/04/12/Hexo Blog/#more">更多 >></a>
+        
       
 
       
@@ -445,7 +346,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github、blog</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
         		</li>
       		
 		</ul>
@@ -510,10 +415,11 @@
 <ul>
 <li>箭头函数</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sayHi = <span class="function"><span class="params">()</span> =&gt;</span> alert(<span class="string">"Hello!"</span>); <span class="comment">//无参数：</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sum = <span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b; <span class="comment">//等价 let sum = function(a, b) &#123;  return a + b;&#125;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sum = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;  <span class="comment">// 花括号打开多线功能</span></span><br><span class="line">  <span class="keyword">let</span> result = a + b;</span><br><span class="line">  <span class="keyword">return</span> result; <span class="comment">// 如果我们使用花括号，使用返回来获得结果</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-
+        
+          <a class="article-more-a" href="/2019/03/19/js 整理/#more">更多 >></a>
+        
       
 
       
@@ -593,11 +499,9 @@
 <p>  安装完成之后 c+s+p 选中packageresourceview：open resource =&gt; color scheme - default =&gt; 选中你的配色方案 修改保存立即生效</p>
 </li>
 </ul>
-<p>caret：光标颜色</p>
-<p>foreground：符号颜色（行号，逗号，括号之类）</p>
-<p>selection：选中颜色</p>
-<p>selection_border：选中边框颜色</p>
-
+        
+          <a class="article-more-a" href="/2019/03/19/Sublime Text 配色修改/#more">更多 >></a>
+        
       
 
       
@@ -670,9 +574,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-网络流读取-图片）"><a href="#C-网络流读取-图片）" class="headerlink" title="C#网络流读取(图片）"></a>C#网络流读取(图片）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">string url = &quot;....&quot;;</span><br><span class="line">            Stream stream = WebRequest.Create(url).GetResponse().GetResponseStream();</span><br><span class="line">            const int bufferLen = 512;</span><br><span class="line">            byte[] buffer = new byte[bufferLen];//byte缓存区</span><br><span class="line">            int count = 0; int offset = 0;</span><br><span class="line">            while ((count = stream.Read(buffer, offset, buffer.Length - offset)) &gt; 0) //读取固定长度的流，直到读取完毕</span><br><span class="line">            &#123;</span><br><span class="line">                offset += count;</span><br><span class="line">                if (offset == buffer.Length) //检查是否读取完了，长度想等说明还有内容</span><br><span class="line">                &#123;</span><br><span class="line">                    int nextByte = stream.ReadByte(); //读取下一个字节</span><br><span class="line">                    if (nextByte == -1)</span><br><span class="line">                        break;</span><br><span class="line">                    byte[] newbyte= new byte[buffer.Length * 2]; //还有内容扩大缓存区大小</span><br><span class="line">                    Array.Copy(buffer, newbyte, buffer.Length);</span><br><span class="line">                    newbyte[offset] = (byte)nextByte;</span><br><span class="line">                    buffer = newbyte; //从新指向</span><br><span class="line">                    offset++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            byte[] bytes= new byte[offset]; //读取完了 就能获得具体长度，再获取长度内的流</span><br><span class="line">            Array.Copy(buffer, bytes, offset);</span><br><span class="line">            return bytes;</span><br></pre></td></tr></table></figure>
-<p>网络流无法确定具体长度，一般通过缓存区来一步一步读取</p>
-
+        <h1 id="C-网络流读取-图片）"><a href="#C-网络流读取-图片）" class="headerlink" title="C#网络流读取(图片）"></a>C#网络流读取(图片）</h1>
+        
+          <a class="article-more-a" href="/2019/03/05/C#网络流读取(图片）/#more">更多 >></a>
+        
       
 
       
@@ -685,7 +590,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#、流、图片</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">流</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">图片</a>
         		</li>
       		
 		</ul>
@@ -696,6 +609,88 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/03/05/C#网络流读取(图片）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Java与.NET二进制编码转换，补码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/05/Java与.NET二进制编码转换，补码/">C#与Java二进制编码转换，补码</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/05/Java与.NET二进制编码转换，补码/" class="archive-article-date">
+  	<time datetime="2019-03-05T03:23:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-05 11:23:35</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="C-与Java二进制编码转换，补码"><a href="#C-与Java二进制编码转换，补码" class="headerlink" title="C#与Java二进制编码转换，补码"></a>C#与Java二进制编码转换，补码</h1><ul>
+<li>在C#与Java接口对接时，需要将图片转化为二进制编码传输，这时候发现c#转换出来的编码的值是0~255的范围，而java方需要的是-128~127的编码范围，需要把编码做一个转换</li>
+</ul>
+        
+          <a class="article-more-a" href="/2019/03/05/Java与.NET二进制编码转换，补码/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/05/Java与.NET二进制编码转换，补码/">展开全文 >></a>
         </p>
       
 
@@ -745,24 +740,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-AES加密解密"><a href="#C-AES加密解密" class="headerlink" title="C# AES加密解密"></a>C# AES加密解密</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">      ///  AES 加密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待加密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesEncrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateEncryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Convert.ToBase64String(resultArray, 0, resultArray.Length);</span><br><span class="line">      &#125;</span><br><span class="line">      /// &lt;summary&gt;</span><br><span class="line">      ///  AES 解密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待解密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesDecrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          // 判断Key是否为16位</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Convert.FromBase64String(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateDecryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Encoding.UTF8.GetString(resultArray);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：<ul>
-<li>1.DES和AES加密：指定键的大小对于此算法无效 </li>
-<li>2.Base-64 字符数组或字符串的长度无效</li>
-</ul>
-</li>
-</ul>
-<p>​             输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符</p>
-<ul>
-<li>解决：<ul>
-<li>1.key的值必须为16+位</li>
-<li>2.注意base64字符串中的特殊字符是否被转义 或者 有没有被替换为空格</li>
-</ul>
-</li>
-</ul>
-<p>​      </p>
-
+        <h1 id="C-AES加密解密"><a href="#C-AES加密解密" class="headerlink" title="C# AES加密解密"></a>C# AES加密解密</h1>
+        
+          <a class="article-more-a" href="/2019/02/28/AES加密解密/#more">更多 >></a>
+        
       
 
       
@@ -775,7 +756,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C#、加密</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">加密</a>
         		</li>
       		
 		</ul>
@@ -982,6 +967,82 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JS|跨域|JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-JS - 跨域 -JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">游标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">12306</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SQLServer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Window服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -1063,7 +1124,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">123</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">Just Do IT.</div>
   	  	
     	</section>
     

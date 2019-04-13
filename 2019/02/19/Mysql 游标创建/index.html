@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>Mysql 游标创建 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Mysql 游标创建 需求：分表数据。 把一张表的数据根据需求分离，创建不同的表 并写入数据。  12345678910111213141516171819202122232425262728drop procedure if exists dataMove; /*删除已有的存储过程*/create procedure dataMove()begin    declare tablename_fi">
-<meta name="keywords" content="Mysql、游标">
+  <meta name="description" content="Mysql 游标创建 需求：分表数据。 把一张表的数据根据需求分离，创建不同的表 并写入数据。">
+<meta name="keywords" content="Mysql,游标">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql 游标创建">
 <meta property="og:url" content="//yuchendaycode.github.io/2019/02/19/Mysql 游标创建/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="Mysql 游标创建 需求：分表数据。 把一张表的数据根据需求分离，创建不同的表 并写入数据。  12345678910111213141516171819202122232425262728drop procedure if exists dataMove; /*删除已有的存储过程*/create procedure dataMove()begin    declare tablename_fi">
+<meta property="og:description" content="Mysql 游标创建 需求：分表数据。 把一张表的数据根据需求分离，创建不同的表 并写入数据。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/45356b7a439a432fb91dc9bc391fb558.png">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/459c954ffd1042e388e72c195a73fbe6.png">
-<meta property="og:updated_time" content="2019-04-12T10:12:21.000Z">
+<meta property="og:updated_time" content="2019-04-13T11:09:47.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql 游标创建">
-<meta name="twitter:description" content="Mysql 游标创建 需求：分表数据。 把一张表的数据根据需求分离，创建不同的表 并写入数据。  12345678910111213141516171819202122232425262728drop procedure if exists dataMove; /*删除已有的存储过程*/create procedure dataMove()begin    declare tablename_fi">
+<meta name="twitter:description" content="Mysql 游标创建 需求：分表数据。 把一张表的数据根据需求分离，创建不同的表 并写入数据。">
 <meta name="twitter:image" content="http://tnblog.net/arcimg/cz/45356b7a439a432fb91dc9bc391fb558.png">
   
     <link rel="alternative" href="/atom.xml" title="Yuchen - 随笔" type="application/atom+xml">
@@ -57,7 +57,7 @@
 		  <h1 class="header-author"><a href="/">Yuchen</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">记录</p>
+		<p class="header-subtitle">Hello World!</p>
 		
 
 		<nav class="header-menu">
@@ -117,7 +117,7 @@
 			  <h1 class="header-author js-header-author">Yuchen</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记录<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Hello World!<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -185,6 +185,7 @@
         <h1 id="Mysql-游标创建"><a href="#Mysql-游标创建" class="headerlink" title="Mysql 游标创建"></a>Mysql 游标创建</h1><ul>
 <li>需求：分表数据。 把一张表的数据根据需求分离，创建不同的表 并写入数据。</li>
 </ul>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">drop procedure if exists dataMove; /*删除已有的存储过程*/</span><br><span class="line">create procedure dataMove()</span><br><span class="line">begin</span><br><span class="line">    declare tablename_fix varchar(64); /*定义表的尾号*/</span><br><span class="line">   declare flag boolean  default true;/*判断游标是否结束*/</span><br><span class="line">    </span><br><span class="line">   declare fix_cursor cursor for </span><br><span class="line">    select fix from tablea group by fix; /*定义游标 把table_suffix列分组出来 放到游标中*/</span><br><span class="line">        </span><br><span class="line">   declare continue handler for not found set flag = false;/*游标结束时 标识改为false*/</span><br><span class="line">    open fix_cursor;/*打开游标*/</span><br><span class="line">    fetch fix_cursor into tablename_fix; /*把游标里的数据取出来放到这个变量中*/</span><br><span class="line">    while flag do</span><br><span class="line">       set @tablename = concat(&apos;tablea&apos;,tablename_fix);/*concat() 拼接方法 就是+&apos;&apos;+， 表名 原始名字+尾号列*/</span><br><span class="line">        /*根据表名创建表，把对应满足的数据放到创建的表中 如果已经有了表 就得改方式*/</span><br><span class="line">        set @sqlstr =concat(&apos;create table &apos;, @tablename,&apos;( SELECT * FROM tablea where fix=&apos;,tablename_fix,&apos;);&apos;); </span><br><span class="line">        PREPARE STMT FROM @sqlstr; /*这三句执行销毁sql*/</span><br><span class="line">        EXECUTE STMT;   </span><br><span class="line">        DEALLOCATE PREPARE STMT;</span><br><span class="line">   </span><br><span class="line">   fetch fix_cursor into tablename_fix; /*游标指针往下一行*/</span><br><span class="line">    </span><br><span class="line">   end while;</span><br><span class="line">    close fix_cursor;</span><br><span class="line">end;</span><br><span class="line"></span><br><span class="line">/*调用*/</span><br><span class="line">call dataMove()</span><br></pre></td></tr></table></figure>
 <p>效果</p>
 <p><img src="http://tnblog.net/arcimg/cz/45356b7a439a432fb91dc9bc391fb558.png" alt="img"></p>
@@ -204,7 +205,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Mysql、游标</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">游标</a>
         		</li>
       		
 		</ul>
@@ -284,8 +289,8 @@
     </a>
   
   
-    <a href="/2019/01/20/Python实例 2-12306抢票(二) 下单/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Python实例 2-12306抢票(二) 下单</div>
+    <a href="/2019/02/19/Redis基础安装操作-windows版/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis基础安装操作-windows版</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -481,6 +486,82 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JS|跨域|JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-JS - 跨域 -JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">游标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">12306</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SQLServer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Window服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -562,7 +643,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">123</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">Just Do IT.</div>
   	  	
     	</section>
     

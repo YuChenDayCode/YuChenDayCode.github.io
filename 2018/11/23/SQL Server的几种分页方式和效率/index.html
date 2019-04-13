@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>SQL Server的几种分页方式和效率 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SQL Server的几种分页方式和效率123456789101112131415161718--top not in方式select top 条数 *  from tablenamewhere Id not in (select top 条数*页数  Id from tablename)   --ROW_NUMBER() OVER()方式  select * from ( 　　　　select">
-<meta name="keywords" content="SQLServer、分页">
+  <meta name="description" content="SQL Server的几种分页方式和效率123456789101112131415161718--top not in方式select top 条数 *  from tablenamewhere Id not in (select top 条数*页数  Id from tablename)  --ROW_NUMBER() OVER()方式  select * from ( 　　　　select *">
+<meta name="keywords" content="SQLServer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL Server的几种分页方式和效率">
 <meta property="og:url" content="//yuchendaycode.github.io/2018/11/23/SQL Server的几种分页方式和效率/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="SQL Server的几种分页方式和效率123456789101112131415161718--top not in方式select top 条数 *  from tablenamewhere Id not in (select top 条数*页数  Id from tablename)   --ROW_NUMBER() OVER()方式  select * from ( 　　　　select">
+<meta property="og:description" content="SQL Server的几种分页方式和效率123456789101112131415161718--top not in方式select top 条数 *  from tablenamewhere Id not in (select top 条数*页数  Id from tablename)  --ROW_NUMBER() OVER()方式  select * from ( 　　　　select *">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-12T10:12:21.000Z">
+<meta property="og:updated_time" content="2019-04-13T11:10:22.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL Server的几种分页方式和效率">
-<meta name="twitter:description" content="SQL Server的几种分页方式和效率123456789101112131415161718--top not in方式select top 条数 *  from tablenamewhere Id not in (select top 条数*页数  Id from tablename)   --ROW_NUMBER() OVER()方式  select * from ( 　　　　select">
+<meta name="twitter:description" content="SQL Server的几种分页方式和效率123456789101112131415161718--top not in方式select top 条数 *  from tablenamewhere Id not in (select top 条数*页数  Id from tablename)  --ROW_NUMBER() OVER()方式  select * from ( 　　　　select *">
   
     <link rel="alternative" href="/atom.xml" title="Yuchen - 随笔" type="application/atom+xml">
   
@@ -54,7 +54,7 @@
 		  <h1 class="header-author"><a href="/">Yuchen</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">记录</p>
+		<p class="header-subtitle">Hello World!</p>
 		
 
 		<nav class="header-menu">
@@ -114,7 +114,7 @@
 			  <h1 class="header-author js-header-author">Yuchen</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>记录<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Hello World!<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -179,7 +179,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="SQL-Server的几种分页方式和效率"><a href="#SQL-Server的几种分页方式和效率" class="headerlink" title="SQL Server的几种分页方式和效率"></a>SQL Server的几种分页方式和效率</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--top not in方式</span></span><br><span class="line"><span class="keyword">select</span> top 条数 *  <span class="keyword">from</span> tablename</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Id</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> top 条数*页数  <span class="keyword">Id</span> <span class="keyword">from</span> tablename)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">--ROW_NUMBER() OVER()方式 </span></span><br><span class="line"> <span class="keyword">select</span> * <span class="keyword">from</span> ( </span><br><span class="line">　　　　<span class="keyword">select</span> *, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">Order</span> <span class="keyword">by</span> <span class="keyword">Id</span> ) <span class="keyword">AS</span> RowNumber <span class="keyword">from</span> tablename</span><br><span class="line">　　) <span class="keyword">as</span> b</span><br><span class="line">　　<span class="keyword">where</span> RowNumber <span class="keyword">BETWEEN</span> 当前页数<span class="number">-1</span>*条数 <span class="keyword">and</span> 页数*条数   </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">--offset fetch next方式</span></span><br><span class="line"><span class="comment">--SQL2012以上的版本才支持</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tablename</span><br><span class="line"> <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">Id</span> <span class="keyword">offset</span> 页数 <span class="keyword">row</span> <span class="keyword">fetch</span> <span class="keyword">next</span> 条数 <span class="keyword">row</span> <span class="keyword">only</span></span><br></pre></td></tr></table></figure>
+        <h1 id="SQL-Server的几种分页方式和效率"><a href="#SQL-Server的几种分页方式和效率" class="headerlink" title="SQL Server的几种分页方式和效率"></a>SQL Server的几种分页方式和效率</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--top not in方式</span></span><br><span class="line"><span class="keyword">select</span> top 条数 *  <span class="keyword">from</span> tablename</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">Id</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> top 条数*页数  <span class="keyword">Id</span> <span class="keyword">from</span> tablename)</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="comment">--ROW_NUMBER() OVER()方式 </span></span><br><span class="line"> <span class="keyword">select</span> * <span class="keyword">from</span> ( </span><br><span class="line">　　　　<span class="keyword">select</span> *, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">Order</span> <span class="keyword">by</span> <span class="keyword">Id</span> ) <span class="keyword">AS</span> RowNumber <span class="keyword">from</span> tablename</span><br><span class="line">　　) <span class="keyword">as</span> b</span><br><span class="line">　　<span class="keyword">where</span> RowNumber <span class="keyword">BETWEEN</span> 当前页数<span class="number">-1</span>*条数 <span class="keyword">and</span> 页数*条数   </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">--offset fetch next方式</span></span><br><span class="line"><span class="comment">--SQL2012以上的版本才支持</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tablename</span><br><span class="line"> <span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">Id</span> <span class="keyword">offset</span> 页数 <span class="keyword">row</span> <span class="keyword">fetch</span> <span class="keyword">next</span> 条数 <span class="keyword">row</span> <span class="keyword">only</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>分析：在数据量较大时</p>
 <p><strong>top not in</strong>方式：查询靠前的数据速度较快，不推荐not in</p>
 <p><strong>ROW_NUMBER() OVER()</strong>方式：查询靠后的数据速度比上一种较快，sql 2005以上可用</p>
@@ -197,7 +198,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">SQLServer、分页</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SQLServer</a>
         		</li>
       		
 		</ul>
@@ -474,6 +475,82 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JS|跨域|JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-JS - 跨域 -JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">跨域</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JSONP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">加密</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">游标</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">12306</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SQLServer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">字符串</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Window服务</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -555,7 +632,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">123</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">Just Do IT.</div>
   	  	
     	</section>
     

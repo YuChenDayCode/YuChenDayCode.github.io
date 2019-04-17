@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>Quartz.NET实例,动态改变周期调度。misfire、Cron | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Quartz.NET实例,动态改变周期调度。misfire、CronQuartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大 Quartz.NET：是把Quartz转成C#  NuGet中可以直接下载对应类库 官网：https://www.quartz-scheduler.net/ 主要对象: Job ：工作，要执行的具体内容继承IJob。此接口中只有一个方">
+  <meta name="description" content="Quartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大 Quartz.NET：是把Quartz转成C#  NuGet中可以直接下载对应类库 官网：https://www.quartz-scheduler.net/ 主要对象: Job ：工作，要执行的具体内容继承IJob。此接口中只有一个方法：execute(IJobExecutionContext con">
 <meta name="keywords" content="Quartz">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Quartz.NET实例,动态改变周期调度。misfire、Cron">
 <meta property="og:url" content="//yuchendaycode.github.io/2018/11/22/Quartz.NET实例,动态改变周期调度。misfire、Cron/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="Quartz.NET实例,动态改变周期调度。misfire、CronQuartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大 Quartz.NET：是把Quartz转成C#  NuGet中可以直接下载对应类库 官网：https://www.quartz-scheduler.net/ 主要对象: Job ：工作，要执行的具体内容继承IJob。此接口中只有一个方">
+<meta property="og:description" content="Quartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大 Quartz.NET：是把Quartz转成C#  NuGet中可以直接下载对应类库 官网：https://www.quartz-scheduler.net/ 主要对象: Job ：工作，要执行的具体内容继承IJob。此接口中只有一个方法：execute(IJobExecutionContext con">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://img-blog.csdn.net/20180913134400241?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NvbW1hbmRCYWJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-04-13T11:10:13.582Z">
+<meta property="og:updated_time" content="2019-04-17T06:19:54.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Quartz.NET实例,动态改变周期调度。misfire、Cron">
-<meta name="twitter:description" content="Quartz.NET实例,动态改变周期调度。misfire、CronQuartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大 Quartz.NET：是把Quartz转成C#  NuGet中可以直接下载对应类库 官网：https://www.quartz-scheduler.net/ 主要对象: Job ：工作，要执行的具体内容继承IJob。此接口中只有一个方">
+<meta name="twitter:description" content="Quartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大 Quartz.NET：是把Quartz转成C#  NuGet中可以直接下载对应类库 官网：https://www.quartz-scheduler.net/ 主要对象: Job ：工作，要执行的具体内容继承IJob。此接口中只有一个方法：execute(IJobExecutionContext con">
 <meta name="twitter:image" content="https://img-blog.csdn.net/20180913134400241?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NvbW1hbmRCYWJ5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
   
   
@@ -173,7 +173,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Quartz-NET实例-动态改变周期调度。misfire、Cron"><a href="#Quartz-NET实例-动态改变周期调度。misfire、Cron" class="headerlink" title="Quartz.NET实例,动态改变周期调度。misfire、Cron"></a>Quartz.NET实例,动态改变周期调度。misfire、Cron</h1><p>Quartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大</p>
+        <p>Quartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大</p>
 <p>Quartz.NET：是把Quartz转成C#  NuGet中可以直接下载对应类库</p>
 <p>官网：<a href="https://www.quartz-scheduler.net/" target="_blank" rel="noopener">https://www.quartz-scheduler.net/</a></p>
 <p>主要对象:</p>

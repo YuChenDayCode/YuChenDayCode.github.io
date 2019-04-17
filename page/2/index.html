@@ -172,10 +172,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-AES加密解密"><a href="#C-AES加密解密" class="headerlink" title="C# AES加密解密"></a>C# AES加密解密</h1>
-        
-          <a class="article-more-a" href="/2019/02/28/AES加密解密/#more">更多 >></a>
-        
+        <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">      ///  AES 加密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待加密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesEncrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateEncryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Convert.ToBase64String(resultArray, 0, resultArray.Length);</span><br><span class="line">      &#125;</span><br><span class="line">      /// &lt;summary&gt;</span><br><span class="line">      ///  AES 解密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待解密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesDecrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          // 判断Key是否为16位</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Convert.FromBase64String(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateDecryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Encoding.UTF8.GetString(resultArray);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问题：<ul>
+<li>1.DES和AES加密：指定键的大小对于此算法无效 </li>
+<li>2.Base-64 字符数组或字符串的长度无效</li>
+</ul>
+</li>
+</ul>
+<p>​             输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符</p>
+<ul>
+<li>解决：<ul>
+<li>1.key的值必须为16+位</li>
+<li>2.注意base64字符串中的特殊字符是否被转义 或者 有没有被替换为空格</li>
+</ul>
+</li>
+</ul>
+<p>​      </p>
+
       
 
       
@@ -252,7 +267,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Redis基础安装操作-windows版"><a href="#Redis基础安装操作-windows版" class="headerlink" title="Redis基础安装操作-windows版"></a>Redis基础安装操作-windows版</h1><p><strong>一、下载</strong></p>
+        <p><strong>一、下载</strong></p>
 <p>​      redis官方没有提供windows版本，需要从微软的git<a href="https://github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">下载releases</a>版</p>
         
           <a class="article-more-a" href="/2019/02/19/Redis基础安装操作-windows版/#more">更多 >></a>
@@ -329,7 +344,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Mysql-游标创建"><a href="#Mysql-游标创建" class="headerlink" title="Mysql 游标创建"></a>Mysql 游标创建</h1><ul>
+        <ul>
 <li>需求：分表数据。 把一张表的数据根据需求分离，创建不同的表 并写入数据。</li>
 </ul>
         
@@ -411,7 +426,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python实例-2-12306抢票-二-下单"><a href="#Python实例-2-12306抢票-二-下单" class="headerlink" title="Python实例 2-12306抢票(二) 下单"></a>Python实例 2-12306抢票(二) 下单</h1><p>第二篇 刷票与下单</p>
+        <p>第二篇 刷票与下单</p>
 <p>1.记住登陆</p>
 <p>​    上一篇写了登陆：<a href="http://www.tnblog.net/cz/article/details/162" target="_blank" rel="noopener">http://www.tnblog.net/cz/article/details/162</a></p>
 <p>​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。</p>
@@ -495,7 +510,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python实例-1-12306抢票-一-登陆"><a href="#Python实例-1-12306抢票-一-登陆" class="headerlink" title="Python实例 1-12306抢票(一) 登陆"></a>Python实例 1-12306抢票(一) 登陆</h1><p>开坑</p>
+        <p>开坑</p>
 <p>年关将近，终于对12306下手了，，</p>
 <p>平安夜撸代码，攻克了12306的登陆<img src="http://img.baidu.com/hi/jx2/j_0064.gif" alt="img">  2018-12-24 22:16:00</p>
 <p>没错 这篇博客就写从零开始的异世界..(误)    一从零开始的抢票 </p>
@@ -579,7 +594,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-数组拆分（泛型）"><a href="#C-数组拆分（泛型）" class="headerlink" title="C# 数组拆分（泛型）"></a>C# 数组拆分（泛型）</h1><p>主要用到了泛型。</p>
+        <p>主要用到了泛型。</p>
 <p>泛型是<a href="https://baike.baidu.com/item/c%23" target="_blank" rel="noopener">c#</a>2.0的一个新增加的特性，它为使用c#语言编写<a href="https://baike.baidu.com/item/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F" target="_blank" rel="noopener">面向对象程序</a>增加了极大的效力和灵活性。不会强行对值类型进行装箱和拆箱，或对引用类型进行向下<a href="https://baike.baidu.com/item/%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">强制类型转换</a>，所以性能得到提高。通过知道使用泛型定义的变量的类型限制，编译器可以在一个高得多的程度上验证类型假设，所以泛型提高了程序的类型安全。它允许程序员将一个实际的数据类型的规约延迟至泛型的实例被创建时才确定。泛型为开发者提供了一种高性能的编程方式，能够提高代码的重用性，并允许开发者编写非常优雅的解决方案。</p>
         
           <a class="article-more-a" href="/2019/01/01/数组拆分（泛型）/#more">更多 >></a>
@@ -660,7 +675,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JS监听input、keydown，有输入法时打字完成后触发事件"><a href="#JS监听input、keydown，有输入法时打字完成后触发事件" class="headerlink" title="JS监听input、keydown，有输入法时打字完成后触发事件"></a>JS监听input、keydown，有输入法时打字完成后触发事件</h1><p>在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件</p>
+        <p>在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件</p>
         
           <a class="article-more-a" href="/2018/12/28/JS监听input、keydown，有输入法时打字完成后触发事件/#more">更多 >></a>
         
@@ -736,7 +751,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python实例-1-日志抓取处理-补错（附日志小技巧）"><a href="#Python实例-1-日志抓取处理-补错（附日志小技巧）" class="headerlink" title="Python实例 1-日志抓取处理 补错（附日志小技巧）"></a>Python实例 1-日志抓取处理 补错（附日志小技巧）</h1><p>有时候数据出了问题，可以从日志中恢复数据（如果你没记日志..没备份..→_→..）</p>
+        <p>有时候数据出了问题，可以从日志中恢复数据（如果你没记日志..没备份..→_→..）</p>
 <p>一、日志展示</p>
         
           <a class="article-more-a" href="/2018/12/21/Python实例 1-日志抓取处理 补错（附日志小技巧）/#more">更多 >></a>

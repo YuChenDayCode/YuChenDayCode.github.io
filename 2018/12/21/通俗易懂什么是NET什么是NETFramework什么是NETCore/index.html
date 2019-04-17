@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>通俗易懂，什么是.NET?什么是.NET Framework？什么是.NET Core? | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通俗易懂，什么是.NET?什么是.NET Framework？什么是.NET Core?什么是.NET？什么是.NET Framework?本文将从上往下，循序渐进的介绍一系列相关.NET的概念，先从类型系统开始讲起，我将通过跨语言操作这个例子来逐渐引入一系列.NET的相关概念，这主要包括：CLS、CTS(CLI)、FCL、Windows下CLR的相关核心组成、Windows下托管程序运行概念、什">
+  <meta name="description" content="什么是.NET？什么是.NET Framework?本文将从上往下，循序渐进的介绍一系列相关.NET的概念，先从类型系统开始讲起，我将通过跨语言操作这个例子来逐渐引入一系列.NET的相关概念，这主要包括：CLS、CTS(CLI)、FCL、Windows下CLR的相关核心组成、Windows下托管程序运行概念、什么是.NET Framework，.NET Core，.NET Standard及一些V">
 <meta name="keywords" content=".NET">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通俗易懂，什么是.NET?什么是.NET Framework？什么是.NET Core?">
 <meta property="og:url" content="//yuchendaycode.github.io/2018/12/21/通俗易懂什么是NET什么是NETFramework什么是NETCore/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="通俗易懂，什么是.NET?什么是.NET Framework？什么是.NET Core?什么是.NET？什么是.NET Framework?本文将从上往下，循序渐进的介绍一系列相关.NET的概念，先从类型系统开始讲起，我将通过跨语言操作这个例子来逐渐引入一系列.NET的相关概念，这主要包括：CLS、CTS(CLI)、FCL、Windows下CLR的相关核心组成、Windows下托管程序运行概念、什">
+<meta property="og:description" content="什么是.NET？什么是.NET Framework?本文将从上往下，循序渐进的介绍一系列相关.NET的概念，先从类型系统开始讲起，我将通过跨语言操作这个例子来逐渐引入一系列.NET的相关概念，这主要包括：CLS、CTS(CLI)、FCL、Windows下CLR的相关核心组成、Windows下托管程序运行概念、什么是.NET Framework，.NET Core，.NET Standard及一些V">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/f3a4192729ed4e158381436968a9e039.png">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/65868fd94aee4f738ee6a24f7530b827.png">
@@ -61,10 +61,10 @@
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/4d1603b04aa545da96f2d31bf5714ea2.png">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/8c7f864443d641dbad6172f3d0226fa2.png">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/4a7f170565d64f2b938fd6c4c82df196.png">
-<meta property="og:updated_time" content="2019-04-13T11:10:49.378Z">
+<meta property="og:updated_time" content="2019-04-17T06:19:50.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通俗易懂，什么是.NET?什么是.NET Framework？什么是.NET Core?">
-<meta name="twitter:description" content="通俗易懂，什么是.NET?什么是.NET Framework？什么是.NET Core?什么是.NET？什么是.NET Framework?本文将从上往下，循序渐进的介绍一系列相关.NET的概念，先从类型系统开始讲起，我将通过跨语言操作这个例子来逐渐引入一系列.NET的相关概念，这主要包括：CLS、CTS(CLI)、FCL、Windows下CLR的相关核心组成、Windows下托管程序运行概念、什">
+<meta name="twitter:description" content="什么是.NET？什么是.NET Framework?本文将从上往下，循序渐进的介绍一系列相关.NET的概念，先从类型系统开始讲起，我将通过跨语言操作这个例子来逐渐引入一系列.NET的相关概念，这主要包括：CLS、CTS(CLI)、FCL、Windows下CLR的相关核心组成、Windows下托管程序运行概念、什么是.NET Framework，.NET Core，.NET Standard及一些V">
 <meta name="twitter:image" content="http://tnblog.net/arcimg/cz/f3a4192729ed4e158381436968a9e039.png">
   
   
@@ -217,7 +217,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="通俗易懂，什么是-NET-什么是-NET-Framework？什么是-NET-Core"><a href="#通俗易懂，什么是-NET-什么是-NET-Framework？什么是-NET-Core" class="headerlink" title="通俗易懂，什么是.NET?什么是.NET Framework？什么是.NET Core?"></a>通俗易懂，什么是.NET?什么是.NET Framework？什么是.NET Core?</h1><p>什么是.NET？什么是.NET Framework?本文将从上往下，循序渐进的介绍一系列相关.NET的概念，先从类型系统开始讲起，我将通过跨语言操作这个例子来逐渐引入一系列.NET的相关概念，这主要包括：CLS、CTS(CLI)、FCL、Windows下CLR的相关核心组成、Windows下托管程序运行概念、什么是.NET Framework，.NET Core，.NET Standard及一些VS编译器相关杂项和相关阅读链接。完整的从上读到下则你可以理解个大概的.NET体系。</p>
+        <p>什么是.NET？什么是.NET Framework?本文将从上往下，循序渐进的介绍一系列相关.NET的概念，先从类型系统开始讲起，我将通过跨语言操作这个例子来逐渐引入一系列.NET的相关概念，这主要包括：CLS、CTS(CLI)、FCL、Windows下CLR的相关核心组成、Windows下托管程序运行概念、什么是.NET Framework，.NET Core，.NET Standard及一些VS编译器相关杂项和相关阅读链接。完整的从上读到下则你可以理解个大概的.NET体系。</p>
 <a id="more"></a>
 <p>文章是我一字一字亲手码出来的，每天下班用休息时间写一点，持续了二十来天。且对于文章上下衔接、概念引入花了很多心思，致力让很多概念在本文中显得通俗。但毕竟.NET系统很庞大，本文篇幅有限，所以在部分小节中我会给出延伸阅读的链接，在文章结尾我给出了一些小的建议，希望能对需要帮助的人带来帮助，如果想与我交流可以文章留言或者加.NET技术交流群：166843154</p>
 <p>目录</p>

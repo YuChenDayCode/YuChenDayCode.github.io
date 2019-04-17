@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>JS监听input、keydown，有输入法时打字完成后触发事件 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JS监听input、keydown，有输入法时打字完成后触发事件在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件">
+  <meta name="description" content="在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件">
 <meta name="keywords" content="JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS监听input、keydown，有输入法时打字完成后触发事件">
 <meta property="og:url" content="//yuchendaycode.github.io/2018/12/28/JS监听input、keydown，有输入法时打字完成后触发事件/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="JS监听input、keydown，有输入法时打字完成后触发事件在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件">
+<meta property="og:description" content="在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-13T11:09:28.598Z">
+<meta property="og:updated_time" content="2019-04-17T06:19:54.152Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS监听input、keydown，有输入法时打字完成后触发事件">
-<meta name="twitter:description" content="JS监听input、keydown，有输入法时打字完成后触发事件在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件">
+<meta name="twitter:description" content="在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -171,7 +171,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="JS监听input、keydown，有输入法时打字完成后触发事件"><a href="#JS监听input、keydown，有输入法时打字完成后触发事件" class="headerlink" title="JS监听input、keydown，有输入法时打字完成后触发事件"></a>JS监听input、keydown，有输入法时打字完成后触发事件</h1><p>在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件</p>
+        <p>在给输入框绑定input或keydown事件时 预期效果是有输入法时，输入中文后触发事件，不希望输一个字母就触发一次事件</p>
 <a id="more"></a>
 <p>可以用到<strong>compositionstart，compositionend</strong>。 主流浏览器都兼容</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line"> $(<span class="string">'#div-detail'</span>).delegate(<span class="string">'#sclt-div input'</span>, <span class="string">'input'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (!flag) <span class="comment">//默认都可。 输入法时 截断</span></span><br><span class="line">          CustomerList($(<span class="keyword">this</span>).val());</span><br><span class="line">       &#125;).on(<span class="string">'compositionstart'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          flag = <span class="literal">true</span>;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'输入法，录入开始'</span>);</span><br><span class="line">       &#125;).on(<span class="string">'compositionend'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">          flag = <span class="literal">false</span>;</span><br><span class="line">          CustomerList($(<span class="string">'#sclt-div input'</span>).val()); <span class="comment">//在input之后执行 所以需要手动调用一次</span></span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'输入法，输入结束'</span>);</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>

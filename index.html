@@ -234,7 +234,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Linux安装nginx，发布静态网站"><a href="#Linux安装nginx，发布静态网站" class="headerlink" title="Linux安装nginx，发布静态网站"></a>Linux安装nginx，发布静态网站</h1><h2 id="1-安装nginx"><a href="#1-安装nginx" class="headerlink" title="1.安装nginx"></a>1.安装nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel //安装依赖</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">mkdir nginx</span><br><span class="line"><span class="built_in">cd</span> nginx</span><br><span class="line">wget http://nginx.org/download/nginx-1.9.9.tar.gz //下载tar包</span><br><span class="line"></span><br><span class="line">./configure //安装</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -t //测试配置是否正确</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx  //启动nginx</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload //重启</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s stop //停止</span><br></pre></td></tr></table></figure>
+        <h2 id="1-安装nginx"><a href="#1-安装nginx" class="headerlink" title="1.安装nginx"></a>1.安装nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel //安装依赖</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">mkdir nginx</span><br><span class="line"><span class="built_in">cd</span> nginx</span><br><span class="line">wget http://nginx.org/download/nginx-1.9.9.tar.gz //下载tar包</span><br><span class="line"></span><br><span class="line">./configure //安装</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -t //测试配置是否正确</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx  //启动nginx</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload //重启</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s stop //停止</span><br></pre></td></tr></table></figure>
 <h2 id="2-更改配置文件路径"><a href="#2-更改配置文件路径" class="headerlink" title="2.更改配置文件路径"></a>2.更改配置文件路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf //编辑配置文件</span><br></pre></td></tr></table></figure>
 <p><img src="img\ContentImg\1555479924449.png" alt="配置文件"></p>
 <p>​                            <strong>只需要把root的路径指向项目的位置就行了</strong></p>
@@ -313,7 +313,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h1><p>跨域是指浏览器无法执行其他网站的脚本。（域名不同、子域名不同、端口不同、协议不同都属于跨域）</p>
+        <p>跨域是指浏览器无法执行其他网站的脚本。（域名不同、子域名不同、端口不同、协议不同都属于跨域）</p>
 <p>可通过前台后台两种方式解决跨域。前台：Jsonp（请求目标需可控）,后台HttpClient。</p>
 <p>一、JSONP<br>  jsonp：为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递  一个callback参数给服务端，然后服务端返回数据时会将这个callback参数作为函数名来包裹住JSON数据，这样客户端就可以随    意定制自己的函数来自动处理返回数据了。</p>
         
@@ -481,7 +481,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="js-整理"><a href="#js-整理" class="headerlink" title="js 整理"></a>js 整理</h1><ul>
+        <ul>
 <li><p><strong>函数</strong></p>
 <ul>
 <li>箭头函数</li>
@@ -563,7 +563,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Sublime-Text-配色修改"><a href="#Sublime-Text-配色修改" class="headerlink" title="Sublime Text 配色修改"></a>Sublime Text 配色修改</h1><ul>
+        <ul>
 <li><p>Ctrl Shift+P：install package (连不上的话 需要翻墙)</p>
 </li>
 <li><p>安装<strong>PackageResourceView</strong></p>
@@ -645,10 +645,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-网络流读取-图片）"><a href="#C-网络流读取-图片）" class="headerlink" title="C#网络流读取(图片）"></a>C#网络流读取(图片）</h1>
-        
-          <a class="article-more-a" href="/2019/03/05/C#网络流读取(图片）/#more">更多 >></a>
-        
+        <a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">string url = &quot;....&quot;;</span><br><span class="line">            Stream stream = WebRequest.Create(url).GetResponse().GetResponseStream();</span><br><span class="line">            const int bufferLen = 512;</span><br><span class="line">            byte[] buffer = new byte[bufferLen];//byte缓存区</span><br><span class="line">            int count = 0; int offset = 0;</span><br><span class="line">            while ((count = stream.Read(buffer, offset, buffer.Length - offset)) &gt; 0) //读取固定长度的流，直到读取完毕</span><br><span class="line">            &#123;</span><br><span class="line">                offset += count;</span><br><span class="line">                if (offset == buffer.Length) //检查是否读取完了，长度想等说明还有内容</span><br><span class="line">                &#123;</span><br><span class="line">                    int nextByte = stream.ReadByte(); //读取下一个字节</span><br><span class="line">                    if (nextByte == -1)</span><br><span class="line">                        break;</span><br><span class="line">                    byte[] newbyte= new byte[buffer.Length * 2]; //还有内容扩大缓存区大小</span><br><span class="line">                    Array.Copy(buffer, newbyte, buffer.Length);</span><br><span class="line">                    newbyte[offset] = (byte)nextByte;</span><br><span class="line">                    buffer = newbyte; //从新指向</span><br><span class="line">                    offset++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            byte[] bytes= new byte[offset]; //读取完了 就能获得具体长度，再获取长度内的流</span><br><span class="line">            Array.Copy(buffer, bytes, offset);</span><br><span class="line">            return bytes;</span><br></pre></td></tr></table></figure>
+<p>网络流无法确定具体长度，一般通过缓存区来一步一步读取</p>
+
       
 
       
@@ -729,7 +729,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="C-与Java二进制编码转换，补码"><a href="#C-与Java二进制编码转换，补码" class="headerlink" title="C#与Java二进制编码转换，补码"></a>C#与Java二进制编码转换，补码</h1><ul>
+        <ul>
 <li>在C#与Java接口对接时，需要将图片转化为二进制编码传输，这时候发现c#转换出来的编码的值是0~255的范围，而java方需要的是-128~127的编码范围，需要把编码做一个转换</li>
 </ul>
         

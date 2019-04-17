@@ -8,13 +8,13 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>Python实例 2-12306抢票(二) 下单 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python实例 2-12306抢票(二) 下单第二篇 刷票与下单 1.记住登陆 ​    上一篇写了登陆：http://www.tnblog.net/cz/article/details/162 ​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。 ​    登陆就是会话保持，一般依赖于cookie，token之类的信息保存到cookie中，请求的时候带着cookie去服务器，服">
+  <meta name="description" content="第二篇 刷票与下单 1.记住登陆 ​    上一篇写了登陆：http://www.tnblog.net/cz/article/details/162 ​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。 ​    登陆就是会话保持，一般依赖于cookie，token之类的信息保存到cookie中，请求的时候带着cookie去服务器，服务器就知道是同一个人。而请求使用的request">
 <meta name="keywords" content="Python,12306">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python实例 2-12306抢票(二) 下单">
 <meta property="og:url" content="//yuchendaycode.github.io/2019/01/20/Python实例 2-12306抢票(二) 下单/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="Python实例 2-12306抢票(二) 下单第二篇 刷票与下单 1.记住登陆 ​    上一篇写了登陆：http://www.tnblog.net/cz/article/details/162 ​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。 ​    登陆就是会话保持，一般依赖于cookie，token之类的信息保存到cookie中，请求的时候带着cookie去服务器，服">
+<meta property="og:description" content="第二篇 刷票与下单 1.记住登陆 ​    上一篇写了登陆：http://www.tnblog.net/cz/article/details/162 ​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。 ​    登陆就是会话保持，一般依赖于cookie，token之类的信息保存到cookie中，请求的时候带着cookie去服务器，服务器就知道是同一个人。而请求使用的request">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/e6a36cadbdd04505a213da0ba2520f0c.png">
 <meta property="og:image" content="http://tnblog.net/arcimg/cz/4ec2199c28914c3e8d26987753120b7e.png">
@@ -36,10 +36,10 @@
 <meta property="og:image" content="http://img.baidu.com/hi/jx2/j_0003.gif">
 <meta property="og:image" content="http://img.baidu.com/hi/jx2/j_0003.gif">
 <meta property="og:image" content="http://img.baidu.com/hi/jx2/j_0003.gif">
-<meta property="og:updated_time" content="2019-04-13T11:10:09.082Z">
+<meta property="og:updated_time" content="2019-04-17T06:19:54.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python实例 2-12306抢票(二) 下单">
-<meta name="twitter:description" content="Python实例 2-12306抢票(二) 下单第二篇 刷票与下单 1.记住登陆 ​    上一篇写了登陆：http://www.tnblog.net/cz/article/details/162 ​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。 ​    登陆就是会话保持，一般依赖于cookie，token之类的信息保存到cookie中，请求的时候带着cookie去服务器，服">
+<meta name="twitter:description" content="第二篇 刷票与下单 1.记住登陆 ​    上一篇写了登陆：http://www.tnblog.net/cz/article/details/162 ​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。 ​    登陆就是会话保持，一般依赖于cookie，token之类的信息保存到cookie中，请求的时候带着cookie去服务器，服务器就知道是同一个人。而请求使用的request">
 <meta name="twitter:image" content="http://tnblog.net/arcimg/cz/e6a36cadbdd04505a213da0ba2520f0c.png">
   
   
@@ -192,7 +192,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Python实例-2-12306抢票-二-下单"><a href="#Python实例-2-12306抢票-二-下单" class="headerlink" title="Python实例 2-12306抢票(二) 下单"></a>Python实例 2-12306抢票(二) 下单</h1><p>第二篇 刷票与下单</p>
+        <p>第二篇 刷票与下单</p>
 <p>1.记住登陆</p>
 <p>​    上一篇写了登陆：<a href="http://www.tnblog.net/cz/article/details/162" target="_blank" rel="noopener">http://www.tnblog.net/cz/article/details/162</a></p>
 <p>​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。</p>

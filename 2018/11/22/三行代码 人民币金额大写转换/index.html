@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>三行代码 人民币金额大写转换 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="三行代码 人民币金额大写转换1234567public static String ConvertToChinese(Decimal number)&amp;#123;    var s = number.ToString(&amp;quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&amp;quot;);    var d = Rege">
+  <meta name="description" content="1234567public static String ConvertToChinese(Decimal number)&amp;#123;    var s = number.ToString(&amp;quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&amp;quot;);    var d = Regex.Replace(s, @">
 <meta name="keywords" content="正则">
 <meta property="og:type" content="article">
 <meta property="og:title" content="三行代码 人民币金额大写转换">
 <meta property="og:url" content="//yuchendaycode.github.io/2018/11/22/三行代码 人民币金额大写转换/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="三行代码 人民币金额大写转换1234567public static String ConvertToChinese(Decimal number)&amp;#123;    var s = number.ToString(&amp;quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&amp;quot;);    var d = Rege">
+<meta property="og:description" content="1234567public static String ConvertToChinese(Decimal number)&amp;#123;    var s = number.ToString(&amp;quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&amp;quot;);    var d = Regex.Replace(s, @">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-13T11:05:50.287Z">
+<meta property="og:updated_time" content="2019-04-17T06:19:54.199Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三行代码 人民币金额大写转换">
-<meta name="twitter:description" content="三行代码 人民币金额大写转换1234567public static String ConvertToChinese(Decimal number)&amp;#123;    var s = number.ToString(&amp;quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&amp;quot;);    var d = Rege">
+<meta name="twitter:description" content="1234567public static String ConvertToChinese(Decimal number)&amp;#123;    var s = number.ToString(&amp;quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&amp;quot;);    var d = Regex.Replace(s, @">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -171,7 +171,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="三行代码-人民币金额大写转换"><a href="#三行代码-人民币金额大写转换" class="headerlink" title="三行代码 人民币金额大写转换"></a>三行代码 人民币金额大写转换</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static String ConvertToChinese(Decimal number)</span><br><span class="line">&#123;</span><br><span class="line">    var s = number.ToString(&quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&quot;);</span><br><span class="line">    var d = Regex.Replace(s, @&quot;((?&lt;=-|^)[^1-9]*)|((?&apos;z&apos;0)[0A-E]*((?=[1-9])|(?&apos;-z&apos;(?=[F-L\.]|$))))|((?&apos;b&apos;[F-L])(?&apos;z&apos;0)[0A-L]*((?=[1-9])|(?&apos;-z&apos;(?=[\.]|$))))&quot;, &quot;$&#123;b&#125;$&#123;z&#125;&quot;);</span><br><span class="line">    var r = Regex.Replace(d, &quot;.&quot;, m =&gt; &quot;负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰&quot;[m.Value[0] - &apos;-&apos;].ToString());</span><br><span class="line">    return r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static String ConvertToChinese(Decimal number)</span><br><span class="line">&#123;</span><br><span class="line">    var s = number.ToString(&quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&quot;);</span><br><span class="line">    var d = Regex.Replace(s, @&quot;((?&lt;=-|^)[^1-9]*)|((?&apos;z&apos;0)[0A-E]*((?=[1-9])|(?&apos;-z&apos;(?=[F-L\.]|$))))|((?&apos;b&apos;[F-L])(?&apos;z&apos;0)[0A-L]*((?=[1-9])|(?&apos;-z&apos;(?=[\.]|$))))&quot;, &quot;$&#123;b&#125;$&#123;z&#125;&quot;);</span><br><span class="line">    var r = Regex.Replace(d, &quot;.&quot;, m =&gt; &quot;负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰&quot;[m.Value[0] - &apos;-&apos;].ToString());</span><br><span class="line">    return r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 

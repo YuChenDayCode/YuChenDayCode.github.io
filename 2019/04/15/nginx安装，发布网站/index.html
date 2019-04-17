@@ -17,7 +17,7 @@
 <meta property="og:description" content="1.安装nginx1234567891011121314yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel //安装依赖cd /usr/localmkdir nginxcd nginxwget http://nginx.org/download/nginx-1.9.9.tar.gz //下载tar包./config">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="//yuchendaycode.github.io/img/ContentImg/1555479924449.png">
-<meta property="og:updated_time" content="2019-04-17T07:10:31.104Z">
+<meta property="og:updated_time" content="2019-04-17T08:20:03.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx安装Linux，发布静态网站">
 <meta name="twitter:description" content="1.安装nginx1234567891011121314yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel //安装依赖cd /usr/localmkdir nginxcd nginxwget http://nginx.org/download/nginx-1.9.9.tar.gz //下载tar包./config">
@@ -174,6 +174,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-安装nginx"><a href="#1-安装nginx" class="headerlink" title="1.安装nginx"></a>1.安装nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel //安装依赖</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">mkdir nginx</span><br><span class="line"><span class="built_in">cd</span> nginx</span><br><span class="line">wget http://nginx.org/download/nginx-1.9.9.tar.gz //下载tar包</span><br><span class="line"></span><br><span class="line">./configure //安装</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -t //测试配置是否正确</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx  //启动nginx</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload //重启</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s stop //停止</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="2-更改配置文件路径"><a href="#2-更改配置文件路径" class="headerlink" title="2.更改配置文件路径"></a>2.更改配置文件路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf //编辑配置文件</span><br></pre></td></tr></table></figure>
 <p><img src="\img\ContentImg\1555479924449.png" alt="配置文件"></p>
 <p>​                            <strong>只需要把root的路径指向项目的位置就行了</strong></p>

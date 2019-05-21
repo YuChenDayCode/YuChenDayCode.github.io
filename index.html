@@ -152,6 +152,172 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-FormUrlEncodedContent、StringContent" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/21/FormUrlEncodedContent、StringContent/">WebAPI传递大数据</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/21/FormUrlEncodedContent、StringContent/" class="archive-article-date">
+  	<time datetime="2019-05-21T06:06:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-21 14:06:41</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  在接口中传输图片进制流或BASE64字符串时，使用FormUrlEncodedContent处理参数时，可能会因为参数太长导致异常<em><code>无效的URL：URL字符串太长</code></em></p>
+<ul>
+<li><p><code>FormUrlEncodedContent</code>:使用<strong>application/x-www-form-urlencoded</strong> MIME类型编码的名称/值元组的容器，只能传输ContentType:application/x-www-form-urlencoded</p>
+<p>（只能传输ContentType:application/x-www-form-urlencoded）</p>
+</li>
+</ul>
+<p>​    实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public async Task&lt;string&gt; Post(string url, Dictionary&lt;string, string&gt; param)</span><br><span class="line">        &#123;</span><br><span class="line">            string result=&quot;&quot;;</span><br><span class="line">            HttpClient click = new HttpClient();</span><br><span class="line">            HttpContent postContent = new FormUrlEncodedContent(param);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                var respMsg = await click.PostAsync(url, postContent);</span><br><span class="line">                respMsg.EnsureSuccessStatusCode();</span><br><span class="line">                result = await respMsg.Content.ReadAsStringAsync();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (HttpRequestException ex)</span><br><span class="line">            &#123;</span><br><span class="line">                result = ex.Message;</span><br><span class="line">            &#125;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>可是当param太大时 new FormUrlEncodedContent(param)就会抛出异常<em><code>无效的URL：URL字符串太长</code></em></p>
+<p>可以用StringContent！</p>
+<ul>
+<li><p><code>StringContent</code>：基于字符串提供http的内容，传输类型皆可(比如常用的application/x-www-form-urlencoded、application/json、multipart/form-data….)</p>
+<p>实现:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public async Task&lt;string&gt; Post(string url, Dictionary&lt;string, string&gt; param)</span><br><span class="line">        &#123;</span><br><span class="line">            string result=&quot;&quot;;</span><br><span class="line">            HttpClient click = new HttpClient();</span><br><span class="line">            var urlcode = HttpHelp.DicToFormCode(param); //需要把键值对转为urlencoded</span><br><span class="line">            StringContent postContent = new StringContent(urlcode, Encoding.UTF8, &quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                var respMsg = await click.PostAsync(url, postContent);</span><br><span class="line">                respMsg.EnsureSuccessStatusCode();</span><br><span class="line">                result = await respMsg.Content.ReadAsStringAsync();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (HttpRequestException ex)</span><br><span class="line">            &#123;</span><br><span class="line">                result = ex.Message;</span><br><span class="line">            &#125;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"> static string DicToFormCode(Dictionary&lt;string, string&gt; param)</span><br><span class="line">        &#123;</span><br><span class="line">            string pc = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">            foreach (var p in param)</span><br><span class="line">            &#123;</span><br><span class="line">                pc += HttpUtility.UrlEncode(p.Key);</span><br><span class="line">                if (p.Value.GetType() == typeof(object[]))</span><br><span class="line">                    pc += &quot;=&quot; + 	HttpUtility.UrlEncode(JsonConvert.SerializeObject(p.Value)) + &quot;&amp;&quot;;</span><br><span class="line">                else</span><br><span class="line">                    pc += &quot;=&quot; + HttpUtility.UrlEncode(p.Value.ToString()) + &quot;&amp;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            pc = pc.TrimEnd(&apos;&amp;&apos;);</span><br><span class="line"></span><br><span class="line">            return pc;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/21/FormUrlEncodedContent、StringContent/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-正则简单实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/16/正则简单实例/">正则简单实例</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/16/正则简单实例/" class="archive-article-date">
+  	<time datetime="2019-05-16T02:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-16 10:31:00</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>正则：用来查找、替换,拆分某些符合规则的文本</p>
+<p>介绍一些常用的一些正则符号、规则！</p>
+        
+          <a class="article-more-a" href="/2019/05/16/正则简单实例/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">正则</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/16/正则简单实例/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-nginx安装，发布网站" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -314,19 +480,19 @@
 
 
   
-    <article id="post-Hexo Blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Hexo搭建Blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/Hexo Blog/">Hexo搭建github bolg</a>
+      <a class="article-title" href="/2019/04/12/Hexo搭建Blog/">Hexo搭建github bolg</a>
     </h1>
   
 
         
-        <a href="/2019/04/12/Hexo Blog/" class="archive-article-date">
+        <a href="/2019/04/12/Hexo搭建Blog/" class="archive-article-date">
   	<time datetime="2019-04-12T09:44:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12 17:44:30</time>
 </a>
         
@@ -338,7 +504,7 @@
 <li>1.安装nodejs、安装git</li>
 </ul>
         
-          <a class="article-more-a" href="/2019/04/12/Hexo Blog/#more">更多 >></a>
+          <a class="article-more-a" href="/2019/04/12/Hexo搭建Blog/#more">更多 >></a>
         
       
 
@@ -362,7 +528,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/12/Hexo Blog/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/04/12/Hexo搭建Blog/">展开全文 >></a>
         </p>
       
 
@@ -636,186 +802,9 @@
 
 
   
-    <article id="post-Java与.NET二进制编码转换，补码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/Java与.NET二进制编码转换，补码/">C#与Java二进制编码转换，补码</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/05/Java与.NET二进制编码转换，补码/" class="archive-article-date">
-  	<time datetime="2019-03-05T03:23:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-05 11:23:35</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>在C#与Java接口对接时，需要将图片转化为二进制编码传输，这时候发现c#转换出来的编码的值是0~255的范围，而java方需要的是-128~127的编码范围，需要把编码做一个转换</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/03/05/Java与.NET二进制编码转换，补码/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/05/Java与.NET二进制编码转换，补码/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-AES加密解密" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/28/AES加密解密/">C# AES加密解密</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/28/AES加密解密/" class="archive-article-date">
-  	<time datetime="2019-02-28T01:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28 09:27:00</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">      ///  AES 加密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待加密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesEncrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateEncryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Convert.ToBase64String(resultArray, 0, resultArray.Length);</span><br><span class="line">      &#125;</span><br><span class="line">      /// &lt;summary&gt;</span><br><span class="line">      ///  AES 解密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待解密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesDecrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          // 判断Key是否为16位</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Convert.FromBase64String(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateDecryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Encoding.UTF8.GetString(resultArray);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：<ul>
-<li>1.DES和AES加密：指定键的大小对于此算法无效 </li>
-<li>2.Base-64 字符数组或字符串的长度无效</li>
-</ul>
-</li>
-</ul>
-<p>​             输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符</p>
-<ul>
-<li>解决：<ul>
-<li>1.key的值必须为16+位</li>
-<li>2.注意base64字符串中的特殊字符是否被转义 或者 有没有被替换为空格</li>
-</ul>
-</li>
-</ul>
-<p>​      </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">加密</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/28/AES加密解密/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 

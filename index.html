@@ -152,6 +152,106 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-事务执行先后顺序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/23/事务执行先后顺序/">事务个人简单理解</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/23/事务执行先后顺序/" class="archive-article-date">
+  	<time datetime="2019-05-23T09:14:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23 17:14:22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h4><ul>
+<li><strong>原子性</strong>：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。</li>
+<li><strong>持久性</strong>：事务执行完成后 数据一直保持</li>
+<li><strong>隔离性</strong>：同一时间只能一个事务操作一个数据。（衍生出隔离级别）</li>
+<li><strong>一致性</strong>：事务在完成后，数据库的数据确定不会再回滚等</li>
+</ul>
+<blockquote>
+<p>一致性由原子性、持久性、隔离性保证</p>
+<p>原子性由Undo Log保证  <code>Undo log：保存每次变更前的记录，用来恢复数据，回滚什么的</code></p>
+<p>持久性由Redo Log保证 <code>Redo Log：事务commit前，都会将记录保存到Redo log中，保存成功后才会允许commit，如果commit前断电之类不可抗力 可以通过redo log恢复</code></p>
+<p>隔离性：<strong>↓</strong></p>
+</blockquote>
+<h4 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h4><ul>
+<li><strong>Read Uncommitted</strong>（读取未提交内容）：基本没啥用 什么都不能限制</li>
+<li><strong>Read Committed</strong>(读取提交内容):大部分数据库的默认级别，只能看到已提交的改变（避免脏读）</li>
+<li><strong>Repeatable Read</strong>(可重复读)：mysql的默认级别，同一事务并发时 保证读取数据行一样（避免脏读与重复读）</li>
+<li><strong>Serializable</strong>(串行化)：最高级别 但是性能差，锁竞争（避免脏读、重复读、幻读）</li>
+</ul>
+<blockquote>
+<p>脏读：读取到事务未提交的数据（A读取到B未提交的数据，B回滚，那么A的数据就是脏数据）</p>
+<p>幻读：事务进行中读取到其他已提交的数据（A更新后，B操作数据库插入什么的，导致A发现仍有数据未更新）</p>
+<p>不可重复读：事务进行时提交前后读取到的数据不一致（A事务未提交时，其他数据先提交）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select @@tx_isolation; /*查询当前会话事务隔离级别*/</span><br><span class="line">select @@global.tx_isolation;/*查询系统事务隔离级别*/</span><br><span class="line"></span><br><span class="line">set session transaction isolatin level repeatable read; /*设置当前会话隔离级别*/</span><br><span class="line">set global transaction isolation level repeatable read; /*设置系统隔离级别*/</span><br></pre></td></tr></table></figure>
+<h4 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h4><ul>
+<li>…….</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">事务、MySql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/23/事务执行先后顺序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-FormUrlEncodedContent、StringContent" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -174,9 +274,7 @@
       
         <p>  在接口中传输图片进制流或BASE64字符串时，使用FormUrlEncodedContent处理参数时，可能会因为参数太长导致异常<em><code>无效的URL：URL字符串太长</code></em></p>
 <ul>
-<li><p><code>FormUrlEncodedContent</code>:使用<strong>application/x-www-form-urlencoded</strong> MIME类型编码的名称/值元组的容器，只能传输ContentType:application/x-www-form-urlencoded</p>
-<p>（只能传输ContentType:application/x-www-form-urlencoded）</p>
-</li>
+<li><code>FormUrlEncodedContent</code>:使用<strong>application/x-www-form-urlencoded</strong> MIME类型编码的名称/值元组的容器，只能传输ContentType:application/x-www-form-urlencoded</li>
 </ul>
 <p>​    实现：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public async Task&lt;string&gt; Post(string url, Dictionary&lt;string, string&gt; param)</span><br><span class="line">        &#123;</span><br><span class="line">            string result=&quot;&quot;;</span><br><span class="line">            HttpClient click = new HttpClient();</span><br><span class="line">            HttpContent postContent = new FormUrlEncodedContent(param);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                var respMsg = await click.PostAsync(url, postContent);</span><br><span class="line">                respMsg.EnsureSuccessStatusCode();</span><br><span class="line">                result = await respMsg.Content.ReadAsStringAsync();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (HttpRequestException ex)</span><br><span class="line">            &#123;</span><br><span class="line">                result = ex.Message;</span><br><span class="line">            &#125;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
@@ -722,86 +820,6 @@
 
 
   
-    <article id="post-C#网络流读取(图片）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/C#网络流读取(图片）/">C#网络流读取(图片）</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/05/C#网络流读取(图片）/" class="archive-article-date">
-  	<time datetime="2019-03-05T05:34:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-05 13:34:04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">string url = &quot;....&quot;;</span><br><span class="line">            Stream stream = WebRequest.Create(url).GetResponse().GetResponseStream();</span><br><span class="line">            const int bufferLen = 512;</span><br><span class="line">            byte[] buffer = new byte[bufferLen];//byte缓存区</span><br><span class="line">            int count = 0; int offset = 0;</span><br><span class="line">            while ((count = stream.Read(buffer, offset, buffer.Length - offset)) &gt; 0) //读取固定长度的流，直到读取完毕</span><br><span class="line">            &#123;</span><br><span class="line">                offset += count;</span><br><span class="line">                if (offset == buffer.Length) //检查是否读取完了，长度想等说明还有内容</span><br><span class="line">                &#123;</span><br><span class="line">                    int nextByte = stream.ReadByte(); //读取下一个字节</span><br><span class="line">                    if (nextByte == -1)</span><br><span class="line">                        break;</span><br><span class="line">                    byte[] newbyte= new byte[buffer.Length * 2]; //还有内容扩大缓存区大小</span><br><span class="line">                    Array.Copy(buffer, newbyte, buffer.Length);</span><br><span class="line">                    newbyte[offset] = (byte)nextByte;</span><br><span class="line">                    buffer = newbyte; //从新指向</span><br><span class="line">                    offset++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            byte[] bytes= new byte[offset]; //读取完了 就能获得具体长度，再获取长度内的流</span><br><span class="line">            Array.Copy(buffer, bytes, offset);</span><br><span class="line">            return bytes;</span><br></pre></td></tr></table></figure>
-<p>网络流无法确定具体长度，一般通过缓存区来一步一步读取</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">流</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/05/C#网络流读取(图片）/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -992,6 +1010,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">事务、MySql</a>
               </li>
             
             <div class="clearfix"></div>

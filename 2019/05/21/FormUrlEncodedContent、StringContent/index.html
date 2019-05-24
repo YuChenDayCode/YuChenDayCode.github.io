@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Yuchen - 随笔">
 <meta property="og:description" content="在接口中传输图片进制流或BASE64字符串时，使用FormUrlEncodedContent处理参数时，可能会因为参数太长导致异常无效的URL：URL字符串太长  FormUrlEncodedContent:使用application/x-www-form-urlencoded MIME类型编码的名称/值元组的容器，只能传输ContentType:application/x-www-form-">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-21T10:00:10.467Z">
+<meta property="og:updated_time" content="2019-05-24T10:00:06.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebAPI传递大数据">
 <meta name="twitter:description" content="在接口中传输图片进制流或BASE64字符串时，使用FormUrlEncodedContent处理参数时，可能会因为参数太长导致异常无效的URL：URL字符串太长  FormUrlEncodedContent:使用application/x-www-form-urlencoded MIME类型编码的名称/值元组的容器，只能传输ContentType:application/x-www-form-">
@@ -173,9 +173,7 @@
       
         <p>  在接口中传输图片进制流或BASE64字符串时，使用FormUrlEncodedContent处理参数时，可能会因为参数太长导致异常<em><code>无效的URL：URL字符串太长</code></em></p>
 <ul>
-<li><p><code>FormUrlEncodedContent</code>:使用<strong>application/x-www-form-urlencoded</strong> MIME类型编码的名称/值元组的容器，只能传输ContentType:application/x-www-form-urlencoded</p>
-<p>（只能传输ContentType:application/x-www-form-urlencoded）</p>
-</li>
+<li><code>FormUrlEncodedContent</code>:使用<strong>application/x-www-form-urlencoded</strong> MIME类型编码的名称/值元组的容器，只能传输ContentType:application/x-www-form-urlencoded</li>
 </ul>
 <p>​    实现：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public async Task&lt;string&gt; Post(string url, Dictionary&lt;string, string&gt; param)</span><br><span class="line">        &#123;</span><br><span class="line">            string result=&quot;&quot;;</span><br><span class="line">            HttpClient click = new HttpClient();</span><br><span class="line">            HttpContent postContent = new FormUrlEncodedContent(param);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                var respMsg = await click.PostAsync(url, postContent);</span><br><span class="line">                respMsg.EnsureSuccessStatusCode();</span><br><span class="line">                result = await respMsg.Content.ReadAsStringAsync();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (HttpRequestException ex)</span><br><span class="line">            &#123;</span><br><span class="line">                result = ex.Message;</span><br><span class="line">            &#125;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
@@ -269,6 +267,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/05/23/事务执行先后顺序/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          事务个人简单理解
+        
+      </div>
+    </a>
   
   
     <a href="/2019/05/16/正则简单实例/" id="article-nav-older" class="article-nav-link-wrap">
@@ -491,6 +498,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">事务、MySql</a>
               </li>
             
             <div class="clearfix"></div>

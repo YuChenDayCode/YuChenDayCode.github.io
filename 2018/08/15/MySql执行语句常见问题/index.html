@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>MySql执行语句常见问题 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="错误：Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences 原因：安全模式，非主键条件无法执行upda">
+  <meta name="description" content="问题 错误：Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences 原因：安全模式，非主键条件无法执行up">
 <meta name="keywords" content="MySql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySql执行语句常见问题">
 <meta property="og:url" content="//yuchendaycode.github.io/2018/08/15/MySql执行语句常见问题/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="错误：Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences 原因：安全模式，非主键条件无法执行upda">
+<meta property="og:description" content="问题 错误：Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences 原因：安全模式，非主键条件无法执行up">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-17T08:16:34.073Z">
+<meta property="og:updated_time" content="2019-05-24T10:00:07.060Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySql执行语句常见问题">
-<meta name="twitter:description" content="错误：Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences 原因：安全模式，非主键条件无法执行upda">
+<meta name="twitter:description" content="问题 错误：Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences 原因：安全模式，非主键条件无法执行up">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -171,7 +171,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
+        <h5 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h5><ul>
 <li><p>错误：Error Code: 1175. You are using safe update mode and you tried to update a table without a WHERE that uses a KEY column To disable safe mode, toggle the option in Preferences</p>
 <p>原因：安全模式，非主键条件无法执行update或者delete命令，</p>
 </li>
@@ -182,6 +182,7 @@
 <p>原因：一般出现在用+拼接更新语句，语法不严谨 需要使用CONCAT()函数拼接字符串</p>
 </li>
 </ul>
+<h5 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*一对多更新*/</span><br><span class="line">update testA,(select testAId,sum(sum)as sums  from testB group by testAId) b</span><br><span class="line">set testA.sun=b.sums</span><br><span class="line">where testA.Id=b.testAId;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -490,6 +491,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">.NET</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">事务、MySql</a>
               </li>
             
             <div class="clearfix"></div>

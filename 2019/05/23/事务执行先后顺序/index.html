@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
-  <title>Sublime Text 配色修改 | Yuchen - 随笔</title>
+  <title>事务个人简单理解 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ctrl Shift+P：install package (连不上的话 需要翻墙)  安装PackageResourceView   安装完成之后 c+s+p 选中packageresourceview：open resource =&amp;gt; color scheme - default =&amp;gt; 选中你的配色方案 修改保存立即生效">
-<meta name="keywords" content="Sublime Text">
+  <meta name="description" content="事务特性 原子性：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。 持久性：事务执行完成后 数据一直保持 隔离性：同一时间只能一个事务操作一个数据。（衍生出隔离级别） 一致性：事务在完成后，数据库的数据确定不会再回滚等   一致性由原子性、持久性、隔离性保证 原子性由Undo Log保证  Undo log：保存每次变更前的记录，用来恢复数据，回滚什么的 持久性由Redo L">
+<meta name="keywords" content="事务、MySql">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sublime Text 配色修改">
-<meta property="og:url" content="//yuchendaycode.github.io/2019/03/19/Sublime Text 配色修改/index.html">
+<meta property="og:title" content="事务个人简单理解">
+<meta property="og:url" content="//yuchendaycode.github.io/2019/05/23/事务执行先后顺序/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="Ctrl Shift+P：install package (连不上的话 需要翻墙)  安装PackageResourceView   安装完成之后 c+s+p 选中packageresourceview：open resource =&amp;gt; color scheme - default =&amp;gt; 选中你的配色方案 修改保存立即生效">
+<meta property="og:description" content="事务特性 原子性：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。 持久性：事务执行完成后 数据一直保持 隔离性：同一时间只能一个事务操作一个数据。（衍生出隔离级别） 一致性：事务在完成后，数据库的数据确定不会再回滚等   一致性由原子性、持久性、隔离性保证 原子性由Undo Log保证  Undo log：保存每次变更前的记录，用来恢复数据，回滚什么的 持久性由Redo L">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-18T02:35:18.863Z">
+<meta property="og:updated_time" content="2019-05-24T10:00:07.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sublime Text 配色修改">
-<meta name="twitter:description" content="Ctrl Shift+P：install package (连不上的话 需要翻墙)  安装PackageResourceView   安装完成之后 c+s+p 选中packageresourceview：open resource =&amp;gt; color scheme - default =&amp;gt; 选中你的配色方案 修改保存立即生效">
+<meta name="twitter:title" content="事务个人简单理解">
+<meta name="twitter:description" content="事务特性 原子性：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。 持久性：事务执行完成后 数据一直保持 隔离性：同一时间只能一个事务操作一个数据。（衍生出隔离级别） 一致性：事务在完成后，数据库的数据确定不会再回滚等   一致性由原子性、持久性、隔离性保证 原子性由Undo Log保证  Undo log：保存每次变更前的记录，用来恢复数据，回滚什么的 持久性由Redo L">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -151,38 +151,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Sublime Text 配色修改" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-事务执行先后顺序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Sublime Text 配色修改
+      事务个人简单理解
     </h1>
   
 
         
-        <a href="/2019/03/19/Sublime Text 配色修改/" class="archive-article-date">
-  	<time datetime="2019-03-19T05:56:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19 13:56:57</time>
+        <a href="/2019/05/23/事务执行先后顺序/" class="archive-article-date">
+  	<time datetime="2019-05-23T09:14:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23 17:14:22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul>
-<li><p>Ctrl Shift+P：install package (连不上的话 需要翻墙)</p>
-</li>
-<li><p>安装<strong>PackageResourceView</strong></p>
-<p>  安装完成之后 c+s+p 选中packageresourceview：open resource =&gt; color scheme - default =&gt; 选中你的配色方案 修改保存立即生效</p>
-</li>
+        <h4 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h4><ul>
+<li><strong>原子性</strong>：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。</li>
+<li><strong>持久性</strong>：事务执行完成后 数据一直保持</li>
+<li><strong>隔离性</strong>：同一时间只能一个事务操作一个数据。（衍生出隔离级别）</li>
+<li><strong>一致性</strong>：事务在完成后，数据库的数据确定不会再回滚等</li>
 </ul>
-<a id="more"></a>
-<p>caret：光标颜色</p>
-<p>foreground：符号颜色（行号，逗号，括号之类）</p>
-<p>selection：选中颜色</p>
-<p>selection_border：选中边框颜色</p>
+<blockquote>
+<p>一致性由原子性、持久性、隔离性保证</p>
+<p>原子性由Undo Log保证  <code>Undo log：保存每次变更前的记录，用来恢复数据，回滚什么的</code></p>
+<p>持久性由Redo Log保证 <code>Redo Log：事务commit前，都会将记录保存到Redo log中，保存成功后才会允许commit，如果commit前断电之类不可抗力 可以通过redo log恢复</code></p>
+<p>隔离性：<strong>↓</strong></p>
+</blockquote>
+<h4 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h4><ul>
+<li><strong>Read Uncommitted</strong>（读取未提交内容）：基本没啥用 什么都不能限制</li>
+<li><strong>Read Committed</strong>(读取提交内容):大部分数据库的默认级别，只能看到已提交的改变（避免脏读）</li>
+<li><strong>Repeatable Read</strong>(可重复读)：mysql的默认级别，同一事务并发时 保证读取数据行一样（避免脏读与重复读）</li>
+<li><strong>Serializable</strong>(串行化)：最高级别 但是性能差，锁竞争（避免脏读、重复读、幻读）</li>
+</ul>
+<blockquote>
+<p>脏读：读取到事务未提交的数据（A读取到B未提交的数据，B回滚，那么A的数据就是脏数据）</p>
+<p>幻读：事务进行中读取到其他已提交的数据（A更新后，B操作数据库插入什么的，导致A发现仍有数据未更新）</p>
+<p>不可重复读：事务进行时提交前后读取到的数据不一致（A事务未提交时，其他数据先提交）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select @@tx_isolation; /*查询当前会话事务隔离级别*/</span><br><span class="line">select @@global.tx_isolation;/*查询系统事务隔离级别*/</span><br><span class="line"></span><br><span class="line">set session transaction isolatin level repeatable read; /*设置当前会话隔离级别*/</span><br><span class="line">set global transaction isolation level repeatable read; /*设置系统隔离级别*/</span><br></pre></td></tr></table></figure>
+<h4 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h4><ul>
+<li>…….</li>
+</ul>
 
       
 
@@ -196,7 +211,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sublime Text</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">事务、MySql</a>
         		</li>
       		
 		</ul>
@@ -252,7 +267,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2019/03/19/Sublime Text 配色修改/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2019/05/23/事务执行先后顺序/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -266,18 +281,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/19/JS整理/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS 整理
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/05/C#网络流读取(图片）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">C#网络流读取(图片）</div>
+    <a href="/2019/05/21/FormUrlEncodedContent、StringContent/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">WebAPI传递大数据</div>
       <i class="icon-circle-right"></i>
     </a>
   

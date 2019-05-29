@@ -152,6 +152,186 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySql重置密码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/27/MySql重置密码/">本地MySql重置密码</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/27/MySql重置密码/" class="archive-article-date">
+  	<time datetime="2019-05-27T08:36:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27 16:36:30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="原理通过跳过表授权，跳过密码直接在表里更新密码"><a href="#原理通过跳过表授权，跳过密码直接在表里更新密码" class="headerlink" title="原理通过跳过表授权，跳过密码直接在表里更新密码"></a>原理通过跳过表授权，跳过密码直接在表里更新密码</h5><ol>
+<li><p>找到<strong>my.ini</strong>一般在<code>C:\Program Files\MySQL\MySQL Server 5.7\bin</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"><span class="comment"># The next three options are mutually exclusive to SERVER_PORT below.</span></span><br><span class="line"><span class="comment"># skip-networking</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># enable-named-pipe</span></span><br></pre></td></tr></table></figure>
+<p>找到这个片段，改为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[mysqld]</span><br><span class="line">skip-grant-tables</span><br><span class="line"><span class="comment"># The next three options are mutually exclusive to SERVER_PORT below.</span></span><br><span class="line"><span class="comment"># skip-networking</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># enable-named-pipe</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li>重启mysql服务 </li>
+</ol>
+<ol start="3">
+<li><p>管理员打开命令行,密码不用输入直接回车</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.mysql -u root -p</span><br><span class="line">2.update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">'654321'</span>) <span class="built_in">where</span> user = <span class="string">'root'</span>;</span><br><span class="line">3.flush privileges;</span><br><span class="line">4.exit</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\MySQL\MySQL Server 5.7\bin&gt;mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 3</span><br><span class="line">Server version: 5.7.20-log MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">'help;'</span> or <span class="string">'\h'</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">'\c'</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br><span class="line">mysql&gt; update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">'654321'</span>) <span class="built_in">where</span> user = <span class="string">'root'</span>;</span><br><span class="line">Query OK, 1 row affected, 1 warning (0.00 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 1</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="built_in">exit</span></span><br><span class="line">Bye</span><br></pre></td></tr></table></figure>
+<p>完了重启数据库服务！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/27/MySql重置密码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ntopng安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/27/ntopng安装/">ntopng安装</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/27/ntopng安装/" class="archive-article-date">
+  	<time datetime="2019-05-27T07:56:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27 15:56:32</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先，您需要安装EPEL 6存储库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>然后你需要添加ntop存储库（手动）</p>
+<p>这里需要注意这个地址的两个变量 $releasever:系统版本，$basearch：位数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/yum.repos.d/ntop.repo</span><br><span class="line">[ntop]</span><br><span class="line"> name=ntop packages</span><br><span class="line"> baseurl=http://www.nmon.net/centos/$releasever/$basearch/</span><br><span class="line"> enabled=1</span><br><span class="line"> gpgcheck=1</span><br><span class="line"> gpgkey=http://www.nmon.net/centos/RPM-GPG-KEY-deri</span><br></pre></td></tr></table></figure>
+<p>更新您的存储库并安装ntopng及其依赖项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line"> yum update</span><br><span class="line"> yum install pfring n2disk nProbe ntopng ntopng-data nbox</span><br></pre></td></tr></table></figure>
+<p>*注意：此时我遇到了一个事务检查错误，因为我的内核比ntop编译所期望的更新，所以我必须安装一个较旧的内核来完成yum install。如果上述操作完成且没有错误，则可以跳过此步骤，否则请抓取旧内核并再次尝试安装包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install kernel-2.6.32.431.20.3.el6</span><br></pre></td></tr></table></figure>
+<p>安装后，您需要编辑配置文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ntopng/ntopng.start</span><br><span class="line">--local-networks &quot;192.168.0.0/24&quot;</span><br><span class="line"> --interface 0</span><br></pre></td></tr></table></figure>
+<p>并复制默认配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/ntopng/ntopng.conf.sample /etc/ntopng/ntopng.conf</span><br></pre></td></tr></table></figure>
+<p>除了一点家务之外，你已经完成了很多工作。</p>
+<p>将服务设置为自动启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig redis on</span><br><span class="line"> chkconfig ntopng on</span><br></pre></td></tr></table></figure>
+<p>向防火墙添加例外</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 3000 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>重启防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
+<p>并启动ntopng服务……</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service redis start</span><br><span class="line"> service ntopng start</span><br></pre></td></tr></table></figure>
+<p>完成！</p>
+<p>​    1.安装EPEL源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</span><br><span class="line">rpm -ivh epel-release-5-4.noarch.rpm</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装依赖包</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall “Development Tools”</span><br><span class="line">yum install libpcap-devel glib2-devel GeoIP-devel libxml2-devel</span><br><span class="line">libxml2-devel redis autoconf automake sqlite-devel</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>下载、安装ntopng  别搞成ntop了…</p>
+<p>wget ……..</p>
+<p>tar …..</p>
+<p>下载之后解压进入文件夹执行</p>
+<p>cd …</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">./autogen.sh</span><br><span class="line">./configure <span class="comment">#解压编辑，成功了会显示Please do not forget to download GeoIP databases doing: /usr/bin/gmake geoip</span></span><br><span class="line">gmake geoip</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">mkdir /etc/ntopng/ntopng.conf</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/ntopng /etc/ntopng/ntopng.conf &amp; <span class="comment">#运行</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/27/ntopng安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-事务执行先后顺序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -627,170 +807,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/04/12/Hexo搭建Blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/19/JS整理/">JS 整理</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/19/JS整理/" class="archive-article-date">
-  	<time datetime="2019-03-19T09:15:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19 17:15:06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p><strong>函数</strong></p>
-<ul>
-<li>箭头函数</li>
-</ul>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/03/19/JS整理/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/19/JS整理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Sublime Text 配色修改" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/19/Sublime Text 配色修改/">Sublime Text 配色修改</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/19/Sublime Text 配色修改/" class="archive-article-date">
-  	<time datetime="2019-03-19T05:56:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19 13:56:57</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>Ctrl Shift+P：install package (连不上的话 需要翻墙)</p>
-</li>
-<li><p>安装<strong>PackageResourceView</strong></p>
-<p>  安装完成之后 c+s+p 选中packageresourceview：open resource =&gt; color scheme - default =&gt; 选中你的配色方案 修改保存立即生效</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/03/19/Sublime Text 配色修改/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sublime Text</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/19/Sublime Text 配色修改/">展开全文 >></a>
         </p>
       
 

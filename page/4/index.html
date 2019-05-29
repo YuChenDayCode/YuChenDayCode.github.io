@@ -152,6 +152,163 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Quartz.NET实例,动态改变周期调度。misfire、Cron" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/22/Quartz.NET实例,动态改变周期调度。misfire、Cron/">Quartz.NET实例,动态改变周期调度。misfire、Cron</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/22/Quartz.NET实例,动态改变周期调度。misfire、Cron/" class="archive-article-date">
+  	<time datetime="2018-11-22T10:46:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22 18:46:00</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Quartz：Java编写的开源的任务调度作业框架 类似Timer之类定时执行的功能，但是更强大</p>
+<p>Quartz.NET：是把Quartz转成C#  NuGet中可以直接下载对应类库</p>
+<p>官网：<a href="https://www.quartz-scheduler.net/" target="_blank" rel="noopener">https://www.quartz-scheduler.net/</a></p>
+<p>主要对象:</p>
+<p>Job ：工作，要执行的具体内容继承IJob。此接口中只有一个方法：execute(IJobExecutionContext context) </p>
+<p>JobDetail：具体的可执行的调度程序，Job 是这个可执行程调度程序所要执行的内容</p>
+<p>Trigger：调度参数的配置，什么时候去调 执行间隔。 </p>
+<p>Scheduler：调度容器，一个调度容器中可以注册多个 JobDetail 和 Trigger。当 Trigger 与 JobDetail 组合，就可以被 Scheduler 容器调度了。 </p>
+        
+          <a class="article-more-a" href="/2018/11/22/Quartz.NET实例,动态改变周期调度。misfire、Cron/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Quartz</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/Quartz.NET实例,动态改变周期调度。misfire、Cron/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-三行代码 人民币金额大写转换" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/22/三行代码 人民币金额大写转换/">三行代码 人民币金额大写转换</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/22/三行代码 人民币金额大写转换/" class="archive-article-date">
+  	<time datetime="2018-11-22T06:23:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22 14:23:00</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static String ConvertToChinese(Decimal number)</span><br><span class="line">&#123;</span><br><span class="line">    var s = number.ToString(&quot;#L#E#D#C#K#E#D#C#J#E#D#C#I#E#D#C#H#E#D#C#G#E#D#C#F#E#D#C#.0B0A&quot;);</span><br><span class="line">    var d = Regex.Replace(s, @&quot;((?&lt;=-|^)[^1-9]*)|((?&apos;z&apos;0)[0A-E]*((?=[1-9])|(?&apos;-z&apos;(?=[F-L\.]|$))))|((?&apos;b&apos;[F-L])(?&apos;z&apos;0)[0A-L]*((?=[1-9])|(?&apos;-z&apos;(?=[\.]|$))))&quot;, &quot;$&#123;b&#125;$&#123;z&#125;&quot;);</span><br><span class="line">    var r = Regex.Replace(d, &quot;.&quot;, m =&gt; &quot;负元空零壹贰叁肆伍陆柒捌玖空空空空空空空分角拾佰仟万亿兆京垓秭穰&quot;[m.Value[0] - &apos;-&apos;].ToString());</span><br><span class="line">    return r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">正则</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/三行代码 人民币金额大写转换/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-珍藏！！ JS CSS不传之秘集合" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

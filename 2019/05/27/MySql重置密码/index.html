@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
-  <title>C# AES加密解密 | Yuchen - 随笔</title>
+  <title>本地MySql重置密码 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）&amp;lt;/para">
-<meta name="keywords" content="C#,加密">
+  <meta name="description" content="原理通过跳过表授权，跳过密码直接在表里更新密码 找到my.ini一般在C:\Program Files\MySQL\MySQL Server 5.7\bin 1234567...[mysqld]# The next three options are mutually exclusive to SERVER_PORT below.# skip-networking# enable-named-pi">
+<meta name="keywords" content="全栈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C# AES加密解密">
-<meta property="og:url" content="//yuchendaycode.github.io/2019/02/28/AES加密解密/index.html">
+<meta property="og:title" content="本地MySql重置密码">
+<meta property="og:url" content="//yuchendaycode.github.io/2019/05/27/MySql重置密码/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）&amp;lt;/para">
+<meta property="og:description" content="原理通过跳过表授权，跳过密码直接在表里更新密码 找到my.ini一般在C:\Program Files\MySQL\MySQL Server 5.7\bin 1234567...[mysqld]# The next three options are mutually exclusive to SERVER_PORT below.# skip-networking# enable-named-pi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-18T02:35:18.863Z">
+<meta property="og:updated_time" content="2019-05-29T10:00:06.947Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C# AES加密解密">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）&amp;lt;/para">
+<meta name="twitter:title" content="本地MySql重置密码">
+<meta name="twitter:description" content="原理通过跳过表授权，跳过密码直接在表里更新密码 找到my.ini一般在C:\Program Files\MySQL\MySQL Server 5.7\bin 1234567...[mysqld]# The next three options are mutually exclusive to SERVER_PORT below.# skip-networking# enable-named-pi">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -151,44 +151,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-AES加密解密" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MySql重置密码" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C# AES加密解密
+      本地MySql重置密码
     </h1>
   
 
         
-        <a href="/2019/02/28/AES加密解密/" class="archive-article-date">
-  	<time datetime="2019-02-28T01:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28 09:27:00</time>
+        <a href="/2019/05/27/MySql重置密码/" class="archive-article-date">
+  	<time datetime="2019-05-27T08:36:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27 16:36:30</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">      ///  AES 加密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待加密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesEncrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateEncryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Convert.ToBase64String(resultArray, 0, resultArray.Length);</span><br><span class="line">      &#125;</span><br><span class="line">      /// &lt;summary&gt;</span><br><span class="line">      ///  AES 解密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待解密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesDecrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          // 判断Key是否为16位</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Convert.FromBase64String(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateDecryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Encoding.UTF8.GetString(resultArray);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：<ul>
-<li>1.DES和AES加密：指定键的大小对于此算法无效 </li>
-<li>2.Base-64 字符数组或字符串的长度无效</li>
-</ul>
+        <h5 id="原理通过跳过表授权，跳过密码直接在表里更新密码"><a href="#原理通过跳过表授权，跳过密码直接在表里更新密码" class="headerlink" title="原理通过跳过表授权，跳过密码直接在表里更新密码"></a>原理通过跳过表授权，跳过密码直接在表里更新密码</h5><ol>
+<li><p>找到<strong>my.ini</strong>一般在<code>C:\Program Files\MySQL\MySQL Server 5.7\bin</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"><span class="comment"># The next three options are mutually exclusive to SERVER_PORT below.</span></span><br><span class="line"><span class="comment"># skip-networking</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># enable-named-pipe</span></span><br></pre></td></tr></table></figure>
+<p>找到这个片段，改为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[mysqld]</span><br><span class="line">skip-grant-tables</span><br><span class="line"><span class="comment"># The next three options are mutually exclusive to SERVER_PORT below.</span></span><br><span class="line"><span class="comment"># skip-networking</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># enable-named-pipe</span></span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>​             输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符</p>
-<ul>
-<li>解决：<ul>
-<li>1.key的值必须为16+位</li>
-<li>2.注意base64字符串中的特殊字符是否被转义 或者 有没有被替换为空格</li>
-</ul>
+</ol>
+<ol start="2">
+<li>重启mysql服务 </li>
+</ol>
+<ol start="3">
+<li><p>管理员打开命令行,密码不用输入直接回车</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.mysql -u root -p</span><br><span class="line">2.update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">'654321'</span>) <span class="built_in">where</span> user = <span class="string">'root'</span>;</span><br><span class="line">3.flush privileges;</span><br><span class="line">4.exit</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>​      </p>
+</ol>
+<p>效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\MySQL\MySQL Server 5.7\bin&gt;mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 3</span><br><span class="line">Server version: 5.7.20-log MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">'help;'</span> or <span class="string">'\h'</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">'\c'</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br><span class="line">mysql&gt; update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">'654321'</span>) <span class="built_in">where</span> user = <span class="string">'root'</span>;</span><br><span class="line">Query OK, 1 row affected, 1 warning (0.00 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 1</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="built_in">exit</span></span><br><span class="line">Bye</span><br></pre></td></tr></table></figure>
+<p>完了重启数据库服务！</p>
 
       
 
@@ -197,21 +197,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">加密</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -262,7 +247,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2019/02/28/AES加密解密/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2019/05/27/MySql重置密码/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -276,18 +261,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/05/Java与.NET二进制编码转换，补码/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          C#与Java二进制编码转换，补码
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/02/19/Mysql 游标创建/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mysql 游标创建</div>
+    <a href="/2019/05/27/ntopng安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ntopng安装</div>
       <i class="icon-circle-right"></i>
     </a>
   

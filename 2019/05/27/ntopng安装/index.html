@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
-  <title>C# AES加密解密 | Yuchen - 随笔</title>
+  <title>ntopng安装 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）&amp;lt;/para">
-<meta name="keywords" content="C#,加密">
+  <meta name="description" content="首先，您需要安装EPEL 6存储库。 1yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 然后你需要添加ntop存储库（手动） 这里需要注意这个地址的两个变量 $releasever:系统版本，$basearch：位数 1234567vi /etc/yum.r">
+<meta name="keywords" content="全栈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C# AES加密解密">
-<meta property="og:url" content="//yuchendaycode.github.io/2019/02/28/AES加密解密/index.html">
+<meta property="og:title" content="ntopng安装">
+<meta property="og:url" content="//yuchendaycode.github.io/2019/05/27/ntopng安装/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）&amp;lt;/para">
+<meta property="og:description" content="首先，您需要安装EPEL 6存储库。 1yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 然后你需要添加ntop存储库（手动） 这里需要注意这个地址的两个变量 $releasever:系统版本，$basearch：位数 1234567vi /etc/yum.r">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-18T02:35:18.863Z">
+<meta property="og:updated_time" content="2019-05-29T10:00:06.947Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C# AES加密解密">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243/// &amp;lt;summary&amp;gt;      ///  AES 加密      /// &amp;lt;/summary&amp;gt;      /// &amp;lt;param name=&amp;quot;str&amp;quot;&amp;gt;明文（待加密）&amp;lt;/para">
+<meta name="twitter:title" content="ntopng安装">
+<meta name="twitter:description" content="首先，您需要安装EPEL 6存储库。 1yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm 然后你需要添加ntop存储库（手动） 这里需要注意这个地址的两个变量 $releasever:系统版本，$basearch：位数 1234567vi /etc/yum.r">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -151,44 +151,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-AES加密解密" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ntopng安装" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      C# AES加密解密
+      ntopng安装
     </h1>
   
 
         
-        <a href="/2019/02/28/AES加密解密/" class="archive-article-date">
-  	<time datetime="2019-02-28T01:27:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-28 09:27:00</time>
+        <a href="/2019/05/27/ntopng安装/" class="archive-article-date">
+  	<time datetime="2019-05-27T07:56:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27 15:56:32</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/// &lt;summary&gt;</span><br><span class="line">      ///  AES 加密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待加密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesEncrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Encoding.UTF8.GetBytes(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateEncryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Convert.ToBase64String(resultArray, 0, resultArray.Length);</span><br><span class="line">      &#125;</span><br><span class="line">      /// &lt;summary&gt;</span><br><span class="line">      ///  AES 解密</span><br><span class="line">      /// &lt;/summary&gt;</span><br><span class="line">      /// &lt;param name=&quot;str&quot;&gt;明文（待解密）&lt;/param&gt;</span><br><span class="line">      /// &lt;param name=&quot;key&quot;&gt;密文&lt;/param&gt;</span><br><span class="line">      /// &lt;returns&gt;&lt;/returns&gt;</span><br><span class="line">      public static string AesDecrypt(string str, string key)</span><br><span class="line">      &#123;</span><br><span class="line">          if (string.IsNullOrEmpty(str)) return null;</span><br><span class="line">          // 判断Key是否为16位</span><br><span class="line">          if (key.Length != 16) return null;</span><br><span class="line">          Byte[] toEncryptArray = Convert.FromBase64String(str);</span><br><span class="line">          RijndaelManaged rm = new RijndaelManaged</span><br><span class="line">          &#123;</span><br><span class="line">              Key = Encoding.UTF8.GetBytes(key),</span><br><span class="line">              Mode = CipherMode.ECB,</span><br><span class="line">              Padding = PaddingMode.PKCS7</span><br><span class="line">          &#125;;</span><br><span class="line">          ICryptoTransform cTransform = rm.CreateDecryptor();</span><br><span class="line">          Byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 				0, toEncryptArray.Length);</span><br><span class="line">          return Encoding.UTF8.GetString(resultArray);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：<ul>
-<li>1.DES和AES加密：指定键的大小对于此算法无效 </li>
-<li>2.Base-64 字符数组或字符串的长度无效</li>
-</ul>
+        <p>首先，您需要安装EPEL 6存储库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span><br></pre></td></tr></table></figure>
+<p>然后你需要添加ntop存储库（手动）</p>
+<p>这里需要注意这个地址的两个变量 $releasever:系统版本，$basearch：位数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/yum.repos.d/ntop.repo</span><br><span class="line">[ntop]</span><br><span class="line"> name=ntop packages</span><br><span class="line"> baseurl=http://www.nmon.net/centos/$releasever/$basearch/</span><br><span class="line"> enabled=1</span><br><span class="line"> gpgcheck=1</span><br><span class="line"> gpgkey=http://www.nmon.net/centos/RPM-GPG-KEY-deri</span><br></pre></td></tr></table></figure>
+<p>更新您的存储库并安装ntopng及其依赖项</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line"> yum update</span><br><span class="line"> yum install pfring n2disk nProbe ntopng ntopng-data nbox</span><br></pre></td></tr></table></figure>
+<p>*注意：此时我遇到了一个事务检查错误，因为我的内核比ntop编译所期望的更新，所以我必须安装一个较旧的内核来完成yum install。如果上述操作完成且没有错误，则可以跳过此步骤，否则请抓取旧内核并再次尝试安装包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install kernel-2.6.32.431.20.3.el6</span><br></pre></td></tr></table></figure>
+<p>安装后，您需要编辑配置文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ntopng/ntopng.start</span><br><span class="line">--local-networks &quot;192.168.0.0/24&quot;</span><br><span class="line"> --interface 0</span><br></pre></td></tr></table></figure>
+<p>并复制默认配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/ntopng/ntopng.conf.sample /etc/ntopng/ntopng.conf</span><br></pre></td></tr></table></figure>
+<p>除了一点家务之外，你已经完成了很多工作。</p>
+<p>将服务设置为自动启动。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig redis on</span><br><span class="line"> chkconfig ntopng on</span><br></pre></td></tr></table></figure>
+<p>向防火墙添加例外</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 3000 -j ACCEPT</span><br></pre></td></tr></table></figure>
+<p>重启防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
+<p>并启动ntopng服务……</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service redis start</span><br><span class="line"> service ntopng start</span><br></pre></td></tr></table></figure>
+<p>完成！</p>
+<p>​    1.安装EPEL源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</span><br><span class="line">rpm -ivh epel-release-5-4.noarch.rpm</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>安装依赖包</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall “Development Tools”</span><br><span class="line">yum install libpcap-devel glib2-devel GeoIP-devel libxml2-devel</span><br><span class="line">libxml2-devel redis autoconf automake sqlite-devel</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>下载、安装ntopng  别搞成ntop了…</p>
+<p>wget ……..</p>
+<p>tar …..</p>
+<p>下载之后解压进入文件夹执行</p>
+<p>cd …</p>
 </li>
-</ul>
-<p>​             输入的不是有效的 Base-64 字符串，因为它包含非 Base-64 字符、两个以上的填充字符，或者填充字符间包含非法字符</p>
-<ul>
-<li>解决：<ul>
-<li>1.key的值必须为16+位</li>
-<li>2.注意base64字符串中的特殊字符是否被转义 或者 有没有被替换为空格</li>
-</ul>
-</li>
-</ul>
-<p>​      </p>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">./autogen.sh</span><br><span class="line">./configure <span class="comment">#解压编辑，成功了会显示Please do not forget to download GeoIP databases doing: /usr/bin/gmake geoip</span></span><br><span class="line">gmake geoip</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">mkdir /etc/ntopng/ntopng.conf</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/ntopng /etc/ntopng/ntopng.conf &amp; <span class="comment">#运行</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -197,21 +217,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">加密</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -262,7 +267,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2019/02/28/AES加密解密/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2019/05/27/ntopng安装/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -276,18 +281,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/03/05/Java与.NET二进制编码转换，补码/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/05/27/MySql重置密码/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          C#与Java二进制编码转换，补码
+          本地MySql重置密码
         
       </div>
     </a>
   
   
-    <a href="/2019/02/19/Mysql 游标创建/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Mysql 游标创建</div>
+    <a href="/2019/05/23/事务执行先后顺序/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">事务个人简单理解</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -152,6 +152,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-处理请求时出错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/30/处理请求时出错/">处理请求时出错。</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/30/处理请求时出错/" class="archive-article-date">
+  	<time datetime="2019-05-30T08:34:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-30 16:34:14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>WebService 发起请求时返回<strong>{“Message”:”处理请求时出错。”,”StackTrace”:””,”ExceptionType”:””}</strong></p>
+<p>而程序中有没有捕获到，这种情况一般是请求格式的问题，比如你用application/json传递不是json格式的字符串之类的问题</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/30/处理请求时出错/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MySql重置密码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -172,25 +236,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="原理通过跳过表授权，跳过密码直接在表里更新密码"><a href="#原理通过跳过表授权，跳过密码直接在表里更新密码" class="headerlink" title="原理通过跳过表授权，跳过密码直接在表里更新密码"></a>原理通过跳过表授权，跳过密码直接在表里更新密码</h5><ol>
-<li><p>找到<strong>my.ini</strong>一般在<code>C:\Program Files\MySQL\MySQL Server 5.7\bin</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"><span class="comment"># The next three options are mutually exclusive to SERVER_PORT below.</span></span><br><span class="line"><span class="comment"># skip-networking</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># enable-named-pipe</span></span><br></pre></td></tr></table></figure>
-<p>找到这个片段，改为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[mysqld]</span><br><span class="line">skip-grant-tables</span><br><span class="line"><span class="comment"># The next three options are mutually exclusive to SERVER_PORT below.</span></span><br><span class="line"><span class="comment"># skip-networking</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># enable-named-pipe</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<ol start="2">
-<li>重启mysql服务 </li>
-</ol>
-<ol start="3">
-<li><p>管理员打开命令行,密码不用输入直接回车</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.mysql -u root -p</span><br><span class="line">2.update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">'654321'</span>) <span class="built_in">where</span> user = <span class="string">'root'</span>;</span><br><span class="line">3.flush privileges;</span><br><span class="line">4.exit</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>效果：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\MySQL\MySQL Server 5.7\bin&gt;mysql -u root -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 3</span><br><span class="line">Server version: 5.7.20-log MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">'help;'</span> or <span class="string">'\h'</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">'\c'</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br><span class="line">mysql&gt; update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">'654321'</span>) <span class="built_in">where</span> user = <span class="string">'root'</span>;</span><br><span class="line">Query OK, 1 row affected, 1 warning (0.00 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 1</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="built_in">exit</span></span><br><span class="line">Bye</span><br></pre></td></tr></table></figure>
-<p>完了重启数据库服务！</p>
-
+        <h5 id="原理：通过跳过表授权，跳过密码直接在表里更新密码"><a href="#原理：通过跳过表授权，跳过密码直接在表里更新密码" class="headerlink" title="原理：通过跳过表授权，跳过密码直接在表里更新密码"></a>原理：通过跳过表授权，跳过密码直接在表里更新密码</h5>
+        
+          <a class="article-more-a" href="/2019/05/27/MySql重置密码/#more">更多 >></a>
+        
       
 
       
@@ -253,44 +302,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>首先，您需要安装EPEL 6存储库。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span><br></pre></td></tr></table></figure>
-<p>然后你需要添加ntop存储库（手动）</p>
-<p>这里需要注意这个地址的两个变量 $releasever:系统版本，$basearch：位数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/yum.repos.d/ntop.repo</span><br><span class="line">[ntop]</span><br><span class="line"> name=ntop packages</span><br><span class="line"> baseurl=http://www.nmon.net/centos/$releasever/$basearch/</span><br><span class="line"> enabled=1</span><br><span class="line"> gpgcheck=1</span><br><span class="line"> gpgkey=http://www.nmon.net/centos/RPM-GPG-KEY-deri</span><br></pre></td></tr></table></figure>
-<p>更新您的存储库并安装ntopng及其依赖项</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line"> yum update</span><br><span class="line"> yum install pfring n2disk nProbe ntopng ntopng-data nbox</span><br></pre></td></tr></table></figure>
-<p>*注意：此时我遇到了一个事务检查错误，因为我的内核比ntop编译所期望的更新，所以我必须安装一个较旧的内核来完成yum install。如果上述操作完成且没有错误，则可以跳过此步骤，否则请抓取旧内核并再次尝试安装包。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install kernel-2.6.32.431.20.3.el6</span><br></pre></td></tr></table></figure>
-<p>安装后，您需要编辑配置文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ntopng/ntopng.start</span><br><span class="line">--local-networks &quot;192.168.0.0/24&quot;</span><br><span class="line"> --interface 0</span><br></pre></td></tr></table></figure>
-<p>并复制默认配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/ntopng/ntopng.conf.sample /etc/ntopng/ntopng.conf</span><br></pre></td></tr></table></figure>
-<p>除了一点家务之外，你已经完成了很多工作。</p>
-<p>将服务设置为自动启动。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig redis on</span><br><span class="line"> chkconfig ntopng on</span><br></pre></td></tr></table></figure>
-<p>向防火墙添加例外</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 3000 -j ACCEPT</span><br></pre></td></tr></table></figure>
-<p>重启防火墙</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
-<p>并启动ntopng服务……</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service redis start</span><br><span class="line"> service ntopng start</span><br></pre></td></tr></table></figure>
-<p>完成！</p>
-<p>​    1.安装EPEL源</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm</span><br><span class="line">rpm -ivh epel-release-5-4.noarch.rpm</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>安装依赖包</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum groupinstall “Development Tools”</span><br><span class="line">yum install libpcap-devel glib2-devel GeoIP-devel libxml2-devel</span><br><span class="line">libxml2-devel redis autoconf automake sqlite-devel</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>下载、安装ntopng  别搞成ntop了…</p>
-<p>wget ……..</p>
-<p>tar …..</p>
-<p>下载之后解压进入文件夹执行</p>
-<p>cd …</p>
-</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">./autogen.sh</span><br><span class="line">./configure <span class="comment">#解压编辑，成功了会显示Please do not forget to download GeoIP databases doing: /usr/bin/gmake geoip</span></span><br><span class="line">gmake geoip</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">mkdir /etc/ntopng/ntopng.conf</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/ntopng /etc/ntopng/ntopng.conf &amp; <span class="comment">#运行</span></span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2019/05/27/ntopng安装/#more">更多 >></a>
+        
       
 
       
@@ -364,22 +378,9 @@
 <p>持久性由Redo Log保证 <code>Redo Log：事务commit前，都会将记录保存到Redo log中，保存成功后才会允许commit，如果commit前断电之类不可抗力 可以通过redo log恢复</code></p>
 <p>隔离性：<strong>↓</strong></p>
 </blockquote>
-<h4 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h4><ul>
-<li><strong>Read Uncommitted</strong>（读取未提交内容）：基本没啥用 什么都不能限制</li>
-<li><strong>Read Committed</strong>(读取提交内容):大部分数据库的默认级别，只能看到已提交的改变（避免脏读）</li>
-<li><strong>Repeatable Read</strong>(可重复读)：mysql的默认级别，同一事务并发时 保证读取数据行一样（避免脏读与重复读）</li>
-<li><strong>Serializable</strong>(串行化)：最高级别 但是性能差，锁竞争（避免脏读、重复读、幻读）</li>
-</ul>
-<blockquote>
-<p>脏读：读取到事务未提交的数据（A读取到B未提交的数据，B回滚，那么A的数据就是脏数据）</p>
-<p>幻读：事务进行中读取到其他已提交的数据（A更新后，B操作数据库插入什么的，导致A发现仍有数据未更新）</p>
-<p>不可重复读：事务进行时提交前后读取到的数据不一致（A事务未提交时，其他数据先提交）</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select @@tx_isolation; /*查询当前会话事务隔离级别*/</span><br><span class="line">select @@global.tx_isolation;/*查询系统事务隔离级别*/</span><br><span class="line"></span><br><span class="line">set session transaction isolatin level repeatable read; /*设置当前会话隔离级别*/</span><br><span class="line">set global transaction isolation level repeatable read; /*设置系统隔离级别*/</span><br></pre></td></tr></table></figure>
-<h4 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h4><ul>
-<li>…….</li>
-</ul>
-
+        
+          <a class="article-more-a" href="/2019/05/23/事务执行先后顺序/#more">更多 >></a>
+        
       
 
       
@@ -453,20 +454,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>  在接口中传输图片进制流或BASE64字符串时，使用FormUrlEncodedContent处理参数时，可能会因为参数太长导致异常<em><code>无效的URL：URL字符串太长</code></em></p>
-<ul>
-<li><code>FormUrlEncodedContent</code>:使用<strong>application/x-www-form-urlencoded</strong> MIME类型编码的名称/值元组的容器，只能传输ContentType:application/x-www-form-urlencoded</li>
-</ul>
-<p>​    实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public async Task&lt;string&gt; Post(string url, Dictionary&lt;string, string&gt; param)</span><br><span class="line">        &#123;</span><br><span class="line">            string result=&quot;&quot;;</span><br><span class="line">            HttpClient click = new HttpClient();</span><br><span class="line">            HttpContent postContent = new FormUrlEncodedContent(param);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                var respMsg = await click.PostAsync(url, postContent);</span><br><span class="line">                respMsg.EnsureSuccessStatusCode();</span><br><span class="line">                result = await respMsg.Content.ReadAsStringAsync();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (HttpRequestException ex)</span><br><span class="line">            &#123;</span><br><span class="line">                result = ex.Message;</span><br><span class="line">            &#125;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>可是当param太大时 new FormUrlEncodedContent(param)就会抛出异常<em><code>无效的URL：URL字符串太长</code></em></p>
-<p>可以用StringContent！</p>
-<ul>
-<li><p><code>StringContent</code>：基于字符串提供http的内容，传输类型皆可(比如常用的application/x-www-form-urlencoded、application/json、multipart/form-data….)</p>
-<p>实现:</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public async Task&lt;string&gt; Post(string url, Dictionary&lt;string, string&gt; param)</span><br><span class="line">        &#123;</span><br><span class="line">            string result=&quot;&quot;;</span><br><span class="line">            HttpClient click = new HttpClient();</span><br><span class="line">            var urlcode = HttpHelp.DicToFormCode(param); //需要把键值对转为urlencoded</span><br><span class="line">            StringContent postContent = new StringContent(urlcode, Encoding.UTF8, &quot;application/x-www-form-urlencoded&quot;);</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                var respMsg = await click.PostAsync(url, postContent);</span><br><span class="line">                respMsg.EnsureSuccessStatusCode();</span><br><span class="line">                result = await respMsg.Content.ReadAsStringAsync();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (HttpRequestException ex)</span><br><span class="line">            &#123;</span><br><span class="line">                result = ex.Message;</span><br><span class="line">            &#125;</span><br><span class="line">            return result;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"> static string DicToFormCode(Dictionary&lt;string, string&gt; param)</span><br><span class="line">        &#123;</span><br><span class="line">            string pc = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">            foreach (var p in param)</span><br><span class="line">            &#123;</span><br><span class="line">                pc += HttpUtility.UrlEncode(p.Key);</span><br><span class="line">                if (p.Value.GetType() == typeof(object[]))</span><br><span class="line">                    pc += &quot;=&quot; + 	HttpUtility.UrlEncode(JsonConvert.SerializeObject(p.Value)) + &quot;&amp;&quot;;</span><br><span class="line">                else</span><br><span class="line">                    pc += &quot;=&quot; + HttpUtility.UrlEncode(p.Value.ToString()) + &quot;&amp;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            pc = pc.TrimEnd(&apos;&amp;&apos;);</span><br><span class="line"></span><br><span class="line">            return pc;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
+        
+          <a class="article-more-a" href="/2019/05/21/FormUrlEncodedContent、StringContent/#more">更多 >></a>
+        
       
 
       
@@ -616,10 +606,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-安装nginx"><a href="#1-安装nginx" class="headerlink" title="1.安装nginx"></a>1.安装nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel //安装依赖</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">mkdir nginx</span><br><span class="line"><span class="built_in">cd</span> nginx</span><br><span class="line">wget http://nginx.org/download/nginx-1.9.9.tar.gz //下载tar包</span><br><span class="line"></span><br><span class="line">./configure //安装</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -t //测试配置是否正确</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx  //启动nginx</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload //重启</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s stop //停止</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/04/15/nginx安装，发布网站/#more">更多 >></a>
-        
+        <a id="more"></a>
+<h2 id="1-安装nginx"><a href="#1-安装nginx" class="headerlink" title="1.安装nginx"></a>1.安装nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel //安装依赖</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">mkdir nginx</span><br><span class="line"><span class="built_in">cd</span> nginx</span><br><span class="line">wget http://nginx.org/download/nginx-1.9.9.tar.gz //下载tar包</span><br><span class="line"></span><br><span class="line">./configure //安装</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -t //测试配置是否正确</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx  //启动nginx</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload //重启</span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s stop //停止</span><br></pre></td></tr></table></figure>
+<!--more-->
+<h2 id="2-更改配置文件路径"><a href="#2-更改配置文件路径" class="headerlink" title="2.更改配置文件路径"></a>2.更改配置文件路径</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf //编辑配置文件</span><br></pre></td></tr></table></figure>
+<p><img src="\img\ContentImg\1555479924449.png" alt="配置文件"></p>
+<p>​                            <strong>只需要把root的路径指向项目的位置就行了</strong></p>
+<p>再重启一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -729,84 +724,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/04/13/跨域问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo搭建Blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/Hexo搭建Blog/">Hexo搭建github bolg</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/12/Hexo搭建Blog/" class="archive-article-date">
-  	<time datetime="2019-04-12T09:44:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12 17:44:30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Hexo-Blog"><a href="#Hexo-Blog" class="headerlink" title="Hexo Blog"></a>Hexo Blog</h1><ul>
-<li>1.安装nodejs、安装git</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/04/12/Hexo搭建Blog/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/12/Hexo搭建Blog/">展开全文 >></a>
         </p>
       
 

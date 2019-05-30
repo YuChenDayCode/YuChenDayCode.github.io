@@ -152,6 +152,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Python实例 2-12306抢票(二) 下单" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/20/Python实例 2-12306抢票(二) 下单/">Python实例 2-12306抢票(二) 下单</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/20/Python实例 2-12306抢票(二) 下单/" class="archive-article-date">
+  	<time datetime="2019-01-20T10:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-20 18:51:00</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第二篇 刷票与下单</p>
+<p>1.记住登陆</p>
+<p>​    上一篇写了登陆：<a href="http://www.tnblog.net/cz/article/details/162" target="_blank" rel="noopener">http://www.tnblog.net/cz/article/details/162</a></p>
+<p>​    为了方便调试 不让每次登陆都去扫码一遍，做一个缓存登陆的。</p>
+<p>​    登陆就是会话保持，一般依赖于cookie，token之类的信息保存到cookie中，请求的时候带着cookie去服务器，服务器就知道是同一个人。而请求使用的request库的session会自动保存每次服务器返回的cookie信息，下次请求带上该cookie ，所以能在运行时一直保持你登陆过的状态，但是重新运行程序就不行了，所以我们可以把上次的cookie信息存到文件中，下次运行的时候把cookie读取放到session中去 就哦了！</p>
+        
+          <a class="article-more-a" href="/2019/01/20/Python实例 2-12306抢票(二) 下单/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">12306</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/20/Python实例 2-12306抢票(二) 下单/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Python实例 2-12306抢票(一) 登陆" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -671,87 +755,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/11/23/可输入下拉文本框，据输入，动态加载数据 jquery-editable-select/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-去字符串首尾指定符号或字符 超简单方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/23/去字符串首尾指定符号或字符 超简单方法/">C# 去字符串首尾指定符号或字符 超简单方法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/23/去字符串首尾指定符号或字符 超简单方法/" class="archive-article-date">
-  	<time datetime="2018-11-23T02:28:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-23 10:28:00</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>TrimStart()</strong>：匹配开头字符，有则移除</p>
-<p><strong>TrimEnd()</strong>：匹配结尾字符，有则移除</p>
-        
-          <a class="article-more-a" href="/2018/11/23/去字符串首尾指定符号或字符 超简单方法/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">字符串</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/23/去字符串首尾指定符号或字符 超简单方法/">展开全文 >></a>
         </p>
       
 

@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>本地MySql重置密码 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原理通过跳过表授权，跳过密码直接在表里更新密码 找到my.ini一般在C:\Program Files\MySQL\MySQL Server 5.7\bin 1234567...[mysqld]# The next three options are mutually exclusive to SERVER_PORT below.# skip-networking# enable-named-pi">
+  <meta name="description" content="原理：通过跳过表授权，跳过密码直接在表里更新密码">
 <meta name="keywords" content="全栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="本地MySql重置密码">
 <meta property="og:url" content="//yuchendaycode.github.io/2019/05/27/MySql重置密码/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="原理通过跳过表授权，跳过密码直接在表里更新密码 找到my.ini一般在C:\Program Files\MySQL\MySQL Server 5.7\bin 1234567...[mysqld]# The next three options are mutually exclusive to SERVER_PORT below.# skip-networking# enable-named-pi">
+<meta property="og:description" content="原理：通过跳过表授权，跳过密码直接在表里更新密码">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-29T10:00:06.947Z">
+<meta property="og:updated_time" content="2019-05-30T10:00:07.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="本地MySql重置密码">
-<meta name="twitter:description" content="原理通过跳过表授权，跳过密码直接在表里更新密码 找到my.ini一般在C:\Program Files\MySQL\MySQL Server 5.7\bin 1234567...[mysqld]# The next three options are mutually exclusive to SERVER_PORT below.# skip-networking# enable-named-pi">
+<meta name="twitter:description" content="原理：通过跳过表授权，跳过密码直接在表里更新密码">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -171,7 +171,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="原理通过跳过表授权，跳过密码直接在表里更新密码"><a href="#原理通过跳过表授权，跳过密码直接在表里更新密码" class="headerlink" title="原理通过跳过表授权，跳过密码直接在表里更新密码"></a>原理通过跳过表授权，跳过密码直接在表里更新密码</h5><ol>
+        <h5 id="原理：通过跳过表授权，跳过密码直接在表里更新密码"><a href="#原理：通过跳过表授权，跳过密码直接在表里更新密码" class="headerlink" title="原理：通过跳过表授权，跳过密码直接在表里更新密码"></a>原理：通过跳过表授权，跳过密码直接在表里更新密码</h5><a id="more"></a>
+<ol>
 <li><p>找到<strong>my.ini</strong>一般在<code>C:\Program Files\MySQL\MySQL Server 5.7\bin</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"><span class="comment"># The next three options are mutually exclusive to SERVER_PORT below.</span></span><br><span class="line"><span class="comment"># skip-networking</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># enable-named-pipe</span></span><br></pre></td></tr></table></figure>
 <p>找到这个片段，改为</p>
@@ -260,6 +261,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/05/30/处理请求时出错/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          处理请求时出错。
+        
+      </div>
+    </a>
   
   
     <a href="/2019/05/27/ntopng安装/" id="article-nav-older" class="article-nav-link-wrap">

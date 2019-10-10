@@ -152,66 +152,27 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-路由固件刷入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>title：斐讯路由刷固件</p>
-<h2 id="date-2019-9-15-11-57-31"><a href="#date-2019-9-15-11-57-31" class="headerlink" title="date:2019-9-15 11:57:31"></a>date:2019-9-15 11:57:31</h2><p>刷路由器 无法连接telnet是使用这个方法</p>
-<ol>
-<li>打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了<br><code>05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;&amp; [ -f /tmp/breed.bin ] &amp;&amp; [ $(md5sum /tmp/breed.bin|cut -d &#39; &#39; -f1) = 164cb272152740b164b9caab84a33d0a ] &amp;&amp; mtd unlock Bootloader&amp;&amp;mtd -r write /tmp/breed.bin Bootloader</code><br>2.断网 电脑连接LAN口自动获取 IP 地址，按住K2复位键再通电，持续按住几秒，然后电脑访问<a href="http://192.168.1.1即可在WEB刷第三方固件" target="_blank" rel="noopener">http://192.168.1.1即可在WEB刷第三方固件</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/10/路由固件刷入/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-面试记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/10/面试记录/">面试记录</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/10/面试记录/" class="archive-article-date">
+  	<time datetime="2019-10-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-10 00:00:00</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="面试记录"><a href="#面试记录" class="headerlink" title="面试记录"></a>面试记录</h1><p>10.9</p>
-<h2 id="抽象类与接口"><a href="#抽象类与接口" class="headerlink" title="抽象类与接口"></a>抽象类与接口</h2><pre><code>- 接口一般用于设计 抽象用于重构
+        <h1 id="面试记录"><a href="#面试记录" class="headerlink" title="面试记录"></a>面试记录</h1><h2 id="抽象类与接口"><a href="#抽象类与接口" class="headerlink" title="抽象类与接口"></a>抽象类与接口</h2><pre><code>- 接口一般用于设计 抽象用于重构
 - 接口可多实现   抽象只能单继承
 </code></pre><h2 id="十万级数据的并发你怎么处理？"><a href="#十万级数据的并发你怎么处理？" class="headerlink" title="十万级数据的并发你怎么处理？"></a>十万级数据的并发你怎么处理？</h2><pre><code>- 读写分离、分库分表、nosql? 具体还需要更加详细的实践 kafka
 </code></pre><h2 id="设计模式有哪几种-分别应用于什么场景"><a href="#设计模式有哪几种-分别应用于什么场景" class="headerlink" title="设计模式有哪几种 分别应用于什么场景"></a>设计模式有哪几种 分别应用于什么场景</h2><pre><code>- 单例模式 Singleton Pattern
@@ -256,11 +217,88 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">其他</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/10/面试记录/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-路由固件刷入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/15/路由固件刷入/">斐讯路由刷固件</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/15/路由固件刷入/" class="archive-article-date">
+  	<time datetime="2019-09-15T03:57:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15 11:57:31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>刷路由器 无法连接telnet是使用这个方法</p>
+<ol>
+<li>打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了<br><code>05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;&amp; [ -f /tmp/breed.bin ] &amp;&amp; [ $(md5sum /tmp/breed.bin|cut -d &#39; &#39; -f1) = 164cb272152740b164b9caab84a33d0a ] &amp;&amp; mtd unlock Bootloader&amp;&amp;mtd -r write /tmp/breed.bin Bootloader</code><br>2.断网 电脑连接LAN口自动获取 IP 地址，按住K2复位键再通电，持续按住几秒，然后电脑访问<a href="http://192.168.1.1即可在WEB刷第三方固件" target="_blank" rel="noopener">http://192.168.1.1即可在WEB刷第三方固件</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/15/路由固件刷入/">展开全文 >></a>
         </p>
       
 
@@ -920,6 +958,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
             
             <div class="clearfix"></div>

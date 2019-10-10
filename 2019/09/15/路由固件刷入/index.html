@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
-  <title>Yuchen - 随笔</title>
+  <title>斐讯路由刷固件 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title：斐讯路由刷固件 date:2019-9-15 11:57:31刷路由器 无法连接telnet是使用这个方法  打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;amp;">
+  <meta name="description" content="刷路由器 无法连接telnet是使用这个方法  打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;amp;&amp;amp; [ -f /tmp/breed.bin ] &amp;amp;&amp;amp;">
 <meta name="keywords" content="全栈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Yuchen - 随笔">
-<meta property="og:url" content="//yuchendaycode.github.io/2019/10/10/路由固件刷入/index.html">
+<meta property="og:title" content="斐讯路由刷固件">
+<meta property="og:url" content="//yuchendaycode.github.io/2019/09/15/路由固件刷入/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="title：斐讯路由刷固件 date:2019-9-15 11:57:31刷路由器 无法连接telnet是使用这个方法  打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;amp;">
+<meta property="og:description" content="刷路由器 无法连接telnet是使用这个方法  打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;amp;&amp;amp; [ -f /tmp/breed.bin ] &amp;amp;&amp;amp;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-10T08:47:02.657Z">
+<meta property="og:updated_time" content="2019-10-10T09:07:01.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yuchen - 随笔">
-<meta name="twitter:description" content="title：斐讯路由刷固件 date:2019-9-15 11:57:31刷路由器 无法连接telnet是使用这个方法  打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;amp;">
+<meta name="twitter:title" content="斐讯路由刷固件">
+<meta name="twitter:description" content="刷路由器 无法连接telnet是使用这个方法  打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;amp;&amp;amp; [ -f /tmp/breed.bin ] &amp;amp;&amp;amp;">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -154,11 +154,24 @@
             <article id="post-路由固件刷入" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      斐讯路由刷固件
+    </h1>
+  
+
+        
+        <a href="/2019/09/15/路由固件刷入/" class="archive-article-date">
+  	<time datetime="2019-09-15T03:57:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15 11:57:31</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title：斐讯路由刷固件</p>
-<h2 id="date-2019-9-15-11-57-31"><a href="#date-2019-9-15-11-57-31" class="headerlink" title="date:2019-9-15 11:57:31"></a>date:2019-9-15 11:57:31</h2><p>刷路由器 无法连接telnet是使用这个方法</p>
+        <p>刷路由器 无法连接telnet是使用这个方法</p>
 <ol>
 <li>打开路由器的设置界面，打开自动升级，在自动升级的时间那里利用web漏洞，刷入breed，保存的时候路由器的灯一下子变红色是成功了<br><code>05 |wget -T 10 http://iytc.net/tools/breed0416.bin -O /tmp/breed.bin &amp;&amp; [ -f /tmp/breed.bin ] &amp;&amp; [ $(md5sum /tmp/breed.bin|cut -d &#39; &#39; -f1) = 164cb272152740b164b9caab84a33d0a ] &amp;&amp; mtd unlock Bootloader&amp;&amp;mtd -r write /tmp/breed.bin Bootloader</code><br>2.断网 电脑连接LAN口自动获取 IP 地址，按住K2复位键再通电，持续按住几秒，然后电脑访问<a href="http://192.168.1.1即可在WEB刷第三方固件" target="_blank" rel="noopener">http://192.168.1.1即可在WEB刷第三方固件</a></li>
 </ol>
@@ -220,7 +233,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2019/10/10/路由固件刷入/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2019/09/15/路由固件刷入/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -234,9 +247,18 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/10/10/面试记录/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          面试记录
+        
+      </div>
+    </a>
   
-    <a href="/2019/10/10/面试记录/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+  
+    <a href="/2019/08/26/ftp/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">阿里云搭建ftp</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -475,6 +497,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">其他</a>
               </li>
             
             <div class="clearfix"></div>

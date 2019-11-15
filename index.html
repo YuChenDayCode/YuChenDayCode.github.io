@@ -155,27 +155,36 @@
     <article id="post-Linux远程调试.Core" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/15/Linux远程调试.Core/">linux远程调试.Core</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/15/Linux远程调试.Core/" class="archive-article-date">
+  	<time datetime="2019-11-15T14:43:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-15 22:43:46</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title： linux远程调试.Core</p>
-<h2 id="date：-2019-11-15-22-43-46"><a href="#date：-2019-11-15-22-43-46" class="headerlink" title="date： 2019-11-15 22:43:46"></a>date： 2019-11-15 22:43:46</h2><h1 id="linux远程调试-Core"><a href="#linux远程调试-Core" class="headerlink" title="linux远程调试.Core"></a>linux远程调试.Core</h1><ul>
-<li>先安装  <code>yum install -y unzip zip</code>远程调试需要解压文件</li>
-<li>发布Debug版本到服务器，重新启动程序</li>
-<li>本地步骤：<ul>
-<li><img src="img\ContentImg\linux-core-1115224523-1.png" alt="添加服务器"></li>
-<li><img src="img\ContentImg\linux-core-1115224523-2.png" alt="附加进程"></li>
-<li><img src="img\ContentImg\linux-core-1115224523-3.png" alt></li>
-</ul>
+        <h1 id="linux远程调试-Core"><a href="#linux远程调试-Core" class="headerlink" title="linux远程调试.Core"></a>linux远程调试.Core</h1><ul>
+<li><p>先安装  <code>yum install -y unzip zip</code>远程调试需要解压文件</p>
 </li>
-</ul>
-<p>以上！</p>
-<p>注意控制台输出成功或是不成功。然后打上断点 在服务器访问一下网站就能进入断点了。</p>
-
+<li><p>发布Debug版本到服务器，重新启动程序</p>
+</li>
+<li><p>本地步骤：</p>
+        
+          <a class="article-more-a" href="/2019/11/15/Linux远程调试.Core/#more">更多 >></a>
+        
       
 
       
-    </div>
+    </li></ul></div>
     <div class="article-info article-info-index">
       
       
@@ -183,7 +192,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/16/Linux远程调试.Core/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/11/15/Linux远程调试.Core/">展开全文 >></a>
         </p>
       
 
@@ -234,68 +243,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="安装wget"><a href="#安装wget" class="headerlink" title="安装wget"></a>安装wget</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
-<h2 id="升级python"><a href="#升级python" class="headerlink" title="升级python"></a>升级python</h2><ul>
-<li><p>安装gcc  <code>yum install gcc</code></p>
-</li>
-<li><p>下载 解压移动 安装 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home &amp;&amp; mkdir -p downloads </span><br><span class="line"><span class="built_in">cd</span> downloads</span><br><span class="line">wget https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz</span><br><span class="line">tar -xf Python-3.6.5.tgz</span><br><span class="line">mv Python-3.6.5 python3.6</span><br><span class="line">mv python3.6 /usr/bin</span><br><span class="line"><span class="built_in">cd</span> /usr/bin/python3.6</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>先查看当前python的软连接</p>
-<ul>
-<li><code>ls -al /usr/bin/python</code></li>
-</ul>
-</li>
-<li><p>重命名软连接</p>
-<ul>
-<li><code>mv /usr/bin/python /usr/bin/python_bak2.7</code></li>
-</ul>
-</li>
-<li><p>软连接指向新版本</p>
-<ul>
-<li><code>ln -s /usr/local/bin/python3.6  /usr/bin/python</code></li>
-</ul>
-</li>
-<li><p>更改yum配置,软连接改了yum不可用</p>
-<ul>
-<li><code>vi /usr/bin/yum</code> 第一行改成<code>#!/usr/bin/python2.7</code> 也看你的python历史版本是什么 改成对应的就行</li>
-</ul>
-</li>
-<li><p>安装pip</p>
-<ul>
-<li>更改yum系统配置文件使用的python版本 <code>vim /usr/libexec/urlgrabber-ext-down</code> 第一行改为<code>#! /usr/bin/python2.7</code></li>
-<li><code>yum -y install epel-release</code>          </li>
-<li><code>yum -y install python-pip</code></li>
-</ul>
-</li>
-</ul>
-<h2 id="安装ss"><a href="#安装ss" class="headerlink" title="安装ss"></a>安装ss</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>编辑配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"> 	<span class="string">"server"</span>:<span class="string">"ip"</span>,</span><br><span class="line">	<span class="string">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">	<span class="string">"local_port"</span>:1080,</span><br><span class="line">	<span class="string">"port_password"</span>: &#123;</span><br><span class="line">  	    <span class="string">"端口"</span>:<span class="string">"密码"</span>,</span><br><span class="line">	    <span class="string">"端口"</span>:<span class="string">"密码"</span>,</span><br><span class="line"> 	    <span class="string">"端口"</span>: <span class="string">"密码"</span></span><br><span class="line">	&#125;,</span><br><span class="line"> 	<span class="string">"timeout"</span>:300,</span><br><span class="line">	<span class="string">"method"</span>:<span class="string">"aes-192-cfb"</span>,</span><br><span class="line"> 	<span class="string">"fast_open"</span>: <span class="literal">false</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>加入系统服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/systemd/system/shadowsocks.service</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Shadowsocks</span><br><span class="line">[Service]</span><br><span class="line">TimeoutStartSec=0</span><br><span class="line">ExecStart=/usr/bin/ssserver -c /etc/shadowsocks.json</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"><span class="comment">#写入</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> shadowsocks <span class="comment">#开机自启</span></span><br><span class="line"></span><br><span class="line">systemctl start shadowsocks <span class="comment">#启动</span></span><br><span class="line">systemctl stop shadowsocks    <span class="comment">#停止</span></span><br><span class="line">systemctl restart shadowsocks   <span class="comment">#重启</span></span><br><span class="line">systemctl status shadowsocks <span class="comment">#当前状态</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><ul>
-<li><p>安装<code>yum install -y nginx</code></p>
-</li>
-<li><p>命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> nginx <span class="comment">#开机自启</span></span><br><span class="line"></span><br><span class="line">systemctl start nginx <span class="comment">#启动</span></span><br><span class="line">ps -ef | grep -v grep | grep nginx <span class="comment">#验证是否启动</span></span><br><span class="line">vi /etc/nginx/nginx.conf <span class="comment">#配置文件</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>启动nginx的时候 <code>Error: No space left on device</code></p>
-<p>先检查磁盘有没有满</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df -h </span><br><span class="line">df -i</span><br></pre></td></tr></table></figure>
-<p>如果磁盘没满</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#写入</span></span><br><span class="line">fs.inotify.max_user_watches = 3276854</span><br><span class="line"></span><br><span class="line"><span class="comment">#之后从新加载配置文件</span></span><br><span class="line">sysctl -p /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
-
+<h2 id="升级python"><a href="#升级python" class="headerlink" title="升级python"></a>升级python</h2>
+        
+          <a class="article-more-a" href="/2019/11/14/Centos从0安装/#more">更多 >></a>
+        
       
 
       
@@ -366,41 +317,10 @@
 `dotnet --version`
 </code></pre></li>
 </ul>
-<h1 id="手动下载安装"><a href="#手动下载安装" class="headerlink" title="手动下载安装"></a>手动下载安装</h1><pre><code>可能包安装的方式会找不到安装包之类的问题。。 还可以才用下载包自己解压安装 [https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-3.0.100-rc1-linux-x64-binaries]
-- 1.下载
-    `wget https://download.visualstudio.microsoft.com/download/pr/b81a2bd3-a8a4-4c7e-bd69-030f412ff7b4/3fc5f2c0481313daf2e18c348362ff3f/dotnet-sdk-3.0.100-rc1-014190-linux-x64.tar.gz`
-- 2.创建文件夹，解压
-    `mkdir -p /usr/dotnet/dotnet-3.0`  
-    `sudo tar zxf dotnet-sdk-3.0.100-rc1-014190-linux-x64.tar.gz -C /usr/dotnet/dotnet-3.0`
-- 3.加入环境变量
-    `sudo ln -s /usr/dotnet/dotnet-2.1/dotnet /usr/local/bin`
-- 4. 查看是否安装成功 看下dotnet版本
-    `dotnet --version`
-    如果-bash: /usr/bin/dotnet: cannot execute binary file 说明架构不对 你系统架构无法运行这个版本的比如32位装了64位什么的
-</code></pre><h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><ul>
-<li><p>发布文件</p>
-<ul>
-<li><code>bin\Release\netcoreapp2.2\publish</code>发布路径，拷贝发布文件到到服务器 可以使用Xftp上传到Linux服务器</li>
-<li>运行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dotnet 你的项目dll</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Hosting environment: Production</span><br><span class="line">Content root path: /home/CoreRelease/PCloud</span><br><span class="line">Now listening on: http://localhost:5000</span><br><span class="line">Application started. Press Ctrl+C to shut down.</span><br><span class="line">//提示这个就说明发布成功了</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>程序服务化（不会一直在前台跑着命令，服务持久化）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/systemd/system/shadowsocks.service</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=PCloud service</span><br><span class="line">[Service]</span><br><span class="line">WorkingDirectory=/home/CoreRelease/PCloud <span class="comment">#不加会找不到wwwroot的静态资源</span></span><br><span class="line">ExecStart=/usr/bin/dotnet -c /home/CoreRelease/PCloud/PCloud.Web.dll</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=default.target</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动服务</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload  <span class="comment">#重新加载该服务 用于修改配置文件后</span></span><br><span class="line">systemctl start PCloud  <span class="comment">#启动服务</span></span><br><span class="line">systemctl status PCloud  <span class="comment">#查看状态 active就是正常的</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><h2 id="wwwroot文件无法访问404"><a href="#wwwroot文件无法访问404" class="headerlink" title="wwwroot文件无法访问404"></a>wwwroot文件无法访问404</h2><blockquote>
-<p>经排查 原因是因为项目被服务化，通过服务的方式启动就会找不到wwwroot的路径</p>
-</blockquote>
-<blockquote>
-<p>需要在服务文件的service中加入WorkingDirectory=‘项目目录’</p>
-</blockquote>
-
+<h1 id="手动下载安装"><a href="#手动下载安装" class="headerlink" title="手动下载安装"></a>手动下载安装</h1>
+        
+          <a class="article-more-a" href="/2019/11/14/Core发布Linux/#more">更多 >></a>
+        
       
 
       
@@ -464,13 +384,10 @@
       
         <h2 id="1-ORM开发"><a href="#1-ORM开发" class="headerlink" title="1.ORM开发"></a>1.ORM开发</h2><pre><code>- 读取配置文件的操作appsettings AppSettingConfig 需要先在Startup中注入AppSettingConfig.Configure(configuration);才能使用 **.core的appsettings.json可热改变**
 - ... 数据库连接 DML操作 查询操作 。。。
-</code></pre><h2 id="2-Qiniu云"><a href="#2-Qiniu云" class="headerlink" title="2.Qiniu云"></a>2.Qiniu云</h2><pre><code>- 七牛云参数
-- 上传文件 分表单上传和断点上传
-- 文件下载 分公共连接下载与私有链接下载
-- **使用问题应该考虑符合.core注入的思想 而不是去实例** 
-- sdk使用问题 私有链接无法获得授权 python可以？
-</code></pre><h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><pre><code>- 生成bug 特性重复 解决：https://blog.csdn.net/weixin_34348111/article/details/85943083
-</code></pre>
+</code></pre><h2 id="2-Qiniu云"><a href="#2-Qiniu云" class="headerlink" title="2.Qiniu云"></a>2.Qiniu云</h2>
+        
+          <a class="article-more-a" href="/2019/11/06/Core Framework开发日志/#more">更多 >></a>
+        
       
 
       

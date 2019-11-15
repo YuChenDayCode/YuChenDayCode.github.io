@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>面试记录 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面试记录抽象类与接口- 接口一般用于设计 抽象用于重构 - 接口可多实现   抽象只能单继承 十万级数据的并发你怎么处理？- 读写分离、分库分表、nosql? 具体还需要更加详细的实践 kafka 设计模式有哪几种 分别应用于什么场景- 单例模式 Singleton Pattern - 工厂方法模式 Factory Method Pattern - 抽象工厂模式 Abstract Factory">
+  <meta name="description" content="面试记录抽象类与接口- 接口一般用于设计 抽象用于重构 - 接口可多继承   抽象只能单继承 十万级数据的并发你怎么处理？- 读写分离、分库分表、nosql? 具体还需要更加详细的实践 kafka 设计模式有哪几种 分别应用于什么场景- 单例模式 Singleton Pattern     如其名：单个实例的模式 一般用于只需要单个实例的情况，比如读取文件 连接对象等。分**恶汉**、**懒汉模式">
 <meta name="keywords" content="其他">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试记录">
 <meta property="og:url" content="//yuchendaycode.github.io/2019/10/10/面试记录/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="面试记录抽象类与接口- 接口一般用于设计 抽象用于重构 - 接口可多实现   抽象只能单继承 十万级数据的并发你怎么处理？- 读写分离、分库分表、nosql? 具体还需要更加详细的实践 kafka 设计模式有哪几种 分别应用于什么场景- 单例模式 Singleton Pattern - 工厂方法模式 Factory Method Pattern - 抽象工厂模式 Abstract Factory">
+<meta property="og:description" content="面试记录抽象类与接口- 接口一般用于设计 抽象用于重构 - 接口可多继承   抽象只能单继承 十万级数据的并发你怎么处理？- 读写分离、分库分表、nosql? 具体还需要更加详细的实践 kafka 设计模式有哪几种 分别应用于什么场景- 单例模式 Singleton Pattern     如其名：单个实例的模式 一般用于只需要单个实例的情况，比如读取文件 连接对象等。分**恶汉**、**懒汉模式">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-10T09:07:01.501Z">
+<meta property="og:updated_time" content="2019-11-15T16:09:36.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试记录">
-<meta name="twitter:description" content="面试记录抽象类与接口- 接口一般用于设计 抽象用于重构 - 接口可多实现   抽象只能单继承 十万级数据的并发你怎么处理？- 读写分离、分库分表、nosql? 具体还需要更加详细的实践 kafka 设计模式有哪几种 分别应用于什么场景- 单例模式 Singleton Pattern - 工厂方法模式 Factory Method Pattern - 抽象工厂模式 Abstract Factory">
+<meta name="twitter:description" content="面试记录抽象类与接口- 接口一般用于设计 抽象用于重构 - 接口可多继承   抽象只能单继承 十万级数据的并发你怎么处理？- 读写分离、分库分表、nosql? 具体还需要更加详细的实践 kafka 设计模式有哪几种 分别应用于什么场景- 单例模式 Singleton Pattern     如其名：单个实例的模式 一般用于只需要单个实例的情况，比如读取文件 连接对象等。分**恶汉**、**懒汉模式">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -172,11 +172,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="面试记录"><a href="#面试记录" class="headerlink" title="面试记录"></a>面试记录</h1><h2 id="抽象类与接口"><a href="#抽象类与接口" class="headerlink" title="抽象类与接口"></a>抽象类与接口</h2><pre><code>- 接口一般用于设计 抽象用于重构
-- 接口可多实现   抽象只能单继承
+- 接口可多继承   抽象只能单继承
 </code></pre><h2 id="十万级数据的并发你怎么处理？"><a href="#十万级数据的并发你怎么处理？" class="headerlink" title="十万级数据的并发你怎么处理？"></a>十万级数据的并发你怎么处理？</h2><pre><code>- 读写分离、分库分表、nosql? 具体还需要更加详细的实践 kafka
 </code></pre><h2 id="设计模式有哪几种-分别应用于什么场景"><a href="#设计模式有哪几种-分别应用于什么场景" class="headerlink" title="设计模式有哪几种 分别应用于什么场景"></a>设计模式有哪几种 分别应用于什么场景</h2><pre><code>- 单例模式 Singleton Pattern
+    如其名：单个实例的模式 一般用于只需要单个实例的情况，比如读取文件 连接对象等。分**恶汉**、**懒汉模式**
+    实现方式： 私有构造，封装对象暴露。 恶汉模式：类创建时创建对象， 懒汉模式：调用时创建
 - 工厂方法模式 Factory Method Pattern
+    简单工厂模式 工厂创建对象，不再依赖 缺点无法动态增加新的对象 违背开闭原则
 - 抽象工厂模式 Abstract Factory Pattern
+    解决了简单工厂的开闭原则
 - 原型模式 Prototype Pattern
 - 建造者模式 Builder Pattern
 
@@ -290,6 +294,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/11/06/Core Framework开发日志/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          .Core Framework开发日志
+        
+      </div>
+    </a>
   
   
     <a href="/2019/09/15/路由固件刷入/" id="article-nav-older" class="article-nav-link-wrap">

@@ -152,6 +152,300 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-MySql重置密码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/27/MySql重置密码/">本地MySql重置密码</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/27/MySql重置密码/" class="archive-article-date">
+  	<time datetime="2019-05-27T08:36:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27 16:36:30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="原理：通过跳过表授权，跳过密码直接在表里更新密码"><a href="#原理：通过跳过表授权，跳过密码直接在表里更新密码" class="headerlink" title="原理：通过跳过表授权，跳过密码直接在表里更新密码"></a>原理：通过跳过表授权，跳过密码直接在表里更新密码</h5>
+        
+          <a class="article-more-a" href="/2019/05/27/MySql重置密码/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/27/MySql重置密码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ntopng安装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/27/ntopng安装/">ntopng安装</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/27/ntopng安装/" class="archive-article-date">
+  	<time datetime="2019-05-27T07:56:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-27 15:56:32</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ntopng:网络流量实时监控工具。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先，您需要安装EPEL 6存储库。</p>
+        
+          <a class="article-more-a" href="/2019/05/27/ntopng安装/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/27/ntopng安装/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-事务执行先后顺序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/23/事务执行先后顺序/">事务个人简单理解</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/23/事务执行先后顺序/" class="archive-article-date">
+  	<time datetime="2019-05-23T09:14:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-23 17:14:22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="事务特性"><a href="#事务特性" class="headerlink" title="事务特性"></a>事务特性</h4><ul>
+<li><strong>原子性</strong>：事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。</li>
+<li><strong>持久性</strong>：事务执行完成后 数据一直保持</li>
+<li><strong>隔离性</strong>：同一时间只能一个事务操作一个数据。（衍生出隔离级别）</li>
+<li><strong>一致性</strong>：事务在完成后，数据库的数据确定不会再回滚等</li>
+</ul>
+<blockquote>
+<p>一致性由原子性、持久性、隔离性保证</p>
+<p>原子性由Undo Log保证  <code>Undo log：保存每次变更前的记录，用来恢复数据，回滚什么的</code></p>
+<p>持久性由Redo Log保证 <code>Redo Log：事务commit前，都会将记录保存到Redo log中，保存成功后才会允许commit，如果commit前断电之类不可抗力 可以通过redo log恢复</code></p>
+<p>隔离性：<strong>↓</strong></p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2019/05/23/事务执行先后顺序/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">事务、MySql</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/23/事务执行先后顺序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-WebAPI传递大数据FormUrlEncodedContent、StringContent" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/21/WebAPI传递大数据FormUrlEncodedContent、StringContent/">WebAPI传递大数据</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/21/WebAPI传递大数据FormUrlEncodedContent、StringContent/" class="archive-article-date">
+  	<time datetime="2019-05-21T06:06:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-21 14:06:41</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  在接口中传输图片进制流或BASE64字符串时，使用FormUrlEncodedContent处理参数时，可能会因为参数太长导致异常<em><code>无效的URL：URL字符串太长</code></em></p>
+        
+          <a class="article-more-a" href="/2019/05/21/WebAPI传递大数据FormUrlEncodedContent、StringContent/#more">更多 >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">C#</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/21/WebAPI传递大数据FormUrlEncodedContent、StringContent/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-正则简单实例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -469,337 +763,9 @@
 
 
   
-    <article id="post-Hexo Blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/12/Hexo Blog/">Hexo搭建github bolg</a>
-    </h1>
-  
-
-        
-        <a href="/2019/04/12/Hexo Blog/" class="archive-article-date">
-  	<time datetime="2019-04-12T09:44:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-12 17:44:30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Hexo-Blog"><a href="#Hexo-Blog" class="headerlink" title="Hexo Blog"></a>Hexo Blog</h1><ul>
-<li>1.安装nodejs、安装git</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/04/12/Hexo Blog/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">github</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/12/Hexo Blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS 整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/19/JS 整理/">js 整理</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/19/JS 整理/" class="archive-article-date">
-  	<time datetime="2019-03-19T09:15:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19 17:15:06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p><strong>函数</strong></p>
-<ul>
-<li>箭头函数</li>
-</ul>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/03/19/JS 整理/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/19/JS 整理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JS整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/19/JS整理/">JS 整理</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/19/JS整理/" class="archive-article-date">
-  	<time datetime="2019-03-19T09:15:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19 17:15:06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p><strong>函数</strong></p>
-<ul>
-<li>箭头函数</li>
-</ul>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/03/19/JS整理/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/19/JS整理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Sublime Text 配色修改" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/19/Sublime Text 配色修改/">Sublime Text 配色修改</a>
-    </h1>
-  
-
-        
-        <a href="/2019/03/19/Sublime Text 配色修改/" class="archive-article-date">
-  	<time datetime="2019-03-19T05:56:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-19 13:56:57</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>Ctrl Shift+P：install package (连不上的话 需要翻墙)</p>
-</li>
-<li><p>安装<strong>PackageResourceView</strong></p>
-<p>  安装完成之后 c+s+p 选中packageresourceview：open resource =&gt; color scheme - default =&gt; 选中你的配色方案 修改保存立即生效</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/03/19/Sublime Text 配色修改/#more">更多 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Sublime Text</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/19/Sublime Text 配色修改/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 

@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
   <title>ntopng安装 | Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="首先，您需要安装EPEL 6存储库。">
+  <meta name="description" content="ntopng:网络流量实时监控工具。 安装首先，您需要安装EPEL 6存储库。">
 <meta name="keywords" content="全栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ntopng安装">
 <meta property="og:url" content="//yuchendaycode.github.io/2019/05/27/ntopng安装/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="首先，您需要安装EPEL 6存储库。">
+<meta property="og:description" content="ntopng:网络流量实时监控工具。 安装首先，您需要安装EPEL 6存储库。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-30T10:00:07.572Z">
+<meta property="og:updated_time" content="2019-11-15T16:09:36.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ntopng安装">
-<meta name="twitter:description" content="首先，您需要安装EPEL 6存储库。">
+<meta name="twitter:description" content="ntopng:网络流量实时监控工具。 安装首先，您需要安装EPEL 6存储库。">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -171,7 +171,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>首先，您需要安装EPEL 6存储库。</p>
+        <p>ntopng:网络流量实时监控工具。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先，您需要安装EPEL 6存储库。</p>
 <a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span><br></pre></td></tr></table></figure>
 <p>然后你需要添加ntop存储库（手动）</p>
@@ -185,7 +186,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/ntopng/ntopng.start</span><br><span class="line">--local-networks &quot;192.168.0.0/24&quot;</span><br><span class="line"> --interface 0</span><br></pre></td></tr></table></figure>
 <p>并复制默认配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/ntopng/ntopng.conf.sample /etc/ntopng/ntopng.conf</span><br></pre></td></tr></table></figure>
-<p>除了一点家务之外，你已经完成了很多工作。</p>
 <p>将服务设置为自动启动。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig redis on</span><br><span class="line"> chkconfig ntopng on</span><br></pre></td></tr></table></figure>
 <p>向防火墙添加例外</p>

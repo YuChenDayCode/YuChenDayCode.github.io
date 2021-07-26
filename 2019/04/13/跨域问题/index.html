@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Yuchen - 随笔">
 <meta property="og:description" content="跨域是指浏览器无法执行其他网站的脚本。（域名不同、子域名不同、端口不同、协议不同都属于跨域） 可通过前台后台两种方式解决跨域。前台：Jsonp（请求目标需可控）,后台HttpClient。 一、JSONP  jsonp：为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递  一个callback参数给服务端，然后服务端返回数据时会将这个ca">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-18T02:35:18.863Z">
+<meta property="og:updated_time" content="2021-07-26T10:00:38.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域问题">
 <meta name="twitter:description" content="跨域是指浏览器无法执行其他网站的脚本。（域名不同、子域名不同、端口不同、协议不同都属于跨域） 可通过前台后台两种方式解决跨域。前台：Jsonp（请求目标需可控）,后台HttpClient。 一、JSONP  jsonp：为了便于客户端使用数据，逐渐形成了一种非正式传输协议，人们把它称作JSONP，该协议的一个要点就是允许用户传递  一个callback参数给服务端，然后服务端返回数据时会将这个ca">
@@ -183,6 +183,8 @@
 <p>2.设置jsonpCallback否则会出现无法进入success方法的情况，jsonpCallback课根据返回json方法的来自定义。</p>
 <p>二、后台发出请求的方式，使用HttpClient</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> public async Task&lt;string&gt; Hps()</span><br><span class="line">     &#123;</span><br><span class="line">         string url = &quot;http://localhost:14063/home/JsonpTest&quot;;</span><br><span class="line">         HttpClientHandler handler = new HttpClientHandler() &#123; AutomaticDecompression = DecompressionMethods.None &#125;;</span><br><span class="line">using (HttpClient httpclient = new HttpClient(handler))</span><br><span class="line">     &#123;</span><br><span class="line">         httpclient.BaseAddress = new Uri(url);</span><br><span class="line">         FormUrlEncodedContent content = new FormUrlEncodedContent(new Dictionary&lt;string, string&gt;()</span><br><span class="line">                            &#123;</span><br><span class="line">                               &#123;&quot;username&quot;,&quot;1111&quot;&#125;,</span><br><span class="line">                               &#123;&quot;pwd&quot;,&quot;1234&quot;&#125;,</span><br><span class="line">                            &#125;); //参数</span><br><span class="line"> </span><br><span class="line">         Task&lt;HttpResponseMessage&gt; response = httpclient.PostAsync(url, content);</span><br><span class="line">         string responseString = await response.Result.Content.ReadAsStringAsync();</span><br><span class="line">         return responseString;</span><br><span class="line"> </span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>core 处理跨域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.UseCors();</span><br><span class="line"></span><br><span class="line">//目标函数添加</span><br><span class="line">HttpContext.Response.Headers.Add(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);//*代表允许访问的地址</span><br><span class="line">HttpContext.Response.Headers.Add(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span><br></pre></td></tr></table></figure>
 
       
 
@@ -528,6 +530,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="//yuchendaycode.github.io">
-  <title>Windows服务发布、安装、卸载、监听脚本。服务调试 | Yuchen - 随笔</title>
+  <title>Yuchen - 随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、脚本   为方便不用每次都去写安装卸载的脚本">
-<meta name="keywords" content=".NET,Window服务">
+  <meta name="description" content="12345678910111213ConfigurationOptions config = new ConfigurationOptions         &amp;#123;             EndPoints = &amp;#123;                 &amp;#123; &amp;quot;localhost&amp;quot;,6379 &amp;#125;             &amp;#125;,">
+<meta name="keywords" content="全栈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows服务发布、安装、卸载、监听脚本。服务调试">
-<meta property="og:url" content="//yuchendaycode.github.io/2018/11/22/Windows服务发布、安装、卸载、监听脚本。服务调试/index.html">
+<meta property="og:title" content="Yuchen - 随笔">
+<meta property="og:url" content="//yuchendaycode.github.io/2021/07/26/Redis/index.html">
 <meta property="og:site_name" content="Yuchen - 随笔">
-<meta property="og:description" content="一、脚本   为方便不用每次都去写安装卸载的脚本">
+<meta property="og:description" content="12345678910111213ConfigurationOptions config = new ConfigurationOptions         &amp;#123;             EndPoints = &amp;#123;                 &amp;#123; &amp;quot;localhost&amp;quot;,6379 &amp;#125;             &amp;#125;,">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-10T08:47:02.657Z">
+<meta property="og:updated_time" content="2021-07-26T10:00:38.424Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows服务发布、安装、卸载、监听脚本。服务调试">
-<meta name="twitter:description" content="一、脚本   为方便不用每次都去写安装卸载的脚本">
+<meta name="twitter:title" content="Yuchen - 随笔">
+<meta name="twitter:description" content="12345678910111213ConfigurationOptions config = new ConfigurationOptions         &amp;#123;             EndPoints = &amp;#123;                 &amp;#123; &amp;quot;localhost&amp;quot;,6379 &amp;#125;             &amp;#125;,">
   
   
     <link rel="icon" href="/img/favicon.ico">
@@ -151,42 +151,12 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Windows服务发布、安装、卸载、监听脚本。服务调试" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Redis" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Windows服务发布、安装、卸载、监听脚本。服务调试
-    </h1>
-  
-
-        
-        <a href="/2018/11/22/Windows服务发布、安装、卸载、监听脚本。服务调试/" class="archive-article-date">
-  	<time datetime="2018-11-22T07:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22 15:24:00</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>一、脚本</strong></p>
-<p>  为方便不用每次都去写安装卸载的脚本</p>
-<a id="more"></a>
-<p>1.安装脚本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">@echo 开始安装【服务】</span><br><span class="line">%SystemRoot%\Microsoft.NET\Framework64\v4.0.30319\installutil.exe %~dp0服务名.exe</span><br><span class="line"> </span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-<p>2.卸载脚本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">@<span class="built_in">echo</span> 开始卸载 </span><br><span class="line">%SystemRoot%\Microsoft.NET\Framework64\v4.0.30319\installutil.exe /u %~dp0服务名.exe</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-<p>%~dp0:脚本所在目录</p>
-<p>3.监听脚本（停止了自动启动）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"> </span><br><span class="line"><span class="built_in">set</span> ServiceName=<span class="string">"服务名"</span></span><br><span class="line"><span class="built_in">set</span> flag=0</span><br><span class="line">::<span class="built_in">echo</span> <span class="string">"%%a%%b"</span> == %ServiceName% </span><br><span class="line"><span class="keyword">for</span> /f <span class="string">"tokens=1* delims= "</span> %%a <span class="keyword">in</span> (<span class="string">'net start'</span>) <span class="keyword">do</span> <span class="keyword">if</span> <span class="string">"%%a%%b"</span>== %ServiceName%  <span class="built_in">set</span> flag=1</span><br><span class="line"><span class="keyword">if</span> %flag%==0 (net start %ServiceName%</span><br><span class="line">)<span class="keyword">else</span> (@<span class="built_in">echo</span> 服务正在运行)</span><br></pre></td></tr></table></figure>
-<p>注：</p>
-<p>​    所有安装卸载脚本需放在服务同目录下，监听脚本任意 所有脚本都是bat脚本，需用管理员权限执行</p>
-<p>​    监听脚本可以用windows自带的任务计划设置每几分钟或小时运行一次 就可以达到监听的目的</p>
-<p>​    注意安装卸载路径 %SystemRoot%\Microsoft.NET\Framework64\v4.0.30319\installutil.exe，如果不是生成的64位程序Framework64需去掉64</p>
-<p><strong>二、调试</strong></p>
-<p>  如需调试服务 可在服务启动函数中加上：<strong>Debugger.Launch()</strong>; 启动服务后附加到vs中就可以调试了</p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ConfigurationOptions config = new ConfigurationOptions</span><br><span class="line">         &#123;</span><br><span class="line">             EndPoints = &#123;</span><br><span class="line">                 &#123; &quot;localhost&quot;,6379 &#125;</span><br><span class="line">             &#125;,</span><br><span class="line">             Password = &quot;123456&quot;,</span><br><span class="line">             KeepAlive = 180,</span><br><span class="line">         &#125;;</span><br><span class="line">         ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(config);</span><br><span class="line">         var db = redis.GetDatabase();</span><br><span class="line">         db.StringSet(&quot;no1&quot;, 123233, TimeSpan.FromSeconds(33));</span><br><span class="line"></span><br><span class="line">         var b = db.StringGet(&quot;no1&quot;);</span><br></pre></td></tr></table></figure>
 
       
 
@@ -195,21 +165,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">.NET</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Window服务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -260,7 +215,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2018/11/22/Windows服务发布、安装、卸载、监听脚本。服务调试/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yuchendaycode.github.io/2021/07/26/Redis/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,18 +229,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/11/22/Quartz.NET实例,动态改变周期调度。misfire、Cron/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/07/26/LOG日志记录组件/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Quartz.NET实例,动态改变周期调度。misfire、Cron
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2018/11/22/NET Windows服务发布、安装、卸载、监听脚本。服务调试/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Windows服务发布、安装、卸载、监听脚本。服务调试</div>
+    <a href="/2021/07/26/RabbitMQ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -528,6 +483,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">其他</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
             
             <div class="clearfix"></div>

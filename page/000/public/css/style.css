@@ -1,0 +1,132 @@
+html,
+body,
+#container {
+    margin: 0;
+    height: 100%;
+}
+ul{list-style: none;}
+
+.toolbar-top{
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255);
+    padding: 5px;
+    text-align: center;
+    box-shadow: 2px 4px 5px 0 rgb(0,0, 0,0.5);
+}
+
+
+.btn_box {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    z-index: 99;
+    width: 50px;
+    padding: 0 2px;
+    padding-top: 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.toolbar-top li{
+    width: 35px;
+    padding: 3px 0px 3px 0px;
+    border-top: 1px solid #cccccc;
+    cursor: pointer;
+  
+}
+.toolbar-top li:first-child{
+    border-top: none;
+}
+
+.toolbar-bottom{
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+   
+    padding: 5px;
+    text-align: center;
+}
+.btn_box_bottom{
+    position: absolute;
+    right: 10px;
+    top: 60%;
+    z-index: 99;
+    width: 55px;
+    padding: 0 2px;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+.toolbar-bottom li{
+    width: 45px;
+    background: rgba(255, 255, 255);
+    margin-top: 5px;
+    border-radius: 8px;
+    padding: 3px 0px 3px 0px;
+    cursor: pointer;
+    box-shadow: 2px 4px 5px 0 rgb(0,0, 0,0.5);
+}
+
+
+
+.custom-content-marker {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(0, 167, 91, 0.9);
+    color: white;
+    text-align: center;
+    /*line-height: 50px;*/
+    font-size: 13px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.custom-content-marker:hover {
+    background-color: rgba(0, 200, 91, 0.9);
+}
+
+.custom-marker-tip {
+    height: 30px;
+    line-height: 30px;
+    white-space: nowrap;
+    box-shadow: 3px 3px 4px rgb(0 0 0 / 30%);
+    border-radius: 15px;
+    background: #62ab00;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.custom-marker-tip:hover {
+    background: #e19318;
+}
+.pic720 {
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+}
+.title720 {
+    width: 100%;
+    height: 40px;
+    background: white;
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+}
+.title720 i {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    font-style: normal;
+    padding: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
+        <title>amap</title>
+        <link href="public/css/style.css?v=1.2" rel="stylesheet" />
+        <link href="public/font.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+
+        <style type="text/css">
+            #panel {
+                position: fixed;
+                background-color: white;
+                max-height: 90%;
+                overflow-y: auto;
+                top: 10px;
+                right: 10px;
+                width: 280px;
+                border-bottom: solid 1px silver;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="container"></div>
+        <div class="btn_box" style="transform: translateX(0%)">
+            <ul id="toolbar" class="toolbar-top">
+                <li id="tuceng">
+                    <div><i class="icon-stack"></i></div>
+                    <div>图层</div>
+                </li>
+                <li id="ceju">
+                    <div><i class="icon-ceju"></i></div>
+                    <div>测距</div>
+                </li>
+                <li id="cemj">
+                    <div><i class="icon-cemj"></i></div>
+                    <div>面积</div>
+                </li>
+                <li id="clear">
+                    <div><i class="icon-clear"></i></div>
+                    <div>清除</div>
+                </li>
+            </ul>
+        </div>
+        <div class="btn_box_bottom" style="transform: translateX(0%); display: none">
+            <ul id="toolbar_bottom" class="toolbar-bottom">
+                <li id="xiaoqu">
+                    <div><i class="icon-location"></i></div>
+                    <div>小区</div>
+                </li>
+                <li id="hospital">
+                    <div><i class="icon-location"></i></div>
+                    <div>医院</div>
+                </li>
+                <li id="gongjiao">
+                    <div><i class="icon-location"></i></div>
+                    <div>公交</div>
+                </li>
+                <li id="school">
+                    <div><i class="icon-location"></i></div>
+                    <div>学校</div>
+                </li>
+                <li id="quanjing">
+                    <div style="zoom: 1.5; height: 12px"><i class="icon-quanjing"></i></div>
+                    <div>全景</div>
+                </li>
+                <li id="daohang">
+                    <div style="zoom: 1.5; height: 12px"><i class="icon-location2"></i></div>
+                    <div>导航</div>
+                </li>
+            </ul>
+        </div>
+        <div id="panel"></div>
+        <!--<div class="input-card" style="width: 12rem">
+            <div id="coordinate" style="padding-left: 20px">
+                <div class="input-item" id="jt"><input id="jtradio" name="language" type="radio" /><label for="jtradio" class="input-text">交通</label></div>
+                <div class="input-item" id="jy"><input id="jyRadio" name="language" type="radio" /><label for="jyRadio" class="input-text">教育</label></div>
+                <div class="input-item" id="yl"><input id="ylRadio" name="language" type="radio" /><label for="ylRadio" class="input-text">医疗</label></div>
+                <div class="input-item" id="litteArea"><input id="litteAreaRadio" name="language" type="radio" /><label for="litteAreaRadio" class="input-text">小区</label></div>
+                <div class="input-item" id="overallView"><input id="overallViewId" name="language" type="radio" /><label for="overallViewId" class="input-text">全景看图</label></div>
+                <div class="input-item" id="drawRule"><input id="drawRuleRadio" name="language" type="radio" /><label class="input-text" for="drawRuleRadio">测距离</label></div>
+                <div class="input-item" id="drawMeasureArea"><input id="drawMeasureAreaRadio" name="language" type="radio" /><label class="input-text" for="drawMeasureAreaRadio">测面积</label></div>
+                <div class="input-item" id="clearDraw"><input id="clearDrawRadio" name="language" type="radio" /><label class="input-text" for="clearDrawRadio">清除</label></div>
+            </div>
+        </div>
+-->
+        <div class="pic720" id="pic720">
+            <div class="title720">
+                在线看地
+                <i onclick="hide720()">X</i>
+            </div>
+            <iframe id="piciframe" class="piciframe" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="100%"></iframe>
+        </div>
+        <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=222686c5697eb237142439956dfa3df5&plugin=AMap.DistrictSearch,AMap.MouseTool"></script>
+        <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script type="text/javascript">
+            var buttonState = 0;
+            var nowMaplayer = 0;
+            //初始化地图对象,加载地图
+            var center = [106.566782, 29.584905]; //地图中心点
+            var map = new AMap.Map("container", {
+                resizeEnable: true,
+                zoomEnable: true,
+                showIndoorMap: true,
+                center: center,
+                zoom: 11, //地图显示的缩放级别
+            });
+
+            // 按钮事件
+            $("#toolbar li").bind("click", function (e) {
+                switch (this.id) {
+                    case "tuceng":
+                        if (map.getLayers().find((f) => f.CLASS_NAME == "AMap.TileLayer.Satellite")) map.remove(satellite);
+                        else {
+                            var satellite = new AMap.TileLayer.Satellite();
+                            map.add(satellite);
+                        }
+                        break;
+                    case "ceju":
+                        draw("rule");
+                        break;
+                    case "cemj":
+                        draw("measureArea");
+                        break;
+                    case "clear":
+                        mouseTool.close(true);
+                        break;
+                }
+            });
+
+            $("#toolbar_bottom li").bind("click", function (e) {
+                switch (this.id) {
+                    case "xiaoqu":
+                        search("小区");
+                        break;
+                    case "hospital":
+                        search("医疗");
+                        break;
+                    case "gongjiao":
+                        search("公交站");
+                        break;
+                    case "school":
+                        search("学校");
+                        break;
+                    case "quanjing":
+                        document.getElementById("piciframe").src = "https://720yun.com/t/97vkbw1m7q9?scene_id=92031247";
+                        document.getElementById("pic720").style.display = "block";
+                        break;
+                    case "tuiwen":
+                        alert("推文展示");
+                        break;
+                    case "daohang":
+                        alert("调起地图导航");
+                        break;
+                }
+            });
+
+            function hide720() {
+                document.getElementById("pic720").style.display = "none";
+                document.getElementById("piciframe").src = "";
+            }
+
+            var path = [
+                new AMap.LngLat(106.479338, 29.572766),
+                new AMap.LngLat(106.475851, 29.571665),
+                new AMap.LngLat(106.475723, 29.57118),
+                new AMap.LngLat(106.476962, 29.569589),
+                new AMap.LngLat(106.478072, 29.570135),
+                new AMap.LngLat(106.478855, 29.570051),
+                new AMap.LngLat(106.479628, 29.570555),
+                new AMap.LngLat(106.479338, 29.572766),
+            ];
+
+            var polygon = new AMap.Polygon({
+                path: path,
+                fillColor: "#fff", // 多边形填充颜色
+                fillOpacity: 0.3,
+                borderWeight: 2, // 线条宽度，默认为 1
+                strokeColor: "red", // 线条颜色
+                extData: {},
+            });
+
+            //封装一个测距离与测面积的工具
+            var mouseTool = new AMap.MouseTool(map);
+
+            function draw(type) {
+                switch (type) {
+                    case "rule": {
+                        mouseTool.rule({
+                            startMarkerOptions: {
+                                //可缺省
+                                icon: new AMap.Icon({
+                                    size: new AMap.Size(19, 31), //图标大小
+                                    imageSize: new AMap.Size(19, 31),
+                                    image: "https://webapi.amap.com/theme/v1.3/markers/b/start.png",
+                                }),
+                            },
+                            endMarkerOptions: {
+                                //可缺省
+                                icon: new AMap.Icon({
+                                    size: new AMap.Size(19, 31), //图标大小
+                                    imageSize: new AMap.Size(19, 31),
+                                    image: "https://webapi.amap.com/theme/v1.3/markers/b/end.png",
+                                }),
+                                offset: new AMap.Pixel(-9, -31),
+                            },
+                            midMarkerOptions: {
+                                //可缺省
+                                icon: new AMap.Icon({
+                                    size: new AMap.Size(19, 31), //图标大小
+                                    imageSize: new AMap.Size(19, 31),
+                                    image: "https://webapi.amap.com/theme/v1.3/markers/b/mid.png",
+                                }),
+                                offset: new AMap.Pixel(-9, -31),
+                            },
+                            lineOptions: {
+                                //可缺省
+                                strokeStyle: "solid",
+                                strokeColor: "#FF33FF",
+                                strokeOpacity: 1,
+                                strokeWeight: 2,
+                            },
+                            //同 RangingTool 的 自定义 设置，缺省为默认样式
+                        });
+                        break;
+                    }
+                    case "measureArea": {
+                        mouseTool.measureArea({
+                            strokeColor: "#80d8ff",
+                            fillColor: "#80d8ff",
+                            fillOpacity: 0.3,
+                            //同 Polygon 的 Option 设置
+                        });
+                        break;
+                    }
+                }
+            }
+
+            // map.on('click', function (e) {
+            //     alert(11);
+            //     console.log(e.lnglat.getLng() + ',' + e.lnglat.getLat());
+            // });
+
+            // 创建图片图层 根据放大缩小比例改变大小
+            var imageLayer = new AMap.ImageLayer({
+                bounds: new AMap.Bounds([106.475122, 29.567559], [106.479649, 29.572883]), //左下 右上
+                url: "img/G18-1.png", // 图片 Url
+                zIndex: 2,
+                zooms: [13, 18], //16 18 设置可见级别，[最小级别，最大级别]
+            });
+            //map.add(imageLayer); // 贴图
+
+            var markerList = []; // 覆盖物数组
+            var marker; // 中间变量
+            var district = null;
+            var polygons = [];
+
+            //**************************************************覆盖物
+            // 行政区
+            var cantonArr = [
+                {
+                    lnglat: [106.516782, 29.584905],
+                    name: "江北区<br/>(1宗地)",
+                    extData: { id: 1, name: "江北区", level: 1, zoom: 12, nextll: [106.479188, 29.571768] },
+                    zooms: [8, 11],
+                },
+                {
+                    lnglat: [106.479188, 29.571768],
+                    zooms: [12, 13],
+                    extData: { id: 11, name: "玉带二号", level: 2, zoom: 14, nextll: [106.477477, 29.571143] },
+                    name: "玉带二号",
+                },
+            ];
+            addMarker(cantonArr);
+
+            var cantonArr1 = [
+                {
+                    lnglat: [106.477477, 29.571143],
+                    zooms: [14, 18],
+                    extData: { id: 111, name: "大石坝组团G分区G18-1/06地块", level: 3, zoom: 15 },
+                    name: "大石坝组团G分区G18-1/06地块",
+                },
+            ];
+            addMarker(cantonArr1, 12);
+
+            // 添加覆盖物
+            function addMarker(arr, val) {
+                //markerList = [];
+                if (val == 12) {
+                    for (let i = 0; i < arr.length; i++) {
+                        marker = new AMap.Marker({
+                            map: map,
+                            zIndex: 100, // 层级
+                            extData: {
+                                id: arr[i].extData.id,
+                                level: arr[i].extData.level,
+                                zoom: arr[i].extData.zoom,
+                                lnglat: arr[i].lnglat,
+                                nextll: arr[i].extData.nextll,
+                                name: arr[i].name,
+                            },
+                            zooms: arr[i].zooms,
+                            position: arr[i].lnglat,
+                            content: `<div class="custom-marker-tip">${arr[i].name}</div>`,
+                            offset: new AMap.Pixel(-13, -30),
+                        });
+                        markerList.push(marker);
+                    }
+                } else {
+                    for (let i = 0; i < arr.length; i++) {
+                        console.log(arr[i].extData);
+                        marker = new AMap.Marker({
+                            map: map,
+                            zIndex: 100, // 层级
+                            extData: {
+                                id: arr[i].extData.id,
+                                level: arr[i].extData.level,
+                                zoom: arr[i].extData.zoom,
+                                nextll: arr[i].extData.nextll,
+                                lnglat: arr[i].lnglat,
+                                name: arr[i].name,
+                            },
+                            zooms: arr[i].zooms,
+                            position: arr[i].lnglat,
+                            content: `<div class="custom-content-marker">${arr[i].name}</div>`,
+                            offset: new AMap.Pixel(-13, -30),
+                        });
+                        markerList.push(marker);
+                    }
+                }
+            }
+
+            //**************************************************地图缩放
+            function mapScaling() {
+                console.log("当前等级" + map.getZoom());
+                //map.remove(markerList);
+                let this_map_zoom = map.getZoom();
+                if (this_map_zoom > 13) map.add(polygon);
+                else map.remove(polygon);
+                removewindowinfo();
+                if (this_map_zoom < 14) {
+                    $(".btn_box_bottom").hide();
+                }
+                if (this_map_zoom < 8) {
+                    map.setZoom(8);
+                    map.setCenter(center);
+                }
+            }
+
+            var infoWindow = new AMap.InfoWindow({
+                //创建信息窗体
+                isCustom: true, //使用自定义窗体
+                content: `<div class='input-card content-window-card' style=\"left: 2rem !important;\"><div style=\"padding:5px 0px 0px 0px;\">
+                            <h3>大石坝组团G分区G18-1/06地块</h3>
+                            <p class='input-item'>石马河街道玉带片区</p>
+                            <p class='input-item'>容积率: 2.5</p>
+                            <p class='input-item'>净用地面积: 4.86公顷（约72.86亩）</p>
+                            <p class='input-item'>用地性质: R2B1B2（纯居住用地）</p>
+                            <p class='input-item'>总计容建筑面积:12.14万㎡</p></div></div>`,
+                offset: new AMap.Pixel(16, -45),
+            });
+            var onMarkerClick = function (e) {
+                infoWindow.open(map, e.target.getPosition()); //打开信息窗体
+                map.add(imageLayer); //加载贴图
+            };
+
+            var removewindowinfo = function () {
+                infoWindow.close();
+
+                map.remove(imageLayer); //加载贴图
+            };
+            /*var marker = new AMap.Marker({
+                position: [106.479188, 29.571768],
+            });
+            map.add(marker);
+            marker.on("click", onMarkerClick); */
+
+            // 鼠标点击覆盖物
+            function showInfoC(e) {
+                var maptarget = e.target.getExtData();
+                console.log(maptarget);
+                var id = maptarget.id;
+                var name = maptarget.name;
+                let level = maptarget.level;
+                let filterMarklist = [];
+
+                map.setZoomAndCenter(maptarget.zoom, maptarget.nextll);
+                if (id == 111) {
+                    onMarkerClick(e);
+                    $(".btn_box_bottom").show();
+                }
+            }
+
+            //**************************************************绑定事件
+            function Event() {
+                // 给覆盖物绑定
+                for (let i = 0; i < markerList.length; i++) {
+                    markerList[i].on("click", showInfoC);
+                    //markerList[i].on('mouseover', showInfoOver);
+                    //markerList[i].on('mouseout', showInfoOut);
+                }
+                // 给地图绑定缩放事件
+                map.on("zoomend", mapScaling);
+            }
+            Event();
+
+            let search = function (searchKey) {
+                AMap.service(["AMap.PlaceSearch"], function () {
+                    //构造地点查询类
+                    var placeSearch = new AMap.PlaceSearch({
+                        pageSize: 3, // 单页显示结果条数
+                        pageIndex: 1, // 页码
+                        city: "重庆",
+                        citylimit: false, //是否强制限制在设置的城市内搜索
+                        map: map, // 展现结果的地图实例
+                        panel: "panel", // 结果列表将在此容器中进行展示。
+                        autoFitView: true, // 是否自动调整地图视野使绘制的 Marker点都处于视口的可见范围
+                    });
+
+                    var cpoint = [106.477477, 29.571143]; //中心点坐标
+                    placeSearch.searchNearBy(searchKey, cpoint, 800, function (status, result) {
+                        console.log(status);
+                        console.log(result);
+                    });
+                });
+            };
+        </script>
+    </body>
+</html>

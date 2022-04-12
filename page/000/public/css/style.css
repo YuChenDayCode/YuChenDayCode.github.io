@@ -51,7 +51,7 @@ ul{list-style: none;}
 .btn_box_bottom{
     position: absolute;
     right: 10px;
-    top: 60%;
+    top: 50%;
     z-index: 99;
     width: 55px;
     padding: 0 2px;

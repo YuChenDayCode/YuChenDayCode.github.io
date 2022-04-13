@@ -9,19 +9,6 @@
         <link href="public/font.css" rel="stylesheet" />
 
         <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
-
-        <style type="text/css">
-            #panel {
-                position: fixed;
-                background-color: white;
-                max-height: 90%;
-                overflow-y: auto;
-                top: 10px;
-                right: 10px;
-                width: 280px;
-                border-bottom: solid 1px silver;
-            }
-        </style>
     </head>
 
     <body>
@@ -64,8 +51,8 @@
                     <div><i class="icon-location"></i></div>
                     <div>学校</div>
                 </li>
-                  <li id="tuiwen">
-                    <div style="zoom: 1.5; height: 12px"><i class="icon-quanjing"></i></div>
+                <li id="tuiwen">
+                    <div style="zoom: 1.5; height: 12px"><i class="icon-tuiwen"></i></div>
                     <div>推文</div>
                 </li>
                 <li id="quanjing">
@@ -79,19 +66,7 @@
             </ul>
         </div>
         <div id="panel"></div>
-        <!--<div class="input-card" style="width: 12rem">
-            <div id="coordinate" style="padding-left: 20px">
-                <div class="input-item" id="jt"><input id="jtradio" name="language" type="radio" /><label for="jtradio" class="input-text">交通</label></div>
-                <div class="input-item" id="jy"><input id="jyRadio" name="language" type="radio" /><label for="jyRadio" class="input-text">教育</label></div>
-                <div class="input-item" id="yl"><input id="ylRadio" name="language" type="radio" /><label for="ylRadio" class="input-text">医疗</label></div>
-                <div class="input-item" id="litteArea"><input id="litteAreaRadio" name="language" type="radio" /><label for="litteAreaRadio" class="input-text">小区</label></div>
-                <div class="input-item" id="overallView"><input id="overallViewId" name="language" type="radio" /><label for="overallViewId" class="input-text">全景看图</label></div>
-                <div class="input-item" id="drawRule"><input id="drawRuleRadio" name="language" type="radio" /><label class="input-text" for="drawRuleRadio">测距离</label></div>
-                <div class="input-item" id="drawMeasureArea"><input id="drawMeasureAreaRadio" name="language" type="radio" /><label class="input-text" for="drawMeasureAreaRadio">测面积</label></div>
-                <div class="input-item" id="clearDraw"><input id="clearDrawRadio" name="language" type="radio" /><label class="input-text" for="clearDrawRadio">清除</label></div>
-            </div>
-        </div>
--->
+
         <div class="pic720" id="pic720">
             <div class="title720">
                 在线看地
@@ -99,6 +74,7 @@
             </div>
             <iframe id="piciframe" class="piciframe" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="100%"></iframe>
         </div>
+
         <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=222686c5697eb237142439956dfa3df5&plugin=AMap.DistrictSearch,AMap.MouseTool"></script>
         <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
         <script src="js/jquery.min.js"></script>
@@ -116,14 +92,12 @@
             });
 
             // 按钮事件
+            var satellite = new AMap.TileLayer.Satellite();
             $("#toolbar li").bind("click", function (e) {
                 switch (this.id) {
                     case "tuceng":
                         if (map.getLayers().find((f) => f.CLASS_NAME == "AMap.TileLayer.Satellite")) map.remove(satellite);
-                        else {
-                            var satellite = new AMap.TileLayer.Satellite();
-                            map.add(satellite);
-                        }
+                        else map.add(satellite);
                         break;
                     case "ceju":
                         draw("rule");
@@ -197,7 +171,6 @@
                     case "rule": {
                         mouseTool.rule({
                             startMarkerOptions: {
-                                //可缺省
                                 icon: new AMap.Icon({
                                     size: new AMap.Size(19, 31), //图标大小
                                     imageSize: new AMap.Size(19, 31),
@@ -205,7 +178,6 @@
                                 }),
                             },
                             endMarkerOptions: {
-                                //可缺省
                                 icon: new AMap.Icon({
                                     size: new AMap.Size(19, 31), //图标大小
                                     imageSize: new AMap.Size(19, 31),
@@ -214,7 +186,6 @@
                                 offset: new AMap.Pixel(-9, -31),
                             },
                             midMarkerOptions: {
-                                //可缺省
                                 icon: new AMap.Icon({
                                     size: new AMap.Size(19, 31), //图标大小
                                     imageSize: new AMap.Size(19, 31),
@@ -223,7 +194,6 @@
                                 offset: new AMap.Pixel(-9, -31),
                             },
                             lineOptions: {
-                                //可缺省
                                 strokeStyle: "solid",
                                 strokeColor: "#FF33FF",
                                 strokeOpacity: 1,
@@ -238,7 +208,6 @@
                             strokeColor: "#80d8ff",
                             fillColor: "#80d8ff",
                             fillOpacity: 0.3,
-                            //同 Polygon 的 Option 设置
                         });
                         break;
                     }
@@ -254,10 +223,10 @@
             var imageLayer = new AMap.ImageLayer({
                 bounds: new AMap.Bounds([106.475122, 29.567559], [106.479649, 29.572883]), //左下 右上
                 url: "img/G18-1.png", // 图片 Url
-                zIndex: 2,
-                zooms: [13, 18], //16 18 设置可见级别，[最小级别，最大级别]
+                zIndex: 3,
+                zooms: [10, 18], //13 18 设置可见级别，[最小级别，最大级别]
             });
-            //map.add(imageLayer); // 贴图
+            map.add(imageLayer); // 贴图
 
             var markerList = []; // 覆盖物数组
             var marker; // 中间变量
@@ -344,8 +313,8 @@
                 console.log("当前等级" + map.getZoom());
                 //map.remove(markerList);
                 let this_map_zoom = map.getZoom();
-                if (this_map_zoom > 13) map.add(polygon);
-                else map.remove(polygon);
+                //if (this_map_zoom > 13) map.add(polygon);
+                //else map.remove(polygon);
                 removewindowinfo();
                 if (this_map_zoom < 14) {
                     $(".btn_box_bottom").hide();
@@ -360,7 +329,7 @@
                 //创建信息窗体
                 isCustom: true, //使用自定义窗体
                 content: `<div class='input-card content-window-card' style=\"left: 2rem !important;\"><div style=\"padding:5px 0px 0px 0px;\">
-                            <h3>大石坝组团G分区G18-1/06地块</h3>
+                            <h3>大石坝组团G分区G18-1地块</h3>
                             <p class='input-item'>石马河街道玉带片区</p>
                             <p class='input-item'>容积率: 2.5</p>
                             <p class='input-item'>净用地面积: 4.86公顷（约72.86亩）</p>

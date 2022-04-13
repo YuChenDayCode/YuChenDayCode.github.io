@@ -44,14 +44,13 @@ ul{list-style: none;}
     display: flex;
     position: fixed;
     flex-direction: column;
-   
     padding: 5px;
     text-align: center;
 }
 .btn_box_bottom{
     position: absolute;
     right: 10px;
-    top: 50%;
+    top: 55%;
     z-index: 99;
     width: 55px;
     padding: 0 2px;
@@ -61,7 +60,7 @@ ul{list-style: none;}
 .toolbar-bottom li{
     width: 45px;
     background: rgba(255, 255, 255);
-    margin-top: 5px;
+    margin-top: 4px;
     border-radius: 8px;
     padding: 3px 0px 3px 0px;
     cursor: pointer;
@@ -129,4 +128,15 @@ ul{list-style: none;}
     font-style: normal;
     padding: 10px;
     cursor: pointer;
+}
+
+#panel {
+    position: fixed;
+    background-color: white;
+    max-height: 90%;
+    overflow-y: auto;
+    top: 10px;
+    left: 10px;
+    width: 280px;
+    /*border-bottom: solid 1px silver;*/
 }

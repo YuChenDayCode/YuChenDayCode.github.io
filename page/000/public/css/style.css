@@ -59,7 +59,7 @@ ul {
 .btn_box_bottom {
     position: absolute;
     right: 10px;
-    top: 45%;
+    top: 40%;
     z-index: 99;
     width: 55px;
     padding: 0 2px;
@@ -174,7 +174,7 @@ ul {
 .dkbody {
     height: 100%;
     overflow-y: auto;
-    padding: 3px;
+    padding: 2px;
     background: #cccccc;
 }
 .dkbody ul li {

@@ -190,14 +190,13 @@
                         $("#iframespan").html("地块推文");
                         break;
                     case "daohang":
-                        alert("调起地图导航");
-                        if (index == 0) {
-                            //百度在线地图
-                            window.location.href = "http://api.map.baidu.com/marker?location=" + baiduCoordinate.bd_lat.toString() + "," + baiduCoordinate.bd_lng.toString() + "&title=" + markerObject.title + "&content=" + markerObject.title + "&output=html";
-                        } else if (index == 1) {
-                            //高德在线地图
-                            window.location.href = "https://uri.amap.com/marker?position=" + markerObject.center[0] + "," + markerObject.center[1] + "&name=" + markerObject.title;
-                        }
+                        let center = [106.479553, 29.571992];
+                        document.getElementById("piciframe").src = "https://uri.amap.com/marker?position=" + center[0] + "," + center[1] + "&name=江北区石马河社区附近";
+                        document.getElementById("pic720").style.display = "block";
+                        $("#iframespan").html("导航");
+                        // window.location.href = "http://api.map.baidu.com/marker?location=" + baiduCoordinate.bd_lat.toString() + "," + baiduCoordinate.bd_lng.toString() + "&title=" + markerObject.title + "&content=" + markerObject.title + "&output=html";
+                        //window.location.href = "https://uri.amap.com/marker?position=" + center[0] + "," + center[1] + "&name=江北区石马河社区附近";
+                        //}
                         break;
                     case "konggui":
                         let imgvisible = imageLayer.getOptions().visible;

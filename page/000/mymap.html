@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
-        <title>amap</title>
+        <title>招商云地块推介</title>
         <link href="public/css/style.css?v=1.2" rel="stylesheet" />
         <link href="public/font.css" rel="stylesheet" />
 
@@ -15,6 +15,14 @@
         <div id="container"></div>
         <div class="btn_box" style="transform: translateX(0%)">
             <ul id="toolbar" class="toolbar-top">
+                <li id="home">
+                    <div><i class="icon-home2"></i></div>
+                    <div>首页</div>
+                </li>
+                <li id="list">
+                    <div><i class="icon-paragraph-justify"></i></div>
+                    <div>列表</div>
+                </li>
                 <li id="tuceng">
                     <div><i class="icon-stack"></i></div>
                     <div>图层</div>
@@ -33,8 +41,28 @@
                 </li>
             </ul>
         </div>
-        <div class="btn_box_bottom" style="transform: translateX(0%); display: none">
+        <div class="btn_box_bottom" style="display: none">
             <ul id="toolbar_bottom" class="toolbar-bottom">
+                <li id="tuiwen">
+                    <div style="zoom: 1"><i class="icon-file-text2"></i></div>
+                    <div>推文</div>
+                </li>
+                <li id="quanjing">
+                    <div style="zoom: 1.5; height: 12px"><i class="icon-quanjing"></i></div>
+                    <div>全景</div>
+                </li>
+                <li id="konggui" style="color: #58a6ff">
+                    <div style="zoom: 1.5; height: 15px"><i class="icon-eye"></i></div>
+                    <div>控规</div>
+                </li>
+                <li id="daohang">
+                    <div style="zoom: 1.5; height: 12px"><i class="icon-location2"></i></div>
+                    <div>导航</div>
+                </li>
+                <li id="lianxi">
+                    <div><i class="icon-phone"></i></div>
+                    <div>联系</div>
+                </li>
                 <li id="xiaoqu">
                     <div><i class="icon-location"></i></div>
                     <div>小区</div>
@@ -51,28 +79,39 @@
                     <div><i class="icon-location"></i></div>
                     <div>学校</div>
                 </li>
-                <li id="tuiwen">
-                    <div style="zoom: 1.5; height: 12px"><i class="icon-tuiwen"></i></div>
-                    <div>推文</div>
-                </li>
-                <li id="quanjing">
-                    <div style="zoom: 1.5; height: 12px"><i class="icon-quanjing"></i></div>
-                    <div>全景</div>
-                </li>
-                <li id="daohang">
-                    <div style="zoom: 1.5; height: 12px"><i class="icon-location2"></i></div>
-                    <div>导航</div>
-                </li>
             </ul>
         </div>
         <div id="panel"></div>
 
         <div class="pic720" id="pic720">
             <div class="title720">
-                在线看地
-                <i onclick="hide720()">X</i>
+                <span id="iframespan">在线看地</span>
+                <i class="icon-close" onclick="hide720()"></i>
             </div>
-            <iframe id="piciframe" class="piciframe" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="100%"></iframe>
+            <div class="iframebody">
+                <iframe id="piciframe" style="background-color: white" class="piciframe" height="100%" width="100%"></iframe>
+            </div>
+        </div>
+        <div class="dklist" id="dklist">
+            <div class="dktile">
+                <span id="iframespan">地块列表</span>
+                <i class="icon-close" onclick="hidedk()"></i>
+            </div>
+            <div class="dkbody">
+                <ul>
+                    <li>
+                        <div class="lititle">
+                            <h5>大石坝组团G分区G18-1地块</h5>
+                            <i>></i>
+                        </div>
+                        <div class="libody">
+                            <p>容积率: 2.5</p>
+                            <p>净用地面积: 4.86公顷</p>
+                            <p>用地性质: R2(纯居住用地)</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=222686c5697eb237142439956dfa3df5&plugin=AMap.DistrictSearch,AMap.MouseTool"></script>
@@ -91,10 +130,25 @@
                 zoom: 11, //地图显示的缩放级别11
             });
 
+            $(".dkbody li").bind("click", function (e) {
+                $("#dklist").hide();
+                map.setZoomAndCenter(14, [106.477477, 29.571143]);
+                infoWindow.open(map, [106.477477, 29.571143]); //打开信息窗体
+                imageLayer.show(); //加载贴图
+                $("#konggui div").css("color", "#58a6ff");
+                $(".btn_box_bottom").show();
+            });
+
             // 按钮事件
             var satellite = new AMap.TileLayer.Satellite();
             $("#toolbar li").bind("click", function (e) {
                 switch (this.id) {
+                    case "home":
+                        window.location.reload();
+                        break;
+                    case "list":
+                        $("#dklist").show();
+                        break;
                     case "tuceng":
                         if (map.getLayers().find((f) => f.CLASS_NAME == "AMap.TileLayer.Satellite")) map.remove(satellite);
                         else map.add(satellite);
@@ -126,14 +180,39 @@
                         search("学校");
                         break;
                     case "quanjing":
-                        document.getElementById("piciframe").src = "https://720yun.com/t/97vkbw1m7q9?scene_id=92031247";
+                        document.getElementById("piciframe").src = "https://720yun.com/t/97vkbw1m7q9?scene_id=92031250";
                         document.getElementById("pic720").style.display = "block";
+                        $("#iframespan").html("在线看地");
                         break;
                     case "tuiwen":
-                        alert("推文展示");
+                        document.getElementById("piciframe").src = "https://www.tnblog.net/wy/home/Detail.html";
+                        document.getElementById("pic720").style.display = "block";
+                        $("#iframespan").html("地块推文");
                         break;
                     case "daohang":
                         alert("调起地图导航");
+                        if (index == 0) {
+                            //百度在线地图
+                            window.location.href = "http://api.map.baidu.com/marker?location=" + baiduCoordinate.bd_lat.toString() + "," + baiduCoordinate.bd_lng.toString() + "&title=" + markerObject.title + "&content=" + markerObject.title + "&output=html";
+                        } else if (index == 1) {
+                            //高德在线地图
+                            window.location.href = "https://uri.amap.com/marker?position=" + markerObject.center[0] + "," + markerObject.center[1] + "&name=" + markerObject.title;
+                        }
+                        break;
+                    case "konggui":
+                        let imgvisible = imageLayer.getOptions().visible;
+                        if (imgvisible) {
+                            imageLayer.hide();
+                            $("#konggui div").css("color", "black");
+                        } else {
+                            imageLayer.show();
+                            $("#konggui div").css("color", "#58a6ff");
+                        }
+                        break;
+                    case "lianxi":
+                        $("#iframespan").html("联系方式");
+                        document.getElementById("piciframe").src = "https://www.tnblog.net/wy/home/Inquiry.html";
+                        document.getElementById("pic720").style.display = "block";
                         break;
                 }
             });
@@ -219,9 +298,9 @@
                 if ($panel.html() != "") {
                     //$panel.html("");
                     //placeSearch.render.markerList.clear();
-                    placeSearch.render.clear();
+                    if (placeSearch) placeSearch.render.clear();
                 }
-                console.log(e.lnglat.getLng() + "," + e.lnglat.getLat());
+                //console.log(e.lnglat.getLng() + ',' + e.lnglat.getLat());
             });
 
             // 创建图片图层 根据放大缩小比例改变大小
@@ -229,9 +308,10 @@
                 bounds: new AMap.Bounds([106.463309, 29.558722], [106.494155, 29.585185]), //左下 右上
                 url: "img/G18-1.png", // 图片 Url
                 zIndex: 3,
+                visible: false,
                 zooms: [13, 19], //13 18 设置可见级别，[最小级别，最大级别]
             });
-            //map.add(imageLayer); // 贴图
+            map.add(imageLayer); // 贴图
 
             var markerList = []; // 覆盖物数组
             var marker; // 中间变量
@@ -260,8 +340,8 @@
                 {
                     lnglat: [106.477477, 29.571143],
                     zooms: [14, 18],
-                    extData: { id: 111, name: "大石坝组团G分区G18-1/06地块", level: 3, zoom: 15 },
-                    name: "大石坝组团G分区G18-1/06地块",
+                    extData: { id: 111, name: "大石坝组团G分区G18-1地块", level: 3, zoom: 15 },
+                    name: "大石坝组团G分区G18-1地块",
                 },
             ];
             addMarker(cantonArr1, 12);
@@ -291,7 +371,6 @@
                     }
                 } else {
                     for (let i = 0; i < arr.length; i++) {
-                        console.log(arr[i].extData);
                         marker = new AMap.Marker({
                             map: map,
                             zIndex: 100, // 层级
@@ -321,7 +400,7 @@
                 if (this_map_zoom <= 14) {
                     $(".btn_box_bottom").hide();
                     removewindowinfo();
-                    placeSearch.render.clear();
+                    if (placeSearch) placeSearch.render.clear();
                 }
                 if (this_map_zoom < 8) {
                     map.setZoom(8);
@@ -333,7 +412,7 @@
                 //创建信息窗体
                 isCustom: true, //使用自定义窗体
                 content: `<div class='input-card content-window-card' style=\"left: 2rem !important;\"><div style=\"padding:5px 0px 0px 0px;\">
-                            <h3>大石坝组团G分区G18-1地块</h3>
+                            <div class='infotitle'><h3>大石坝组团G分区G18-1地块</h3><i onclick='infoWindow.close();' class='icon-close'></i></div>
                             <p class='input-item'>石马河街道玉带片区</p>
                             <p class='input-item'>容积率: 2.5</p>
                             <p class='input-item'>净用地面积: 4.86公顷(约72.86亩)</p>
@@ -343,13 +422,16 @@
             });
             var onMarkerClick = function (e) {
                 infoWindow.open(map, e.target.getPosition()); //打开信息窗体
-                map.add(imageLayer); //加载贴图
+                imageLayer.show(); //加载贴图
+                $("#konggui div").css("color", "#58a6ff");
             };
 
             var removewindowinfo = function () {
                 infoWindow.close();
                 map.remove(polygon);
-                map.remove(imageLayer);
+                //map.remove(imageLayer);
+                imageLayer.hide();
+                $("#konggui div").css("color", "black");
             };
             /*var marker = new AMap.Marker({
                 position: [106.479188, 29.571768],
@@ -405,6 +487,10 @@
                     });
                 });
             };
+
+            function hidedk() {
+                $("#dklist").hide();
+            }
         </script>
     </body>
 </html>

@@ -172,6 +172,9 @@
             $("#toolbar_bottom li").bind("click", function (e) {
                 switch (this.id) {
                     case "shiping":
+                        document.getElementById("piciframe").src = "https://www.tnblog.net/edu/r2-3.mp4";
+                        document.getElementById("pic720").style.display = "block";
+                        $("#iframespan").html("视频介绍");
                         break;
                     case "xiaoqu":
                         search("小区");

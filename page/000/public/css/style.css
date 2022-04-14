@@ -26,6 +26,7 @@ ul {
     padding: 5px;
     text-align: center;
     box-shadow: 2px 4px 5px 0 rgb(0, 0, 0, 0.5);
+    z-index: 9999;
 }
 
 .btn_box {
@@ -55,6 +56,7 @@ ul {
     flex-direction: column;
     padding: 5px;
     text-align: center;
+    z-index: 9999;
 }
 .btn_box_bottom {
     position: absolute;

@@ -43,17 +43,37 @@
         </div>
         <div class="btn_box_bottom" style="display: none">
             <ul id="toolbar_bottom" class="toolbar-bottom">
-                <li id="tuiwen">
-                    <div style="zoom: 1"><i class="icon-file-text2"></i></div>
-                    <div>推文</div>
-                </li>
                 <li id="quanjing">
                     <div style="zoom: 1.5; height: 12px"><i class="icon-quanjing"></i></div>
                     <div>全景</div>
                 </li>
+                <li id="shiping">
+                    <div style="zoom: 1"><i class="icon-film"></i></div>
+                    <div>视频</div>
+                </li>
+                <li id="tuiwen">
+                    <div style="zoom: 1"><i class="icon-file-text2"></i></div>
+                    <div>推文</div>
+                </li>
                 <li id="konggui" style="color: #58a6ff">
                     <div style="zoom: 1.5; height: 15px"><i class="icon-eye"></i></div>
                     <div>控规</div>
+                </li>
+                <li id="school">
+                    <div><i class="icon-location"></i></div>
+                    <div>学校</div>
+                </li>
+                <li id="hospital">
+                    <div><i class="icon-location"></i></div>
+                    <div>医院</div>
+                </li>
+                <!--<li id="xiaoqu">
+                    <div><i class="icon-location"></i></div>
+                    <div>小区</div>
+                </li>-->
+                <li id="gongjiao">
+                    <div><i class="icon-location"></i></div>
+                    <div>公交</div>
                 </li>
                 <li id="daohang">
                     <div style="zoom: 1.5; height: 12px"><i class="icon-location2"></i></div>
@@ -62,22 +82,6 @@
                 <li id="lianxi">
                     <div><i class="icon-phone"></i></div>
                     <div>联系</div>
-                </li>
-                <li id="xiaoqu">
-                    <div><i class="icon-location"></i></div>
-                    <div>小区</div>
-                </li>
-                <li id="hospital">
-                    <div><i class="icon-location"></i></div>
-                    <div>医院</div>
-                </li>
-                <li id="gongjiao">
-                    <div><i class="icon-location"></i></div>
-                    <div>公交</div>
-                </li>
-                <li id="school">
-                    <div><i class="icon-location"></i></div>
-                    <div>学校</div>
                 </li>
             </ul>
         </div>
@@ -167,6 +171,8 @@
 
             $("#toolbar_bottom li").bind("click", function (e) {
                 switch (this.id) {
+                    case "shiping":
+                        break;
                     case "xiaoqu":
                         search("小区");
                         break;

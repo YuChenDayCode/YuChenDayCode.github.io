@@ -26,12 +26,11 @@
         sourcedata = source.result.data.reverse();
 
         $.each(sourcedata, function (index, item) {
-            console.log(item);
             datearr.push(item.DIM_DATE);
-            data92.push(item.V_92);
-            data95.push(item.V_95);
+            data92.push({value:item.V_92,bd:item.ZDE_92});
+             data95.push({value:item.V_95,bd:item.ZDE_95});
         });
-        console.log(datearr);
+        console.log(data92);
         echartload();
     });
 
@@ -42,6 +41,15 @@
             },
             tooltip: {
                 trigger: "axis",
+                formatter: (v) => 
+                { console.log(v);
+                	let str ='<div>'+v[0].axisValue;
+                	$.each(v,function(i,item){
+                		str+='<br/> <span>'+item.seriesName+' : '+item.data.value +" ("+item.data.bd+")"+'</span>';
+                	});
+                	str+="</div>";
+                return	str;
+            }
             },
             legend: {
                 data: ["92#", "95#"],
@@ -62,10 +70,12 @@
             },
             yAxis: {
                 type: "value",
+                interval :1,
+                max:12
             },
             series: [
-                { name: "92#", type: "line", stack: "Total", data: data92, smooth: true },
-                { name: "95#", type: "line", stack: "Total", data: data95, smooth: true },
+                { name: "92#", type: "line",  data: data92,smooth: true },
+                { name: "95#", type: "line",  data: data95, smooth: true },
             ],
         };
 

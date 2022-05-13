@@ -172,7 +172,7 @@
             $("#toolbar_bottom li").bind("click", function (e) {
                 switch (this.id) {
                     case "shiping":
-                        document.getElementById("piciframe").src = "https://www.tnblog.net/edu/r2-3.mp4";
+                        document.getElementById("piciframe").src = "https://image.tnblog.net/R2-3.mp4";
                         document.getElementById("pic720").style.display = "block";
                         $("#iframespan").html("视频介绍");
                         break;
@@ -231,14 +231,15 @@
             }
 
             var path = [
-                new AMap.LngLat(106.479338, 29.572766),
-                new AMap.LngLat(106.475851, 29.571665),
-                new AMap.LngLat(106.475723, 29.57118),
-                new AMap.LngLat(106.476962, 29.569589),
-                new AMap.LngLat(106.478072, 29.570135),
-                new AMap.LngLat(106.478855, 29.570051),
-                new AMap.LngLat(106.479628, 29.570555),
-                new AMap.LngLat(106.479338, 29.572766),
+                new AMap.LngLat(106.479365, 29.571591),
+                new AMap.LngLat(106.478802, 29.571493),
+                new AMap.LngLat(106.478598, 29.57209),
+                new AMap.LngLat(106.476345, 29.571348),
+                new AMap.LngLat(106.477531, 29.569813),
+                new AMap.LngLat(106.478813, 29.570476),
+                new AMap.LngLat(106.479108, 29.570135),
+                new AMap.LngLat(106.479811, 29.570522),
+                new AMap.LngLat(106.479349, 29.571577),
             ];
 
             var polygon = new AMap.Polygon({
@@ -308,12 +309,12 @@
                     //placeSearch.render.markerList.clear();
                     if (placeSearch) placeSearch.render.clear();
                 }
-                //console.log(e.lnglat.getLng() + ',' + e.lnglat.getLat());
+                console.log(e.lnglat.getLng() + "," + e.lnglat.getLat());
             });
 
             // 创建图片图层 根据放大缩小比例改变大小
             var imageLayer = new AMap.ImageLayer({
-                bounds: new AMap.Bounds([106.463309, 29.558722], [106.494155, 29.585185]), //左下 右上
+                bounds: new AMap.Bounds([106.472, 29.56154], [106.487889, 29.580735]), //左下 右上
                 url: "img/G18-1.png", // 图片 Url
                 zIndex: 3,
                 visible: false,

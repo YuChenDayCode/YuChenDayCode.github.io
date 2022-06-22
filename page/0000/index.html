@@ -1,85 +1,86 @@
 <style>
-    #main,
-    html,
-    body {
-        width: 99%;
-    }
-    #main {
-        height: 800px;
-    }
+  #main,
+  html,
+  body {
+    width: 99%;
+  }
+  #main {
+    height: 800px;
+  }
 </style>
 <div id="main"></div>
 
 <script src="jquery.min.js"></script>
 <script src="echarts.min.js"></script>
 <script>
-    var myChart = echarts.init(document.getElementById("main"));
-    window.onresize = function () {
-        myChart.resize();
-    };
-    var sourcedata = [];
-    var datearr = []; //时间
-    var data92 = [];
-    var data95 = [];
-    $.get("https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPTA_WEB_YJ_JH&sortColumns=dim_date&sortTypes=-1&columns=CITYNAME,DIM_DATE,V_92,V_95,ZDE_92,ZDE_95&filter=(cityname%3D%22%E9%87%8D%E5%BA%86%22)&pageNumber=1&pageSize=10", function (data) {
-        let source = JSON.parse(data);
-        sourcedata = source.result.data.reverse();
-
-        $.each(sourcedata, function (index, item) {
-            datearr.push(item.DIM_DATE);
-            data92.push({value:item.V_92,bd:item.ZDE_92});
-             data95.push({value:item.V_95,bd:item.ZDE_95});
-        });
-        console.log(data92);
-        echartload();
-    });
-
-    function echartload() {
-        option = {
-            title: {
-                text: "价格走势",
-            },
-            tooltip: {
-                trigger: "axis",
-                formatter: (v) => 
-                { console.log(v);
-                	let str ='<div>'+v[0].axisValue;
-                	$.each(v,function(i,item){
-                		str+='<br/> <span>'+item.seriesName+' : '+item.data.value +" ("+item.data.bd+")"+'</span>';
-                	});
-                	str+="</div>";
-                return	str;
-            }
-            },
-            legend: {
-                data: ["92#", "95#"],
-            },
-            grid: {
-                left: "3%",
-                right: "4%",
-                bottom: "3%",
-                containLabel: true,
-            },
-            xAxis: {
-                type: "category",
-                boundaryGap: false,
-                axisLabel: {
-                    rotate: 70,
-                },
-                data: datearr,
-            },
-            yAxis: {
-                type: "value",
-                interval :0.5,
-                min:5,
-                max:12
-            },
-            series: [
-                { name: "92#", type: "line",  data: data92,smooth: true },
-                { name: "95#", type: "line",  data: data95, smooth: true },
-            ],
-        };
-
-        myChart.setOption(option);
+  var myChart = echarts.init(document.getElementById("main"));
+  window.onresize = function () {
+    myChart.resize();
+  };
+  var sourcedata = [];
+  var datearr = []; //时间
+  var data92 = [];
+  var data95 = [];
+  $.get(
+    "https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPTA_WEB_YJ_JH&sortColumns=dim_date&sortTypes=-1&columns=CITYNAME,DIM_DATE,V92,V95,ZDE92,ZDE95&filter=(cityname%3D%22%E9%87%8D%E5%BA%86%22)&pageNumber=1&pageSize=10",
+    function (data) {
+      let source = JSON.parse(data);
+      console.log(source);
+      sourcedata = source.result.data.reverse();
+      $.each(sourcedata, function (index, item) {
+        datearr.push(item.DIM_DATE.slice(0, 10));
+        data92.push({ value: item.V92, bd: item.ZDE92 });
+        data95.push({ value: item.V95, bd: item.ZDE95 });
+      });
+      echartload();
     }
+  );
+
+  function echartload() {
+    option = {
+      title: {
+        text: "价格走势",
+      },
+      tooltip: {
+        trigger: "axis",
+        formatter: (v) => {
+          let str = "<div>" + v[0].axisValue;
+          $.each(v, function (i, item) {
+            str += "<br/> <span>" + item.seriesName + " : " + item.data.value + " (" + item.data.bd + ")" + "</span>";
+          });
+          str += "</div>";
+          return str;
+        },
+      },
+      legend: {
+        data: ["92#", "95#"],
+      },
+      grid: {
+        left: "3%",
+        right: "4%",
+        bottom: "3%",
+        containLabel: true,
+      },
+      xAxis: {
+        type: "category",
+        boundaryGap: false,
+        axisLabel: {
+          rotate: 70,
+        },
+        data: datearr,
+      },
+      yAxis: {
+        type: "value",
+        interval: 0.5,
+        min: 5,
+        max: 12,
+      },
+      series: [
+        { name: "92#", type: "line", data: data92, smooth: true },
+        { name: "95#", type: "line", data: data95, smooth: true },
+      ],
+    };
+
+    myChart.setOption(option);
+  }
 </script>
